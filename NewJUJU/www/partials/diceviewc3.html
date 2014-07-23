@@ -1,0 +1,48 @@
+<div  class="dice-list__container list" ng-controller="diceGamesetup4Ctrl">
+    <div class="dice-navigation-bar">
+    </div>
+<div class="dice-menu-jieguo-bar">
+    
+    <div style ="margin:20px;"  ng-repeat="item in items" >
+     <br><br>
+     
+   <img class="imgdice" src="{{ diceP1 }}"/><B>{{ dicenum1 }}</B>
+   <img class="imgdice" src="{{ diceP2 }}"/><B>{{ dicenum2 }}</B>
+   <img class="imgdice" src="{{ diceP3 }}"/><B>{{ dicenum3 }}</B><BR>
+   <img class="imgdice" src="{{ diceP4 }}"/><B>{{ dicenum4 }}</B>
+   <img class="imgdice" src="{{ diceP5 }}"/><B>{{ dicenum5 }}</B>
+   <img class="imgdice" src="{{ diceP6 }}"/><B>{{ dicenum6 }}</B>
+   <br>
+     <B>{{item.username}}</B>
+     <br>
+     <img class="imgdice" src="{{ dice1 }}"/>
+     <img class="imgdice" src="{{ dice2 }}"/>
+     <img class="imgdice" src="{{ dice3 }}"/>
+     <img class="imgdice" src="{{ dice4 }}"/>
+     <img class="imgdice" src="{{ dice5 }}"/>
+     <img class="imgdice" src="{{ dice6 }}"/>
+     <br>
+    
+    
+    </div>
+
+</div>
+
+
+<div class="dice-menu-bar-start" >
+    
+    <div class="dice-menu-bar-ag" ng-click="slidePage('/diceviewc1')">
+        &nbsp;&nbsp;
+        
+    </div>
+    
+
+   <div class="dice-menu-bar-dmx" ng-click="slidePage('/dmxview')">
+    &nbsp;&nbsp;
+    
+   </div>
+
+</div>
+
+</div>
+
