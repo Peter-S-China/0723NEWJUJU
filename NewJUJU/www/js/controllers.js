@@ -1909,7 +1909,7 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
                     $scope.dicenum5 =  '*' + $scope.diceN[8];
                     $scope.dicenum6 =  '*' + $scope.diceN[10];
                     
-                    
+                  
                     
                     $scope.diceG = data.item18[0].bosonscover;
                     
@@ -1933,7 +1933,7 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
                     
                     console.log($scope.diceG[10]);
                     $scope.dice6 = 'partials/' + $scope.diceG[10] + '.PNG';
-                    
+                  
                     
                     $scope.$apply();
                     
