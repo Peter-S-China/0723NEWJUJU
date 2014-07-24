@@ -64,32 +64,29 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
        $routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
              
     
-    $routeProvider.when('/diceview', {templateUrl: 'partials/diceview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/diceview', {templateUrl: 'partials/diceview.html', controller: 'HomeCtrl'});
+
+
+//吹牛游戏视图流程
+$routeProvider.when('/diceviewc1', {templateUrl: 'partials/dicegame/diceviewc1.html', controller: 'HomeCtrl'});
+$routeProvider.when('/diceviewc2', {templateUrl: 'partials/dicegame/diceviewc2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/diceviewc3', {templateUrl: 'partials/dicegame/diceviewc3.html', controller: 'HomeCtrl'});
+
+//比大小游戏视图流程
+$routeProvider.when('/diceviewbdx', {templateUrl: 'partials/dicegame/diceviewcbdx.html', controller: 'HomeCtrl'});
+//1个骰子情况
+$routeProvider.when('/dice1viewbdx', {templateUrl: 'partials/dicegame/dice1viewcbdx.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice1viewbdxsend', {templateUrl: 'partials/dicegame/dice1viewcbdxsend.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice1viewcbdxresult', {templateUrl: 'partials/dicegame/dice1viewcbdxresult.html', controller: 'HomeCtrl'});
+
+//骰子参与者等待页面
+$routeProvider.when('/diceviewwaiting', {templateUrl: 'partials/dicegame/dice1viewf.html', controller: 'HomeCtrl'});
              
-      $routeProvider.when('/diceviewc1', {templateUrl: 'partials/diceviewc1.html', controller: 'HomeCtrl'});
+//-------------------------
              
-     $routeProvider.when('/diceviewc2', {templateUrl: 'partials/diceviewc2.html', controller: 'HomeCtrl'});
-             
-             
-    $routeProvider.when('/diceviewc3', {templateUrl: 'partials/diceviewc3.html', controller: 'HomeCtrl'});
-             
-             
-    $routeProvider.when('/diceviewbdx', {templateUrl: 'partials/diceviewcbdx.html', controller: 'HomeCtrl'});
-             
-             
-  $routeProvider.when('/dice1viewbdx', {templateUrl: 'partials/dice1viewcbdx.html', controller: 'HomeCtrl'});
-             
-   $routeProvider.when('/dice1viewbdxsend', {templateUrl: 'partials/dice1viewcbdxsend.html', controller: 'HomeCtrl'});
-             
-             
- $routeProvider.when('/dice1viewcbdxresult', {templateUrl: 'partials/dice1viewcbdxresult.html', controller: 'HomeCtrl'});
-             
-             
-           $routeProvider.when('/flatview', {templateUrl: 'partials/flatview.html', controller: 'HomeCtrl'});  
-         
-           $routeProvider.when('/cbsteamdetail', {templateUrl: 'partials/cbsteamdetail.html', controller: 'HomeCtrl'});
-             
-             $routeProvider.when('/homelostview', {templateUrl: 'partials/homelostview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/flatview', {templateUrl: 'partials/flatview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/cbsteamdetail', {templateUrl: 'partials/cbsteamdetail.html', controller: 'HomeCtrl'});
+$routeProvider.when('/homelostview', {templateUrl: 'partials/homelostview.html', controller: 'HomeCtrl'});
              
         $routeProvider.when('/cbsview2', {templateUrl: 'partials/CBS_View2.html', controller: 'HomeCtrl'});
              

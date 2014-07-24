@@ -1010,7 +1010,7 @@ function ingGameListCtrl($scope,$rootScope,$location){
                      }
                     if(g_gamename=='dice'){
                     
-                      $location.path("/diceviewc3");
+                      $location.path("/diceviewwaiting");
                     
                     }
                     
@@ -1819,6 +1819,8 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
 
     
     $scope.onlinep();
+    var g_timer = setInterval(function(){$scope.onlinep();},5000);
+
 }
 
 
@@ -1861,7 +1863,33 @@ function diceGamedice1Ctrl($scope,$rootScope,$location){
 
 function dice1GamefCtrl($scope,$rootScope,$location){
 
-         console.log('>>>>>>比大小结果获取<<<');
+    console.log('>>>>>>比大小结果获取<<<');
+    console.log('摇骰子结果页面');
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    var dicejg = g_baseurl + "/JujuDemo/servlet/SendbosonsCover?gamehomenum="+ localStorage.g_gamenum +"&cate=1";
+    console.log(dicejg);
+    $scope.getdiceff = function(){
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+    
+            jx.load(dicejg,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item18;
+                    $scope.$apply();
+                    
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+    }
+    
+    
+    $scope.getdiceff();
+    
+    
 
 }
 
@@ -1944,6 +1972,7 @@ function diceGamesetup3Ctrl($scope,$rootScope,$location){
 
 }
 
+//摇骰子结果
 function diceGamesetup4Ctrl($scope,$rootScope,$location){
     
     console.log('摇骰子结果页面');
@@ -1971,7 +2000,6 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
                     
                     $scope.diceN = data.item18[0].totalbosonsnum;
                     $scope.diceN.split(",");
-                    
                     $scope.dicenum1 =  'x' + $scope.diceN[0];
                     $scope.dicenum2 =  'x' + $scope.diceN[2];
                     $scope.dicenum3 =  'x' + $scope.diceN[4];
@@ -1979,31 +2007,64 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
                     $scope.dicenum5 =  'x' + $scope.diceN[8];
                     $scope.dicenum6 =  'x' + $scope.diceN[10];
                     
-                  
                     
-                    $scope.diceG = data.item18[0].bosonscover;
-                    
-                    $scope.diceG.split(",");
-                    
-                    console.log($scope.diceG[0]);
-                    $scope.dice1 = 'partials/' + $scope.diceG[0] + '.PNG';
-                    
-                    console.log($scope.diceG[2]);
-                    $scope.dice2 = 'partials/' + $scope.diceG[2] + '.PNG';
-                    
-                    console.log($scope.diceG[4]);
-                    $scope.dice3 = 'partials/' + $scope.diceG[4] + '.PNG';
-                    
-                    console.log($scope.diceG[6]);
-                    $scope.dice4 = 'partials/' + $scope.diceG[6] + '.PNG';
+                    console.log('FFFFFFFF' + $rootScope.items.length);
                     
                     
-                    console.log($scope.diceG[8]);
-                    $scope.dice5 = 'partials/' + $scope.diceG[8] + '.PNG';
                     
-                    console.log($scope.diceG[10]);
-                    $scope.dice6 = 'partials/' + $scope.diceG[10] + '.PNG';
-                  
+                    $scope.$apply();
+                    },'json');
+        } else {
+            console.log('data already loaded');
+        }
+    }
+    $scope.getdiceff();
+    
+    $scope.loadItem = function(item){
+    
+        console.log(item.bosonscover);
+        $scope.gameusername = item.username;
+        $scope.image = item.bosonscover;
+        $scope.images = $scope.image.split(',');
+        for(i=0;i<$scope.images.length;i++){
+            $scope.dice1 = 'partials/' + $scope.images[0]+'.PNG';
+            $scope.dice2 = 'partials/' + $scope.images[1]+'.PNG';
+            $scope.dice3 = 'partials/' + $scope.images[2]+'.PNG';
+            $scope.dice4 = 'partials/' + $scope.images[3]+'.PNG';
+            $scope.dice5 = 'partials/' + $scope.images[4]+'.PNG';
+            $scope.dice6 = 'partials/' + $scope.images[5]+'.PNG';
+          //console.log("输出"+ $scope.images[i]+".PNG")
+        }
+    
+    }
+    
+
+}
+
+
+function diceGamewaitCtrl($scope,$rootScope,$location){
+    
+    console.log('摇骰子结果页面');
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
+    var waiturl = g_baseurl + '/JujuDemo/servlet/SendbosonsNum?gamehomenum='+ localStorage.g_gamenum;
+    
+    console.log(waiturl);
+    
+    $scope.waitopen = function(){
+        $rootScope.items=null;
+        if (!$rootScope.items) {
+            jx.load(waiturl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.bosonsnum;
+                    
+                    if($rootScope.items == '6'){
+                    
+                        clearInterval(g_timer);
+                        $location.path('/diceviewc2');
+                    
+                    }
                     
                     $scope.$apply();
                     
@@ -2012,22 +2073,17 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
         } else {
             console.log('data already loaded');
         }
-
-    }
-    
-    
-    $scope.getdiceff();
-    
-    
+        
+   }
    
-    
-    
-    
-}
-
-
-function diceGamesetup5Ctrl($scope,$rootScope,$location){
-    
+    var g_timer;
+   $scope.first = function(){
+       g_timer = setInterval(function(){$scope.waitopen();},1000);
+   
+   }
+   $scope.first();
+   
+   
     
    
 }

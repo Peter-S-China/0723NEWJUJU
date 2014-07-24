@@ -3,7 +3,7 @@
     </div>
 <div class="dice-menu-jieguo-bar">
     
-    <div style ="margin:20px;"  ng-repeat="item in items" >
+    <div style ="margin:20px;">
      <br><br>
      
    <img class="imgdice" src="{{ diceP1 }}"/><B>{{ dicenum1 }}</B>
@@ -13,14 +13,26 @@
    <img class="imgdice" src="{{ diceP5 }}"/><B>{{ dicenum5 }}</B>
    <img class="imgdice" src="{{ diceP6 }}"/><B>{{ dicenum6 }}</B>
    <br>
-     <B>{{item.username}}</B>
+   <div >
+       <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#987cb9" SIZE="3">
+       
+        <B>{{gameusername}}</B><br>
+       
+        <img class="imgdice" ng-src="{{dice1}}">
+        <img class="imgdice" ng-src="{{dice2}}">
+        <img class="imgdice" ng-src="{{dice3}}">
+        <img class="imgdice" ng-src="{{dice4}}">
+        <img class="imgdice" ng-src="{{dice5}}">
+        <img class="imgdice" ng-src="{{dice6}}">
+    <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#987cb9" SIZE="3">
+   </div>
+   <div ng-repeat="item in items" ng-click="loadItem(item)"> <B>{{item.username}}</B>
+       <br>
+   </div>
+   
+   
      <br>
-     <img class="imgdice" src="{{ dice1 }}"/>
-     <img class="imgdice" src="{{ dice2 }}"/>
-     <img class="imgdice" src="{{ dice3 }}"/>
-     <img class="imgdice" src="{{ dice4 }}"/>
-     <img class="imgdice" src="{{ dice5 }}"/>
-     <img class="imgdice" src="{{ dice6 }}"/>
+
      <br>
     
     

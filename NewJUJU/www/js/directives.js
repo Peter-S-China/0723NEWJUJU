@@ -6,3 +6,11 @@ angular.module('myApp.directives', [])
         return function(scope, elm, attrs) {
           elm.text(version);
 }}])
+.directive('showDiceNum', ['dicenum', function(item) {
+                          
+                           return function(scope, elm, attrs) {
+                          
+                           elm.text(version);
+                          
+                           }}])
+
