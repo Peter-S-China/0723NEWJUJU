@@ -132,7 +132,7 @@ var g_score;
 var g_value = 0;
 var g_gamename;
 var g_gamenum;
-var g_baseurl='http://124.127.127.186:8080';
+var g_baseurl='http://203.100.80.135:8080';
 
 
 //-----------------------------
@@ -1772,6 +1772,21 @@ function diceGamesetupCtrl($scope,$rootScope,$location){
 }
 
 
+function diceGamesetupbdxCtrl($scope,$rootScope,$location){
+    
+    console.log('比大小摇骰子游戏开始');
+    
+    $scope.dice1='img/dice/dice1.png';;
+    $scope.dice2='img/dice/dice2.png';
+    $scope.dice3='img/dice/dice3.png';
+    $scope.dice4='img/dice/dice4.png';
+    $scope.dice5='img/dice/dice5.png';
+    $scope.dice6='img/dice/dice6.png';
+   
+    
+}
+
+
 //------摇骰子游戏创建者初始化游戏设置步骤2------
 
 function diceGamesetup2Ctrl($scope,$rootScope,$location){
@@ -1806,22 +1821,77 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
     $scope.onlinep();
 }
 
-function diceGamesetup3Ctrl($scope,$rootScope,$location){
+
+function diceGamedice1Ctrl($scope,$rootScope,$location){
     
     console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     $scope.value1 = Math.floor(Math.random()*6+1);
     $scope.dice1 = 'partials/' + $scope.value1 + '.PNG';
+    
+    var sdurl= g_baseurl + '/JujuDemo/servlet/GetbosonsCover?gamehomenum='+localStorage.g_gamenum + '&bosonscover='+ $scope.value1 +'&userid='+ g_userid;
+    
+    console.log('发送随机骰子数目' + sdurl);
+    
+    $scope.senddicenum = function(){
+        
+        $rootScope.items=null;
+        if (!$rootScope.items) {
+            jx.load(sdurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.bosonscoverflag;
+                    
+                    $scope.$apply();
+                    
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        $location.path("/dice1viewcbdxresult");
+        
+    }
+
+    
+
+
+
+}
+
+function dice1GamefCtrl($scope,$rootScope,$location){
+
+         console.log('>>>>>>比大小结果获取<<<');
+
+}
+
+
+
+
+
+function diceGamesetup3Ctrl($scope,$rootScope,$location){
+    
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
+    $scope.value1 = Math.floor(Math.random()*6+1);
+    $scope.dice1 = 'partials/' + $scope.value1 + '.PNG';
+    
     $scope.value2 = Math.floor(Math.random()*6+1);
     $scope.dice2 = 'partials/' + $scope.value2 + '.PNG';
+    
     $scope.value3 = Math.floor(Math.random()*6+1);
     $scope.dice3 = 'partials/' + $scope.value3 + '.PNG';
+    
     $scope.value4 = Math.floor(Math.random()*6+1);
     $scope.dice4 = 'partials/' + $scope.value4 + '.PNG';
+    
     $scope.value5 = Math.floor(Math.random()*6+1);
     $scope.dice5 = 'partials/' + $scope.value5 + '.PNG';
+    
     $scope.value6 = Math.floor(Math.random()*6+1);
     $scope.dice6 = 'partials/' + $scope.value6 + '.PNG';
+    
     $scope.alvalue = $scope.value1+','+$scope.value2+','+$scope.value3+','+$scope.value4+','+$scope.value5+','+$scope.value6;
     
     console.log('吹牛骰子随机数第一次bosonscover=' + $scope.alvalue);
@@ -1902,12 +1972,12 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
                     $scope.diceN = data.item18[0].totalbosonsnum;
                     $scope.diceN.split(",");
                     
-                    $scope.dicenum1 =  '*' + $scope.diceN[0];
-                    $scope.dicenum2 =  '*' + $scope.diceN[2];
-                    $scope.dicenum3 =  '*' + $scope.diceN[4];
-                    $scope.dicenum4 =  '*' + $scope.diceN[6];
-                    $scope.dicenum5 =  '*' + $scope.diceN[8];
-                    $scope.dicenum6 =  '*' + $scope.diceN[10];
+                    $scope.dicenum1 =  'x' + $scope.diceN[0];
+                    $scope.dicenum2 =  'x' + $scope.diceN[2];
+                    $scope.dicenum3 =  'x' + $scope.diceN[4];
+                    $scope.dicenum4 =  'x' + $scope.diceN[6];
+                    $scope.dicenum5 =  'x' + $scope.diceN[8];
+                    $scope.dicenum6 =  'x' + $scope.diceN[10];
                     
                   
                     

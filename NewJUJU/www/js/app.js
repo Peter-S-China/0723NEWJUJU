@@ -77,8 +77,12 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
     $routeProvider.when('/diceviewbdx', {templateUrl: 'partials/diceviewcbdx.html', controller: 'HomeCtrl'});
              
              
- 
+  $routeProvider.when('/dice1viewbdx', {templateUrl: 'partials/dice1viewcbdx.html', controller: 'HomeCtrl'});
              
+   $routeProvider.when('/dice1viewbdxsend', {templateUrl: 'partials/dice1viewcbdxsend.html', controller: 'HomeCtrl'});
+             
+             
+ $routeProvider.when('/dice1viewcbdxresult', {templateUrl: 'partials/dice1viewcbdxresult.html', controller: 'HomeCtrl'});
              
              
            $routeProvider.when('/flatview', {templateUrl: 'partials/flatview.html', controller: 'HomeCtrl'});  

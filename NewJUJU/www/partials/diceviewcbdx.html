@@ -1,4 +1,4 @@
-<div  class="dice-list__container list" ng-controller="diceGamesetupCtrl">
+<div  class="dice-list__container list" ng-controller="diceGamesetupbdxCtrl">
     <div class="dice-navigation-bar">
         
         
@@ -10,9 +10,14 @@
             &nbsp;&nbsp;<br><br>
         </div>
         
-       
-        
-       
+        <div style="padding-left:23px;">
+            <a  ng-click="slidePage('/dice1viewbdx')"> <img class="imgcdice" src="{{ dice1 }}"/></a>
+            <img class="imgcdice" src="{{ dice2 }}"/>
+            <img class="imgcdice" src="{{ dice3 }}"/>
+            <img class="imgcdice" src="{{ dice4 }}"/>
+            <img class="imgcdice" src="{{ dice5 }}"/>
+            <img class="imgcdice" src="{{ dice6 }}"/>
+        </div>
         
         
     </div>
@@ -20,4 +25,3 @@
     
 </div>
 
-<ng-include src="'partials/settingsOverlay.html'"></ng-include>
