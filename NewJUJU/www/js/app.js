@@ -64,7 +64,7 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
        $routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
              
     
-$routeProvider.when('/diceview', {templateUrl: 'partials/diceview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/diceview', {templateUrl: 'partials/dicegame/diceview.html', controller: 'HomeCtrl'});
 
 
 //吹牛游戏视图流程
@@ -79,6 +79,33 @@ $routeProvider.when('/dice1viewbdx', {templateUrl: 'partials/dicegame/dice1viewc
 $routeProvider.when('/dice1viewbdxsend', {templateUrl: 'partials/dicegame/dice1viewcbdxsend.html', controller: 'HomeCtrl'});
 $routeProvider.when('/dice1viewcbdxresult', {templateUrl: 'partials/dicegame/dice1viewcbdxresult.html', controller: 'HomeCtrl'});
 
+//2个骰子情况
+$routeProvider.when('/dice2viewbdx', {templateUrl: 'partials/dicegame/dice2viewcbdx.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice2viewbdxsend', {templateUrl: 'partials/dicegame/dice2viewcbdxsend.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice2viewcbdxresult', {templateUrl: 'partials/dicegame/dice2viewcbdxresult.html', controller: 'HomeCtrl'});
+             
+//3个骰子情况
+$routeProvider.when('/dice3viewbdx', {templateUrl: 'partials/dicegame/dice3viewcbdx.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice3viewbdxsend', {templateUrl: 'partials/dicegame/dice3viewcbdxsend.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice3viewcbdxresult', {templateUrl: 'partials/dicegame/dice3viewcbdxresult.html', controller: 'HomeCtrl'});
+
+//4个骰子情况
+$routeProvider.when('/dice4viewbdx', {templateUrl: 'partials/dicegame/dice4viewcbdx.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice4viewbdxsend', {templateUrl: 'partials/dicegame/dice4viewcbdxsend.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice4viewcbdxresult', {templateUrl: 'partials/dicegame/dice4viewcbdxresult.html', controller: 'HomeCtrl'});
+         
+             
+//5个骰子情况
+$routeProvider.when('/dice5viewbdx', {templateUrl: 'partials/dicegame/dice5viewcbdx.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice5viewbdxsend', {templateUrl: 'partials/dicegame/dice5viewcbdxsend.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice5viewcbdxresult', {templateUrl: 'partials/dicegame/dice5viewcbdxresult.html', controller: 'HomeCtrl'});
+             
+//6个骰子情况
+$routeProvider.when('/dice6viewbdx', {templateUrl: 'partials/dicegame/dice6viewcbdx.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice6viewbdxsend', {templateUrl: 'partials/dicegame/dice6viewcbdxsend.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dice6viewcbdxresult', {templateUrl: 'partials/dicegame/dice6viewcbdxresult.html', controller: 'HomeCtrl'});
+             
+             
 //骰子参与者等待页面
 $routeProvider.when('/diceviewwaiting', {templateUrl: 'partials/dicegame/dice1viewf.html', controller: 'HomeCtrl'});
              

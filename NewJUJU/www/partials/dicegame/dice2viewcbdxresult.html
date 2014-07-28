@@ -1,0 +1,44 @@
+<div  class="dice-list__container list" ng-controller="dice2GamefCtrl">
+    <div class="dice-navigation-bar">
+    </div>
+    <div class="dice-menu-jieguo-bar">
+        
+        <div style ="margin:20px;"    >
+            <br><br>
+            <div >
+                <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#987cb9" SIZE="3">
+                <B>{{gameusername}}</B><br>
+                <img class="imgdice" ng-src="{{dice1}}"><img class="imgdice" ng-src="{{dice2}}"><br>
+                    <B>总数:{{totalnum}}</B><br>
+                    
+                    <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color="#987cb9" SIZE="3">
+                    </div>
+            <div ng-repeat="item in items" ng-click="loadItem(item)"> <B>{{item.username}}</B>
+                <div> </div>
+                
+            </div>
+            
+            
+            
+        </div>
+        
+    </div>
+    
+    
+    <div class="dice-menu-bar-start" >
+        
+        <div class="dice-menu-bar-ag" ng-click="slidePage('/diceviewbdx')">
+            &nbsp;&nbsp;
+            
+        </div>
+        
+        
+        <div class="dice-menu-bar-dmx" ng-click="slidePage('/dmxview')">
+            &nbsp;&nbsp;
+            
+        </div>
+        
+    </div>
+    
+</div>
+
