@@ -2766,7 +2766,7 @@ function diceGamesetup3Ctrl($scope,$rootScope,$location){
 
 }
 
-//任何一个点，开盘，直接显示摇骰子结果
+//任何参与游戏的人点，开盘，直接显示摇骰子结果
 function diceGamesetup4Ctrl($scope,$rootScope,$location){
     
     console.log('摇骰子结果页面');
@@ -2774,8 +2774,6 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
     var dicejg = g_baseurl + "/JujuDemo/servlet/SendbosonsCover?gamehomenum="+ localStorage.g_gamenum + "&cate=0";
-    
-    
     
     $scope.diceP1 = 'partials/1.PNG';
     $scope.diceP2 = 'partials/2.PNG';
@@ -2792,6 +2790,7 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
         $rootScope.items = null;
         if (!$rootScope.items) {
             jx.load(dicejg,function(data){
+    
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.item18;
                     
@@ -2807,12 +2806,9 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
                     $scope.dicenum5 =  'x' + $scope.diceN[8];
                     $scope.dicenum6 =  'x' + $scope.diceN[10];
                     
-                    
                     console.log('FFFFFFFF' + $rootScope.items.length);
-                    
-                    
-                    
                     $scope.$apply();
+                    
                     },'json');
         } else {
             console.log('data already loaded');
@@ -2822,27 +2818,27 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
     
     
     $scope.getdiceff();
-    
+    $scope.getdiceff();
     
     
     $scope.loadItem = function(item){
     
         console.log(item.bosonscover);
-        
         $scope.gameusername = item.username;
-        
         $scope.image = item.bosonscover;
-        
         $scope.images = $scope.image.split(',');
         
         for(i=0;i<$scope.images.length;i++){
+            
             $scope.dice1 = 'partials/' + $scope.images[0]+'.PNG';
             $scope.dice2 = 'partials/' + $scope.images[1]+'.PNG';
             $scope.dice3 = 'partials/' + $scope.images[2]+'.PNG';
             $scope.dice4 = 'partials/' + $scope.images[3]+'.PNG';
             $scope.dice5 = 'partials/' + $scope.images[4]+'.PNG';
             $scope.dice6 = 'partials/' + $scope.images[5]+'.PNG';
-          //console.log("输出"+ $scope.images[i]+".PNG")
+            
+            //console.log("");
+        
         }
     
     }
@@ -2912,7 +2908,11 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
                    console.log($rootScope.items[i].sum);
                    
                    $scope.usersum = '在线人数' + $rootScope.items[i].sum;
-
+                   
+                   $scope.items[i] = $rootScope.items[i].username;
+                   
+                   console.log( '用户名' + $scope.items[i]);
+                   
                    }
                    
                    $scope.apply();
@@ -2925,8 +2925,18 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
         
     }
     
-     $scope.onlinenum();
-     setInterval(function(){ $scope.onlinenum()},1000);
+     //$scope.onlinenum();
+     //setInterval(function(){ $scope.onlinenum()},2000);
+    
+    
+    function countdown() {
+        $scope.onlinenum();
+        $scope.timeout = $timeout(countdown, 1000);
+    }
+    
+    countdown();
+   
+
  
     
 }

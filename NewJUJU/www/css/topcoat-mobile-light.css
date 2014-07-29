@@ -2137,6 +2137,7 @@ height:100px;
 }
 
 .dice-menu-jieguo-bar{
+  background-color: transparent; 
   background-image: url("../img/dice/jieguo.png");
   font: inherit;
   color: inherit;
