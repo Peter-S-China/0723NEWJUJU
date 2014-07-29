@@ -377,7 +377,13 @@ function NavtoGameCtrl($scope,$rootScope,$location) {
         
     }
     
+    $scope.gotowhoiswo = function(){
     
+      g_gamename = "whoiswo";
+        
+     $location.path("/inggameview");
+   
+    }
     
 }
 
@@ -938,6 +944,9 @@ function createNewGameCtrl($scope,$rootScope,$location){
         
          $location.path("/diceview");
         
+        }else if(g_gamename == 'whoiswo'){
+        
+              $location.path("/whoiswo");
         }
     }
 
@@ -1013,6 +1022,11 @@ function ingGameListCtrl($scope,$rootScope,$location){
                     
                       $location.path("/diceviewwaiting");
                     
+                    }
+                    if(g_gamename=='whoiswo'){
+                    
+                     $location.path("/whoiswo");
+
                     }
                     
                     
@@ -2877,8 +2891,42 @@ function diceGamewaitCtrl($scope,$rootScope,$location){
    
    }
    $scope.first();
-   
-   
+}
+
+function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
     
-   
+    
+    var onurl = g_baseurl +'/JujuDemo/servlet/Underpersonlist?gamehomenum='+localStorage.g_gamenum;
+    
+    $scope.onlinenum = function(){
+        
+        console.log("--获取在线用户人数方法-->>" + onurl);
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+           jx.load(onurl,function(data){
+                    console.log(JSON.stringify(data));
+                   
+                   $rootScope.items = data.item17;
+                   
+                   for (var i = 0; i < $rootScope.items.length; i++) {
+                   console.log($rootScope.items[i].sum);
+                   
+                   $scope.usersum = '在线人数' + $rootScope.items[i].sum;
+
+                   }
+                   
+                   $scope.apply();
+                   
+                  
+                   },'json');
+        } else {
+            console.log('data already loaded');
+        }
+        
+    }
+    
+     $scope.onlinenum();
+     setInterval(function(){ $scope.onlinenum()},1000);
+ 
+    
 }
