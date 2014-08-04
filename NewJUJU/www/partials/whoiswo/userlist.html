@@ -1,0 +1,55 @@
+<html>
+<body style="background-color:transparent;">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    
+    
+
+    <div id="userlist" >
+        
+    </div>
+    
+    <script>
+        
+        //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
+        
+        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+"7148";
+        //alert(jcontact);
+        
+        function getuserlist(){
+         $.getJSON(
+                  jcontact,
+                  function(data) {
+                  $.each(data.item17, function(i) {
+                         
+                         //$("#useritem").remove();
+                         
+            $("#userlist").append("<div id ='useritem'>" + data.item17[i].username + "</div>")
+                         
+                         
+                         });
+                  });
+                  
+
+        
+        }
+        
+        
+     
+        
+        
+        
+        $(function() {
+          
+          
+           setInterval(function(){getuserlist()},5000);
+          
+          
+          });
+          
+          
+          
+          
+          
+        </script>
+    
+</body></html>

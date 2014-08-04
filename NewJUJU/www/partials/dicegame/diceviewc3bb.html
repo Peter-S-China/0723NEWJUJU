@@ -20,7 +20,11 @@
         
         <script>
             
-            var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/SendbosonsCover?gamehomenum="+localStorage.g_gamenum+"&cate=0";
+             var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/SendbosonsCover?gamehomenum="+localStorage.g_gamenum+"&cate=1";
+             
+             //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/SendbosonsCover?gamehomenum=" + "1532" +"&cate=1";
+             
+             //alert(jcontact);
             
             $(function() {
               $.getJSON(
@@ -28,7 +32,9 @@
                         function(data) {
                         $.each(data.item18, function(i) {
                                
-            $("#weather").append("<div >" +totaldicenum(data.item18[i].totalbosonsnum) +"</div><div>" + data.item18[i].username + "</div>"+"<div>"+ senddicenum(data.item18[i].bosonscover)+"</div>")
+                               
+                               
+            $("#weather").append("<div >" +totaldicenum(data.item18[i].totalnum) +"</div><div>" + data.item18[i].username + "</div>"+"<div>"+ senddicenum(data.item18[i].bosonscover)+"</div>")
         
             
                               
@@ -40,17 +46,19 @@
               
               
               function totaldicenum(item){
-               var items = item.split(',');
               
-               var cc="";
-                cc += '<img   class=imgdice src=../1.PNG> x' + items[0];
-                 cc += '<img class=imgdice src=../2.PNG> x' + items[1];
-                 cc += '<img class=imgdice src=../3.PNG> x' + items[2];
-                 cc += '<img class=imgdice src=../4.PNG> x' + items[3];
-                 cc += '<img class=imgdice src=../5.PNG> x' + items[4];
-                 cc += '<img class=imgdice src=../6.PNG> x' + items[5];
+              
+               //var items = item.split(',');
+              
+                 var cc="";
+                 cc = '<img   class=imgdice src=../'+ item +'.PNG> x' + item;
+                 //cc += '<img class=imgdice src=../2.PNG> x' + items[1];
+                 //cc += '<img class=imgdice src=../3.PNG> x' + items[2];
+                 //cc += '<img class=imgdice src=../4.PNG> x' + items[3];
+                 //cc += '<img class=imgdice src=../5.PNG> x' + items[4];
+                 //cc += '<img class=imgdice src=../6.PNG> x' + items[5];
             
-              //alert(cc);
+               //alert(cc);
               
                return cc;
               
@@ -60,15 +68,19 @@
               
               
               function senddicenum(item){
-               var items = item.split(',');
+              
+               //var items = item.split(',');
+              
                var cc="";
-                for(i=0;i<items.length;i++){
+               cc = '<img class=imgdice  src=' +"'../"+ item +".PNG'/>";
+              
+              //for(i=0;i<items.length;i++){
               
                    //alert(items[i]);
-                   cc += '<img class=imgdice  src=' +"'../"+ items[i] +".PNG'/>";
+                //   cc += '<img class=imgdice  src=' +"'../"+ items[i] +".PNG'/>";
               
               
-                  }
+                  //}
                 //alert(cc);
                 return cc;
                }

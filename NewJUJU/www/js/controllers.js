@@ -2905,15 +2905,14 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
                    $rootScope.items = data.item17;
                    
                    for (var i = 0; i < $rootScope.items.length; i++) {
+                   
                    console.log($rootScope.items[i].sum);
                    
                    $scope.usersum = '在线人数' + $rootScope.items[i].sum;
                    
-                   $scope.items[i] = $rootScope.items[i].username;
-                   
-                   console.log( '用户名' + $scope.items[i]);
                    
                    }
+                   
                    
                    $scope.apply();
                    
@@ -2929,14 +2928,30 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
      //setInterval(function(){ $scope.onlinenum()},2000);
     
     
+    
+   
+    
+    
+    $scope.onlineuser = function(){
+        console.log("--获取在线用户人员列表-->>" + onurl);
+        $rootScope.users = null;
+        if (!$rootScope.items) {
+            jx.load(onurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.users = data.item17;
+                    $scope.apply();
+                    
+                    },'json');
+        } else {
+            console.log('data already loaded');
+        }
+     }
+    
     function countdown() {
         $scope.onlinenum();
         $scope.timeout = $timeout(countdown, 1000);
     }
     
     countdown();
-   
-
- 
     
 }
