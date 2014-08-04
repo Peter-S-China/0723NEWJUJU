@@ -2952,6 +2952,6 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
         $scope.timeout = $timeout(countdown, 1000);
     }
     
-    countdown();
+  
     
 }

@@ -65,6 +65,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
 //谁是卧底主视图
 
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
+             
+$routeProvider.when('/cchh', {templateUrl: 'partials/whoiswo/cchh.html', controller: 'HomeCtrl'});
 
     
 $routeProvider.when('/diceview', {templateUrl: 'partials/dicegame/diceview.html', controller: 'HomeCtrl'});

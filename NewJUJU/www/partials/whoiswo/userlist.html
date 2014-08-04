@@ -2,54 +2,116 @@
 <body style="background-color:transparent;">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     
-    
-
-    <div id="userlist" >
+    <style>
         
+        body{
+            z
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none; /*webkit浏览器*/
+            -ms-user-select: none; /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+        }
+        
+        </style>
+    
+  
+    <div style="margin-top:10px;">
+    <div id="userlist">
+    
+    </div>
+    
     </div>
     
     <script>
         
+      
+        
+        
         //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
         
-        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+"7148";
+        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+"3648";
+        
         //alert(jcontact);
         
         function getuserlist(){
+         
+         
+         
+         var userinfo ="<div id= 'userinfo'>";
+         var usernum;
+         
          $.getJSON(
                   jcontact,
                   function(data) {
+                   
+                  //console.log(JSON.stringify(data));
+                   
                   $.each(data.item17, function(i) {
                          
-                         //$("#useritem").remove();
+                if(data.item17[i].gameuserid=='1'){
                          
-            $("#userlist").append("<div id ='useritem'>" + data.item17[i].username + "</div>")
+                    userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #cd853f;background-color:#cd853f;color:white;padding:10px;'> 法官是:" + data.item17[i].username + "</div>";
+                         
+                         }else{
+                         
+                    userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #FFCC00;background-color:#FFCC00;color:white;padding:10px;'>" + data.item17[i].username + "</div>"
+                         
+                         }
+                         
+                  
+                         
+                         usernum = data.item17[i].sum;
+                         
+                 
                          
                          
                          });
+                   
+                   
+                 userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #FF6600;background-color:#FF3300;color:white;padding:10px;'>在线人数:" + usernum + "</div>";
+                   userinfo += "</div> ";
+                   
+                   //alert(userinfo);
+                   
+                   $("#userlist").append(userinfo);
+                   
+                   
                   });
                   
 
         
         }
-        
-        
-     
-        
-        
-        
+      
         $(function() {
           
           
-           setInterval(function(){getuserlist()},5000);
+          //setInterval("myrefresh()",2000);
           
+          myrefresh();
           
           });
           
+    
           
-          
+          function myrefresh()
+          {
+              Delu_list();
+              getuserlist();
+              
+          }
+    
+          function Delu_list(){
+        
+           $("#userinfo").remove();
+        
+          }
+    
           
           
         </script>
     
+    
+    
+
 </body></html>
