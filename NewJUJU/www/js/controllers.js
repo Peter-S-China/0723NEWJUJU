@@ -2952,6 +2952,123 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
         $scope.timeout = $timeout(countdown, 1000);
     }
     
-  
+     var randomccurl = g_baseurl +'/JujuDemo/servlet/Randomquestion?gamehomenum='+localStorage.g_gamenum;
+   
+    $scope.RandomCC = function(){
+        
+        console.log("--获取随机词汇-->>" + randomccurl);
     
+        $rootScope.items = null;
+        
+        if (!$rootScope.items) {
+            jx.load(randomccurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item20;
+                    
+                    $scope.title1 = data.item20.title1;
+                    $scope.title2 = data.item20.title2;
+                    
+                    console.log('词汇1'+ $scope.title1 +'词汇2' + $scope.title2);
+                    
+                    
+                    $scope.apply();
+                    
+                    },'json');
+        } else {
+            console.log('data already loaded');
+        }
+
+   
+    }
+   
+    $scope.RandomCC();
+    
+    $scope.formData = {};
+    
+    $scope.sendcc = function(){
+        
+        console.log('get title1' + $scope.formData.t1 );
+        console.log('get title2' + $scope.formData.t2 );
+        
+      if(!$scope.formData.t1 && !$scope.formData.t2){
+            
+       var sendccurl = g_baseurl +'/JujuDemo/servlet/Userquestion?gamehomenum='+localStorage.g_gamenum +'&title1='+ $scope.title1 +'&title2=' + $scope.title2 ;
+
+      }else if(!$scope.formData.t1){
+          
+      var sendccurl = g_baseurl +'/JujuDemo/servlet/Userquestion?gamehomenum='+localStorage.g_gamenum +'&title1='+ $scope.title1 +'&title2=' + $scope.formData.t2 ;
+      
+      }else if(!$scope.formData.t2){
+      
+       var sendccurl = g_baseurl +'/JujuDemo/servlet/Userquestion?gamehomenum='+localStorage.g_gamenum +'&title1='+ $scope.formData.t1+'&title2='+$scope.formData.title2 ;
+      }
+      
+        console.log('卧底游戏词汇发送' + sendccurl);
+     
+        $rootScope.items = null;
+       
+        if (!$rootScope.items) {
+            
+            jx.load(sendccurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+      
+        
+        $scope.gogogo();
+    
+     }
+    
+    
+    $scope.gogogo = function(){
+    
+        var startgurl = g_baseurl +'/JujuDemo/servlet/Startundercover?gamehomenum='+ localStorage.g_gamenum ;
+        
+        console.log(startgurl);
+        
+        $rootScope.items = null;
+        
+        if (!$rootScope.items) {
+            
+            jx.load(startgurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    if(data.cerateresult == '0'){
+                    
+                    $scope.message = '人数不够';
+                    
+                    }else{
+                    
+                    $location.path('/whoiswogaming');
+                    
+                    }
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+
+    
+    }
+    
+
+
+}
+
+function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
+    
+    
+    console.log('------gaming------');
+    
+    
+
+
 }

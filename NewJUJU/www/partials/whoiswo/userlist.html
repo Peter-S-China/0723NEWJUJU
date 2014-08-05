@@ -12,7 +12,29 @@
             -khtml-user-select: none; /*早期浏览器*/
             user-select: none;
         }
-        
+    
+    
+    .whoiswopart1{
+  
+  color:white;
+  font: 16px "Source Sans", helvetica, arial, sans-serif;
+  text-shadow: 1px 1px  3px #000;
+  
+  margin-bottom:60px;
+  margin-left:20px;
+    
+    }
+    
+    .whoisworight{
+    
+    width:40px;
+    height:80px;
+    
+    float:right;
+    background-image: url("./img/faguan.png");
+    
+    background-repeat: no-repeat;
+    }
         </style>
     
   
@@ -28,9 +50,9 @@
       
         
         
-        //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
+        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
         
-        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+"3648";
+        //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+"3648";
         
         //alert(jcontact);
         
@@ -51,7 +73,7 @@
                          
                 if(data.item17[i].gameuserid=='1'){
                          
-                    userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #cd853f;background-color:#cd853f;color:white;padding:10px;'> 法官是:" + data.item17[i].username + "</div>";
+    userinfo += "<div class=whoiswopart1> 法官:" + data.item17[i].username + "<div class=whoisworight></div></div>";
                          
                          }else{
                          

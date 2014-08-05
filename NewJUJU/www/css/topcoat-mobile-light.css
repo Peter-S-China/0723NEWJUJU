@@ -1037,7 +1037,16 @@ Icon Group
   margin-left:4px;
 }
 
+.whoiswobg{
 
+margin: 0;
+padding: 0;
+background-image:url("../img/whoiswo/home.png");
+font: 16px "Source Sans", helvetica, arial, sans-serif;
+font-weight: 200;
+background-repeat: no-repeat;
+
+}
 
 .loginpage{
   margin: 0;

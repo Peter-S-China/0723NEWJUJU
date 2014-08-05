@@ -62,11 +62,17 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
      $routeProvider.when('/jgchview3', {templateUrl: 'partials/jgchview3.html', controller: 'HomeCtrl'});
              
        $routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
-//谁是卧底主视图
-
+//谁是卧底开始主视图
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
-             
+//谁是卧底选择词汇
 $routeProvider.when('/cchh', {templateUrl: 'partials/whoiswo/cchh.html', controller: 'HomeCtrl'});
+//谁是卧底游戏进行主视图
+             
+$routeProvider.when('/whoiswogaming', {templateUrl: 'partials/whoiswo/gameing.html', controller: 'HomeCtrl'});
+             
+$routeProvider.when('/whoiswogaming2', {templateUrl: 'partials/whoiswo/gameing2.html', controller: 'HomeCtrl'});
+             
+             
 
     
 $routeProvider.when('/diceview', {templateUrl: 'partials/dicegame/diceview.html', controller: 'HomeCtrl'});
