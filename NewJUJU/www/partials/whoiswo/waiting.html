@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script src="./jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+                             
+                              setInterval(function(){ autoplay();},2000);
+                              
+                              });
+          
+          function autoplay(){
+          
+          var div=$("div");
+          div.animate({height:'300px',opacity:'0.4'},"slow");
+          div.animate({width:'300px',opacity:'0.8'},"slow");
+          div.animate({height:'100px',opacity:'0.4'},"slow");
+          div.animate({width:'100px',opacity:'0.8'},"slow");
+          
+          }
+    
+            </script>
+  
+    </head>
+    
+    <body>
+        
+        
+        <div style="background:#98bf21;height:100px;width:100px;position:absolute;">
+        </div>
+        
+    </body>
+</html>

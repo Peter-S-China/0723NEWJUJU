@@ -22,9 +22,10 @@
     background:#FF9900;
     border:solid 1px #FF9900;
     border-radius: 6px;
-  
+    color:white;
     display:block;
-    width:120px;
+    width:220px;
+    height:200px;
     
     }
     .ccd{
@@ -35,19 +36,18 @@
     border-radius: 6px;
     margin:0px;
     padding:5px;
-    text-align:center;
+    text-align:left;
+    font-size:18px;
  
     }
         </style>
     
     
-   
-    <div class="flip">显示身份和词汇</div>
     
     <div style="margin-top:10px;width:300px;overview:auto;">
-    <div id="userlist">
+    <button id="userlist" class="flip" >
     
-    </div>
+    </button>
     
     </div>
     
@@ -56,16 +56,18 @@
       
       //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
         
-        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Startundercover?gamehomenum=" + localStorage.g_gamenum;
+      var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=" + localStorage.g_gamenum + "&userid="+localStorage.g_userid;
+       
+       //var jcontact="http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=9476&userid=2683";
         
-        //alert(jcontact);
+        alert(jcontact);
         
         function getuserlist(){
          
          
          
-         var userinfo ="<div id= 'userinfo'>";
-         var usernum;
+         var userinfo ="<div id= 'userinfo' >";
+     
          
          $.getJSON(
                   jcontact,
@@ -75,21 +77,27 @@
                    
                   $.each(data, function(i) {
                          
-                if(data[i].ldentity == '0'){
+                
                          
-                    userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #cd853f;background-color:#cd853f;color:white;padding:10px;'> " + data[i].username + "<button style='border:0px;float:right;background-color:#FF9900;' onclick='Delu_list("+ data[i].userid +");'>退</button></div>"+ "<p STYLE='margin:10px;border-radius: 6px;border: 1px solid #98bf21;background-color:#98bf21;color:white;padding:10px;display:none;'> " + "身份是卧底<br>词汇是"+ data[i].phrase + "</div>";
+                userinfo += '<h1>用户名<br>'+ data.item19[0].username +'</h1>';
+                    
+                   
+                   if( data.item19[0].ldentity=='1'){
+                  
+            userinfo += '<p class=ccd>身份:平民<br> 词汇是:'+ data.item19[0].phrase + '</p>';
+                        
+                    }else{
                          
-                         }else if(data[i].ldentity == '1'){
-                     
-                         userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #cd853f;background-color:#cd853f;color:white;padding:10px;'>"+ data[i].username +"<button style='border:0px;background-color:#FF9900;float:right;' onclick='Delu_list("+data[i].userid +");'>退</button></div>"+ "<p STYLE='margin:10px;border-radius: 6px;border: 1px solid #98bf21;background-color:#98bf21;color:white;padding:10px;display:none;'> " + "身份是平民<br>词汇是" + data[i].phrase  + "</p>"
-                       
-                          }
+            userinfo += '<p class= ccd>身份:卧底<br> 词汇是:'+ data.item19[0].phrase + '</p>';
+                         
+                         }
+                        
                          });
                    
                 
                    userinfo += "</div> ";
                    
-                   //alert(userinfo);
+                   alert(userinfo);
                    
                    $("#userlist").append(userinfo);
                    
@@ -105,7 +113,7 @@
                         
                         getuserlist();
                         
-      $(".flip").click(function(){
+      $("button").click(function(){
                        
       var div=$("p");
       div.animate({height:'40px',opacity:'0.8'},"fast");
@@ -121,21 +129,17 @@
           function Delu_list(uid){
               
               var duserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Undercoverkickout?gamehomenum="+"5139"+"&userid=" + uid;
+              
+              //alert(duserurl);
+              //htmlobj=$.ajax({url:duserurl,async:false});
+              
               //$("#myDiv").html(htmlobj.responseText);
-
+             
+              
         
-        //var duserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Undercoverkickout?gamehomenum=" + localStorage.g_gamenum + "&userid="+ uid;
         
-        alert(duserurl);
-
-       $.getJSON("test.js", { name: "John", time: "2pm" }, function(json){
-                 
-                 alert("JSON Data: " + json.users[3].name);
-                 
-                 });
-
         
-         }
+          }
     
           function myrefresh()
           {
@@ -150,6 +154,6 @@
           
         </script>
    
-  
+   <div id="myDiv"><h2></h2></div>
    
 </body></html>

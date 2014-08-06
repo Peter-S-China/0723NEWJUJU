@@ -65,9 +65,12 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
 //谁是卧底发起者主视图
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
 
-//谁是卧底参与者主视图
-             
+//谁是卧底参与者等待主视图
 $routeProvider.when('/whoiswowo', {templateUrl: 'partials/whoiswo/index1.html', controller: 'HomeCtrl'});
+
+//谁是卧底参与者游戏中主视图
+$routeProvider.when('/whoiswoplay', {templateUrl: 'partials/whoiswo/player.html', controller: 'HomeCtrl'});
+             
              
              
 //谁是卧底选择词汇

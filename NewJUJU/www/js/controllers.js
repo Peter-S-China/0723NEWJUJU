@@ -1918,9 +1918,11 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
     // Start watching the acceleration
     //
     function startWatch() {
-    // Update acceleration every 3 seconds
+    
+        // Update acceleration every 3 seconds
         var options = { frequency: 250 };
         watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    
     }
     
     function stopWatch() {
@@ -1934,12 +1936,11 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
     var shake_time=1;
     var lastTime;
     function onSuccess(acceleration) {
-        var element = document.getElementById('accelerometer');
+        
+        //var element = document.getElementById('accelerometer');
         if(Math.abs(acceleration.x)>13 || Math.abs(acceleration.y)>13  ||Math.abs(acceleration.z)>13){
             if(!lastTime){lastTime = new Date().getTime();};
-            
             nowTime = new Date().getTime();
-            
             if(nowTime-lastTime>1000){
                 shake_time++;
                 $scope.gogoplay();
@@ -3136,6 +3137,8 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
 
 }
 
+
+
 function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
 
     console.log('------谁是卧底游戏参与者等待游戏开始------'+ g_userid);
@@ -3144,6 +3147,7 @@ function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
     
      console.log(waiturl);
     
+  
     
     $scope.waiting = function(){
       
@@ -3156,9 +3160,19 @@ function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
                     
                     $rootScope.items = data.item19;
                     
-                    if($rootScope.items.length == "1"){
+                    console.log('>>>>>>>><<<<<<' + data.item19[0].userid);
+                    
+                    if( data.item19[0].userid == "0"){
                     
                       console.log('人数不够无法游戏');
+                    
+                    }else{
+                    
+                    $timeout.cancel($scope.timeout);
+                    
+                    $location.path('/whoiswoplay');
+
+
                     }
                     
                     
@@ -3185,6 +3199,15 @@ function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
     countdown();
     
     
+    $scope.goback =function(){
+        
+        $timeout.cancel($scope.timeout);
+
+       $location.path('/step3');
+        
+    }
+    
+    
 }
 
 function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
@@ -3192,7 +3215,29 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
     
     console.log('------谁是卧底游戏进行中------');
     
+}
+
+function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
+
+
+   console.log('------谁是卧底游戏进行中游戏参与者部分获取身份和词汇------');
     
+    
+    localStorage.g_userid = g_userid;
+    
+    var waiturl = g_baseurl +'/JujuDemo/servlet/Sendsingleundercover?gamehomenum='+ localStorage.g_gamenum + '&userid=' + localStorage.g_userid;
+    
+    console.log(waiturl);
+    
+    //localStorage.w_gdurl = waiturl;
+    
+  
+    $scope.goback =function(){
+        $timeout.cancel($scope.timeout);
+        $location.path('/step3');
+  
+    }
+
 
 
 }
