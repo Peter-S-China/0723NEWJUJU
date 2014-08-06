@@ -2078,7 +2078,9 @@ text-align:center;
   z-index:999;
   position:fixed;
   bottom:0;
-  width:100%;
+  left:10px;
+  width:220px;
+ 
   height:115px;
 
 }
@@ -2157,5 +2159,21 @@ height:100px;
   color: #fff;
   margin-top:80px;
   margin-left:65px;
+
+}
+
+
+.whoiswo-text-input{
+
+border-top:0;
+border-left:0;
+border-right:0;
+border-bottom:0;
+height:30px;
+font: inherit;
+font-weight: 200;
+background: transparent;
+
+
 
 }

@@ -47,9 +47,11 @@ function GeolocationCtrl($scope,navSvc,$rootScope) {
 }
 
 function AccelerCtrl($scope) {
+    
     navigator.accelerometer.getCurrentAcceleration(function (acceleration) {
         $scope.acceleration  = acceleration;
         },function(e) { console.log("Error finding acceleration " + e) });
+
 }
 
 function DeviceCtrl($scope) {
@@ -1025,7 +1027,7 @@ function ingGameListCtrl($scope,$rootScope,$location){
                     }
                     if(g_gamename=='whoiswo'){
                     
-                     $location.path("/whoiswo");
+                     $location.path("/whoiswowo");
 
                     }
                     
@@ -1895,6 +1897,69 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
     $scope.onlinep();
     $scope.onlinep();
     
+    
+   
+    
+    $scope.gogoplay = function(){
+        
+        console.log('------开始------');
+        
+        navigator.notification.vibrate(1000);
+        navigator.notification.vibrate(2000);
+        navigator.notification.vibrate(3000);
+        
+       
+    
+        $location.path('/diceviewc2');
+    
+    }
+    
+    var watchID = null;
+    // Start watching the acceleration
+    //
+    function startWatch() {
+    // Update acceleration every 3 seconds
+        var options = { frequency: 250 };
+        watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    }
+    
+    function stopWatch() {
+        if (watchID) {
+            navigator.accelerometer.clearWatch(watchID);
+            watchID = null;
+        }
+    }
+    
+    var count=0;
+    var shake_time=1;
+    var lastTime;
+    function onSuccess(acceleration) {
+        var element = document.getElementById('accelerometer');
+        if(Math.abs(acceleration.x)>13 || Math.abs(acceleration.y)>13  ||Math.abs(acceleration.z)>13){
+            if(!lastTime){lastTime = new Date().getTime();};
+            
+            nowTime = new Date().getTime();
+            
+            if(nowTime-lastTime>1000){
+                shake_time++;
+                $scope.gogoplay();
+            
+            }
+            
+            lastTime=nowTime;
+            count++;
+            $scope.gogoplay();
+            
+        }
+    }
+    
+    // onError: Failed to get the acceleration
+    //
+    function onError() {
+        alert('onError!');
+    }
+    
+    startWatch();
 
 }
 
@@ -1948,6 +2013,8 @@ function diceGamedice6Ctrl($scope,$rootScope,$location){
     console.log('发送随机骰子数目' + sdurl);
     
     $scope.senddicenum = function(){
+        
+        
         
         $rootScope.items=null;
         if (!$rootScope.items) {
@@ -2724,7 +2791,13 @@ function diceGamesetup3Ctrl($scope,$rootScope,$location){
     
     $scope.senddicenum = function(){
        
+        
+        navigator.notification.vibrate(3000);
+        navigator.notification.vibrate(3000);
+        
+        
         console.log('发送随机骰子数目' + sdurl);
+        
         $rootScope.items=null;
         if (!$rootScope.items) {
             jx.load(sdurl,function(data){
@@ -3063,10 +3136,61 @@ function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
 
 }
 
+function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
+
+    console.log('------谁是卧底游戏参与者等待游戏开始------'+ g_userid);
+    
+    var waiturl = g_baseurl +'/JujuDemo/servlet/Sendsingleundercover?gamehomenum='+ localStorage.g_gamenum + '&userid=' + g_userid;
+    
+     console.log(waiturl);
+    
+    
+    $scope.waiting = function(){
+      
+        $rootScope.items = null;
+        
+        if (!$rootScope.items) {
+            
+            jx.load(waiturl,function(data){
+                    console.log(JSON.stringify(data));
+                    
+                    $rootScope.items = data.item19;
+                    
+                    if($rootScope.items.length == "1"){
+                    
+                      console.log('人数不够无法游戏');
+                    }
+                    
+                    
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+
+    
+    }
+    
+    
+    
+    $scope.value = 0;
+    
+    function countdown() {
+        $scope.value++;
+        $scope.waiting();
+        $scope.timeout = $timeout(countdown, 1000);
+    }
+    countdown();
+    
+    
+}
+
 function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
     
     
-    console.log('------gaming------');
+    console.log('------谁是卧底游戏进行中------');
     
     
 
