@@ -962,7 +962,7 @@ function ingGameListCtrl($scope,$rootScope,$location){
     console.log(">>>>>>房间号" + g_homenum + ">>>>>>>游戏名称" + g_gamename);
     var getinggurl= g_baseurl +'/JujuDemo/servlet/Gameinfolist?gamename='+ g_gamename +'&homenum=' + g_homenum;
         
-        console.log("DDDDDDDDD"+ getinggurl);
+        console.log("获取进行中的游戏列表"+ getinggurl);
         
         $rootScope.items = null;
         if (!$rootScope.items) {
@@ -970,8 +970,7 @@ function ingGameListCtrl($scope,$rootScope,$location){
             jx.load(getinggurl,function(data){
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.item15;
-                    
-                    $scope.message = $rootScope.items.tablenum;
+                    $scope.message = $rootScope.items.id;
                     
                     $scope.$apply();
                     },'json');
@@ -3215,6 +3214,48 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
     
     console.log('------谁是卧底游戏进行中------');
     
+    var fggameover = g_baseurl +'/JujuDemo/servlet/Sendvoteoutcome?gamehomenum='+ localStorage.g_gamenum + '&flag=1';
+    
+    $scope.gameover = function(){
+    
+        
+        console.log(fggameover);
+        console.log('------法官结束游戏------');
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(fggameover,function(data){
+                    
+                    console.log(JSON.stringify(data));
+                    
+                    $rootScope.items = data.item20;
+                    
+                    if(!data.item20.content){
+                    
+                     console.log('------无法本轮游戏结果数据------');
+                    
+                    }else{
+                    
+                     console.log('------游戏结束1------' + data.item20.content);
+                    
+                    $location.path('/whoiswogameover');
+                    
+                    }
+                    
+                    
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+
+        
+    }
+    
 }
 
 function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
@@ -3237,6 +3278,40 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
         $location.path('/step3');
   
     }
+
+
+
+}
+
+function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
+    
+     console.log('------谁是卧底游戏结束------');
+     var overurl = g_baseurl +'/JujuDemo/servlet/Sendvoteoutcome?gamehomenum='+ localStorage.g_gamenum + '&flag=1';
+    
+    $rootScope.items = null;
+     if (!$rootScope.items) {
+        jx.load(overurl,function(data){
+                console.log(JSON.stringify(data));
+                $rootScope.items = data.item20;
+                
+                if($rootScope.items.content == "卧底胜利"){
+                
+                   console.log('卧底胜利');
+                
+                
+                 }else if($rootScope.items.content == "平民胜利"){
+                
+                  console.log('平民胜利');
+                
+                }
+                
+                $scope.$apply();
+                },'json');
+        
+     } else {
+        console.log('data already loaded');
+     }
+
 
 
 

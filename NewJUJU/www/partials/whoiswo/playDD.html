@@ -24,7 +24,7 @@
     border-radius: 6px;
     color:white;
     display:block;
-    width:220px;
+    width:270px;
     height:200px;
     
     }
@@ -60,7 +60,7 @@
        
        //var jcontact="http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=9476&userid=2683";
         
-        alert(jcontact);
+        //alert(jcontact);
         
         function getuserlist(){
          
@@ -79,7 +79,7 @@
                          
                 
                          
-                userinfo += '<h1>用户名<br>'+ data.item19[0].username +'</h1>';
+                userinfo += '<h1>用户<br>'+ data.item19[0].username +'</h1>';
                     
                    
                    if( data.item19[0].ldentity=='1'){
@@ -97,7 +97,7 @@
                 
                    userinfo += "</div> ";
                    
-                   alert(userinfo);
+                   //alert(userinfo);
                    
                    $("#userlist").append(userinfo);
                    
@@ -116,44 +116,14 @@
       $("button").click(function(){
                        
       var div=$("p");
-      div.animate({height:'40px',opacity:'0.8'},"fast");
-      div.animate({width:'200px',opacity:'0.8'},"fast");
+      div.animate({height:'40px',opacity:'0.9'},"fast");
+      div.animate({width:'230px',opacity:'0.9'},"fast");
       div.animate({height:'toggle'});
                        
       });
-                        
-                        
                         });
     
-    
-          function Delu_list(uid){
-              
-              var duserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Undercoverkickout?gamehomenum="+"5139"+"&userid=" + uid;
-              
-              //alert(duserurl);
-              //htmlobj=$.ajax({url:duserurl,async:false});
-              
-              //$("#myDiv").html(htmlobj.responseText);
-             
-              
-        
-        
-        
-          }
-    
-          function myrefresh()
-          {
-              Delu_list();
-              getuserlist();
-              
-          }
-    
-    
-    
-          
-          
         </script>
-   
-   <div id="myDiv"><h2></h2></div>
+ 
    
 </body></html>

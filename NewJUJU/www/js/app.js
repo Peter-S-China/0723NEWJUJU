@@ -81,6 +81,8 @@ $routeProvider.when('/whoiswogaming', {templateUrl: 'partials/whoiswo/gameing.ht
              
 $routeProvider.when('/whoiswogaming2', {templateUrl: 'partials/whoiswo/gameing2.html', controller: 'HomeCtrl'});
              
+$routeProvider.when('/whoiswogameover', {templateUrl: 'partials/whoiswo/over.html', controller: 'HomeCtrl'});
+             
              
 
     
