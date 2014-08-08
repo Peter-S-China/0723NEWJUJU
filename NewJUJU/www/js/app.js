@@ -80,10 +80,17 @@ $routeProvider.when('/cchh', {templateUrl: 'partials/whoiswo/cchh.html', control
 $routeProvider.when('/whoiswogaming', {templateUrl: 'partials/whoiswo/gameing.html', controller: 'HomeCtrl'});
              
 $routeProvider.when('/whoiswogaming2', {templateUrl: 'partials/whoiswo/gameing2.html', controller: 'HomeCtrl'});
-//法官游戏结束视图
+//法官游戏结束视图、卧底胜利
 $routeProvider.when('/whoiswogameover', {templateUrl: 'partials/whoiswo/over.html', controller: 'HomeCtrl'});
-//参与者游戏结束视图
+//法官游戏结束视图、平民胜利
+$routeProvider.when('/whoiswogameover1', {templateUrl: 'partials/whoiswo/over1.html', controller: 'HomeCtrl'});
+
+
+//参与者游戏结束视图、卧底胜利
 $routeProvider.when('/whoiswogameover2', {templateUrl: 'partials/whoiswo/over2.html', controller: 'HomeCtrl'});
+
+//参与者游戏结束视图、平民胜利
+$routeProvider.when('/whoiswogameover3', {templateUrl: 'partials/whoiswo/over3.html', controller: 'HomeCtrl'});
              
              
 

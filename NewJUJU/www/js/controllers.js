@@ -3209,6 +3209,7 @@ function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
     
 }
 
+//法官视图
 function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
     
     
@@ -3264,6 +3265,7 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
 }
 
 function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
+    
    console.log('------谁是卧底游戏进行中游戏参与者部分获取身份和词汇------');
    localStorage.g_userid = g_userid;
     var waiturl = g_baseurl +'/JujuDemo/servlet/Sendsingleundercover?gamehomenum='+ localStorage.g_gamenum + '&userid=' + localStorage.g_userid;
@@ -3293,7 +3295,9 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
                     
                     console.log('------------平民胜利------------');
                     
-                    $location.path('/whoiswogameover2');
+                    $timeout.cancel($scope.timeout);
+                    
+                    $location.path('/whoiswogameover3');
                     
                     
                     }else if(data.item20.content =='卧底胜利'){
@@ -3301,6 +3305,7 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
                     console.log('------------卧底胜利------------');
                     
                      $timeout.cancel($scope.timeout);
+                    
                      $location.path('/whoiswogameover2');
                     
                     }
@@ -3327,9 +3332,12 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
 
 }
 
+
+//法官视图
 function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
     
      console.log('------谁是卧底游戏结束------');
+    
      var overurl = g_baseurl +'/JujuDemo/servlet/Sendvoteoutcome?gamehomenum='+ localStorage.g_gamenum + '&flag=1';
     
     $rootScope.items = null;
@@ -3342,10 +3350,14 @@ function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
                 
                    console.log('卧底胜利');
                 
+                  $location.path("/whoiswogameover");
+                
                 
                  }else if($rootScope.items.content == "平民胜利"){
                 
                   console.log('平民胜利');
+                
+                  $location.path("/whoiswogameover1");
                 
                 }
                 
@@ -3358,17 +3370,59 @@ function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
 
 
     $scope.playgo = function(){
-        console.log('------游戏法官继续游戏重玩------');
+        
+       console.log('------游戏法官继续游戏 再来一局------');
+       var fgagurl = g_baseurl +'/JujuDemo/servlet/Getunderagainflag?gamehomenum='+ localStorage.g_gamenum + '&underagainflag=1';
+       
+        $rootScope.items = null;
+        console.log(fgagurl);
+       
+        if (!$rootScope.items) {
+            
+            jx.load(fgagurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.getopenflag;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
         $location.path('/whoiswo');
     
+      }
     }
+
+function WhoiswoplayergameoverCtrl($scope,$rootScope,$timeout,$location){
+
+
     
     $scope.playgo2 = function(){
+       
         console.log('------游戏参与者继续游戏重玩------');
+        var fgagurl = g_baseurl +'/JujuDemo/servlet/Sendunderagainflag?gamehomenum='+ localStorage.g_gamenum;
+        
+        $rootScope.items = null;
+        console.log(fgagurl);
+        
+        if (!$rootScope.items) {
+            
+            jx.load(fgagurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.getopenflag;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
         
         $location.path('/whoiswowo');
-    
+        
     }
+    
 
 
 }

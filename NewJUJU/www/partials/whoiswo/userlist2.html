@@ -15,6 +15,21 @@
         }
     
     
+    .flip2{
+        padding:10px;
+        text-align:center;
+        background:#CCCCCC;
+        border:solid 1px #CCCCCC;
+        border-radius: 6px;
+        display:block;
+        width:260px;
+        margin-bottom:10px;
+        margin-left:0px;
+        color:white;
+        font: 16px "Source Sans", helvetica, arial, sans-serif;
+        text-shadow: 1px 1px  3px #000;
+    }
+    
     .flip{
     padding:10px;
     text-align:center;
@@ -47,8 +62,14 @@
     
     border:0px;
     background:transparent;
+    }
+    .TTT{
     
     
+    border:0px;
+    float:right;
+    background-color:#FF6600;
+    border:2px solid #FF6600;
     
     }
     
@@ -90,43 +111,46 @@
                   $.each(data, function(i) {
                          
            
-                         
-                if(data[i].ldentity == '0'){
-                         
-            userinfo += "<div class='flip'> " + data[i].username + "<span style='border:0px;float:right;background-color:#FF6600;border:2px solid #FF6600;' onclick='Delu_list("+ data[i].userid +");'>踢</span>"+ "<p class=ccd > " + "卧底词汇是<"+ data[i].phrase+">";
-                         
-                         
                          if(data[i].islive== '0'){
                          
-                         userinfo += "状态:挂了</p></div>";
+                         userinfo += "<div class='flip2'> ";
+                         userinfo += data[i].username + "";
+                         userinfo += "状态:挂了";
                          
-                         }else if(data[i].islive== '1'){
                          
-                         userinfo += "状态:活着</p></div>";
+                         if(data[i].ldentity == '1'){
+                         
+                         userinfo +=  "<p class=ccd > " + "平民词汇是<"+ data[i].phrase+"></p></div>";
+                         
+                         }else if(data[i].ldentity == '0'){
+                         
+                         userinfo +=  "<p class=ccd > " + "卧底词汇是<"+ data[i].phrase+"></p></div>";
                          
                          }
                          
-                         }else if(data[i].ldentity == '1'){
+                         
+                         }else if(data[i].islive== '1'){
+                         
+                         userinfo += "<div class='flip'> ";
+                         userinfo += data[i].username;
+                         
+                         userinfo += "状态:活着";
+                        
+                         userinfo += "<span class='TTT' onclick='Delu_list("+ data[i].userid +");'>踢</span>";
+                         
+                         if(data[i].ldentity == '1'){
+                        
+                         userinfo +=  "<p class=ccd > " + "平民词汇是<"+ data[i].phrase+"></p></div>";
+                         
+                         }else if(data[i].ldentity == '0'){
+                         
                      
-                         userinfo += "<div class='flip'>"+ data[i].username +"<span style='border:0px;background-color:#FF6600;float:right;border:2px solid #FF6600;' onclick='Delu_list("+data[i].userid +");'>踢</span>"+ "<p class=ccd > " + "平民词汇是<" + data[i].phrase +">" ;
-                         
-                         if(data[i].islive== '0'){
-                         
-                         userinfo += "状态:挂了</p></div>";
-                         
-                         }else if(data[i].islive== '1'){
-                         
-                         userinfo += "状态:活着</p></div>";
-                         
-                         }
-
-                         
+                         userinfo +=  "<p class=ccd > " + "卧底词汇是<"+ data[i].phrase+"></p></div>";
                          
                          }
                          
-                         
+                         }
                        
-                         
                          
                          });
                    
@@ -154,7 +178,7 @@
       var div=$("p");
       div.animate({height:'20px',opacity:'0.9'},"fast");
       div.animate({width:'230px',opacity:'0.9'},"fast");
-      div.animate({left:'16px'});
+      div.animate({left:'18px'});
       div.animate({height:'toggle'});
                        
       });

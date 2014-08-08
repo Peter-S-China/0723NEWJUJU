@@ -118,9 +118,9 @@
                         
       function getgameinfo(){
           
-          //var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ localStorage.g_gamenum +"&flag=0";
+          var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ localStorage.g_gamenum +"&flag=0";
           
-          var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ "6294" +"&flag=0";
+          //var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ "6294" +"&flag=0";
           
           htmlobj=$.ajax({url:gameinfourl,async:false});
           $("#myDiv").html(htmlobj.responseText);
