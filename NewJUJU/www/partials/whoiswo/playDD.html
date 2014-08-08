@@ -45,7 +45,8 @@
     
     
     <div style="margin-top:10px;width:300px;overview:auto;">
-    <button id="userlist" class="flip" >
+    
+    <button id="userdetail" class="flip" >
     
     </button>
     
@@ -53,8 +54,6 @@
     
     <script>
         
-      
-      //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
         
       var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=" + localStorage.g_gamenum + "&userid="+localStorage.g_userid;
        
@@ -63,55 +62,39 @@
         //alert(jcontact);
         
         function getuserlist(){
-         
-         
-         
          var userinfo ="<div id= 'userinfo' >";
-     
-         
-         $.getJSON(
+          $.getJSON(
                   jcontact,
                   function(data) {
-                   
                   //console.log(JSON.stringify(data));
-                   
                   $.each(data, function(i) {
-                         
-                
-                         
-                userinfo += '<h1>用户<br>'+ data.item19[0].username +'</h1>';
+          
+    userinfo += '<h1>用户<br>'+ data.item19[0].username +'</h1>';
                     
-                   
                    if( data.item19[0].ldentity=='1'){
                   
-            userinfo += '<p class=ccd>身份:平民<br> 词汇是:'+ data.item19[0].phrase + '</p>';
+    userinfo += '<p class=ccd>身份:平民<br> 词汇是:'+ data.item19[0].phrase + '</p>';
                         
                     }else{
                          
-            userinfo += '<p class= ccd>身份:卧底<br> 词汇是:'+ data.item19[0].phrase + '</p>';
+    userinfo += '<p class= ccd>身份:卧底<br> 词汇是:'+ data.item19[0].phrase + '</p>';
                          
                          }
-                        
-                         });
-                   
-                
-                   userinfo += "</div> ";
+              });
+    userinfo += "</div> ";
                    
                    //alert(userinfo);
                    
-                   $("#userlist").append(userinfo);
-                   
-                   
-                  });
-                  
-
-        
-        }
+    $("#userdetail").append(userinfo);
+        });
+     }
       
       
       $(document).ready(function(){
                         
-                        getuserlist();
+      getuserlist();
+                        
+                        
                         
       $("button").click(function(){
                        
@@ -121,9 +104,53 @@
       div.animate({height:'toggle'});
                        
       });
+                        
+         $("#gameinfo").click(function(){
+                              
+                getgameinfo();
+                           
+        
+         });
+                        
+                        
                         });
+                        
+                        
+      function getgameinfo(){
+          
+          //var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ localStorage.g_gamenum +"&flag=0";
+          
+          var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ "6294" +"&flag=0";
+          
+          htmlobj=$.ajax({url:gameinfourl,async:false});
+          $("#myDiv").html(htmlobj.responseText);
+          
+          //var userinfo ="<div id= 'gamedetail' >";
+          var userinfo ="";
+          /*
+          $.getJSON(
+                    gameinfourl,
+                    function(data) {
+                    
+                    $.each(data, function(i) {
+                           
+                           userinfo += ''+ data.item20.content +'';
+                          
+                           });
+                    
+                    //userinfo += "</div> ";
+                    alert(userinfo);
+                    $("#gameinfo").append(userinfo);
+                    
+                   });
+          */
+          
+            }
     
         </script>
- 
+    
+    <div id = "gameinfo"> >>>获取游戏信息<<< </div>
+    
+     <div id="myDiv"><h2></h2></div>
    
 </body></html>

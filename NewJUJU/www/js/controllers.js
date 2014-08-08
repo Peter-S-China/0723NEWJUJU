@@ -3214,10 +3214,13 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
     
     console.log('------谁是卧底游戏进行中------');
     
+    $scope.message = "";
+    
     var fggameover = g_baseurl +'/JujuDemo/servlet/Sendvoteoutcome?gamehomenum='+ localStorage.g_gamenum + '&flag=1';
     
     $scope.gameover = function(){
-    
+        
+        $scope.message = "游戏进行中";
         
         console.log(fggameover);
         console.log('------法官结束游戏------');
@@ -3236,15 +3239,17 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
                     
                      console.log('------无法本轮游戏结果数据------');
                     
+                    
+                    
                     }else{
                     
                      console.log('------游戏结束1------' + data.item20.content);
                     
-                    $location.path('/whoiswogameover');
+                     $scope.message = "游戏结束";
+                    
+                     $location.path('/whoiswogameover');
                     
                     }
-                    
-                    
                     
                     $scope.$apply();
                     },'json');
@@ -3259,26 +3264,65 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
 }
 
 function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
-
-
    console.log('------谁是卧底游戏进行中游戏参与者部分获取身份和词汇------');
-    
-    
-    localStorage.g_userid = g_userid;
-    
+   localStorage.g_userid = g_userid;
     var waiturl = g_baseurl +'/JujuDemo/servlet/Sendsingleundercover?gamehomenum='+ localStorage.g_gamenum + '&userid=' + localStorage.g_userid;
-    
     console.log(waiturl);
-    
     //localStorage.w_gdurl = waiturl;
-    
-  
-    $scope.goback =function(){
+    $scope.goback = function(){
         $timeout.cancel($scope.timeout);
         $location.path('/step3');
   
     }
 
+    
+    var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ localStorage.g_gamenum +"&flag=0";
+    
+    $scope.Getgameinfo = function(){
+        
+        console.log('参与者游戏状态获取一直监听' +  gameinfourl);
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            jx.load(gameinfourl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item20;
+                    
+                    if(data.item20.content =='平民胜利'){
+                    
+                    console.log('------------平民胜利------------');
+                    
+                    $location.path('/whoiswogameover2');
+                    
+                    
+                    }else if(data.item20.content =='卧底胜利'){
+                    
+                    console.log('------------卧底胜利------------');
+                    
+                     $timeout.cancel($scope.timeout);
+                     $location.path('/whoiswogameover2');
+                    
+                    }
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+      }
+    
+    
+    $scope.value = 0;
+    
+    function countdown() {
+        $scope.value++;
+        $scope.Getgameinfo();
+        $scope.timeout = $timeout(countdown, 1000);
+    }
+    
+    countdown();
 
 
 }
@@ -3313,6 +3357,18 @@ function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
      }
 
 
+    $scope.playgo = function(){
+        console.log('------游戏法官继续游戏重玩------');
+        $location.path('/whoiswo');
+    
+    }
+    
+    $scope.playgo2 = function(){
+        console.log('------游戏参与者继续游戏重玩------');
+        
+        $location.path('/whoiswowo');
+    
+    }
 
 
 }

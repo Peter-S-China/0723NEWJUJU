@@ -1,8 +1,7 @@
 <html>
 <body style="background-color:transparent;">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    
-    <style>
+    <script src="./jquery.js"></script>
+   <style>
         
         body{
             z
@@ -43,10 +42,30 @@
     
     background-repeat: no-repeat;
     }
+   
+   .flip{
+       padding:10px;
+       text-align:center;
+       background:#FF9900;
+       border:solid 1px #FF9900;
+       border-radius: 6px;
+       display:block;
+       width:260px;
+       margin-bottom:10px;
+       margin-left:0px;
+       color:white;
+       font: 16px "Source Sans", helvetica, arial, sans-serif;
+       text-shadow: 1px 1px  3px #000;
+   }
+   
         </style>
     
   
+  
     <div style="margin-top:10px;">
+        
+    
+    
     <div id="userlist">
     
     </div>
@@ -55,10 +74,7 @@
     
     <script>
         
-      
-        
-        
-        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
+      var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
         
         //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+"3648";
         
@@ -114,23 +130,26 @@
         
         }
       
-        $(function() {
+      $(document).ready(function(){
+                        
+                        getuserlist();
+                        
+                        $("button").click(function(){
+                                          $("p").hide();
+                                        
+                                          location.reload();
+                                          });
+                        });
           
           
           //setInterval("myrefresh()",2000);
           
-          myrefresh();
-          
-          });
+     
+       
           
     
           
-          function myrefresh()
-          {
-              Delu_list();
-              getuserlist();
-              
-          }
+        
     
           function Delu_list(){
         
@@ -144,5 +163,6 @@
     
     
     
+<button type="button" class='flip'>马上刷新</button>
 
 </body></html>
