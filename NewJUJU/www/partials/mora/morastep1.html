@@ -1,0 +1,168 @@
+
+<style>
+    
+    body {
+        margin: 0;
+        padding: 0;
+        background: #dfe2e2;
+        color: #000;
+        font: 12px "Source Sans", helvetica, arial, sans-serif;
+        font-weight: 200;
+        text-rendering: optimizeLegibility;
+        overflow: hidden;
+        -webkit-user-select:none;
+        background-image:url(./img/mora_back_top.PNG);
+        background-repeat: no-repeat;
+        background-position:95px 0px;
+    }
+
+.mora1{
+    background-image:url(./img/mora_left_small.PNG);
+    background-repeat: no-repeat;
+    display:block;
+    width:320px;
+    height:115px;
+    
+    position:fixed;
+}
+.mora2{
+    background-image:url(./img/mora_left_big.PNG);
+    background-repeat: no-repeat;
+    display:block;
+    width:320px;
+    height:305px;
+    float:left;
+    position:fixed;
+    top:0;
+}
+.mora3{
+    
+    background-image:url(./img/mora_right_big.PNG);
+    background-repeat: no-repeat;
+    display:block;
+    width:320px;
+    height:285px;
+    float:left;
+    
+    position:fixed;
+}
+.mora4{
+    background-image:url(./img/mora_right_small.PNG);
+    background-repeat: no-repeat;
+    display:block;
+    width:320px;
+    height:98px;
+    float:right;
+    
+    position:fixed;
+    bottom:0px;
+
+  
+    
+}
+.mora5{
+    position:fixed;
+    right:0;
+    top:0;
+    
+    width:54px;
+    height:568px;
+    background-image:url(./img/mora_top.PNG);
+    background-repeat: no-repeat;
+
+}
+.mora6{
+    
+}
+
+.user{
+-moz-transform:rotate(90deg);
+-webkit-transform:rotate(90deg);
+position:fixed;
+bottom:90px;
+left:-80px;
+width:530px;
+height:40px;
+
+background-image:url(./img/mora_list_drawable.PNG);
+background-repeat: no-repeat;
+font: 14px "Source Sans", helvetica, arial, sans-serif;
+padding-top:20px;
+}
+.playgo{
+width:90PX;
+height:568PX;
+}
+
+
+
+    </style>
+
+<body style="color:black;margin:0;padding:0;">
+
+<script src="./jquery.js"></script>
+<script>
+   
+//页面加载时调用
+$(function(){
+ 
+  //默认动画加载
+   $(".mora5").animate({right:'-10px'},"slow");
+   $(".mora5").animate({right:'-10px'},"slow");
+   $(".mora5").animate({right:'-20px'},"slow");
+   $(".mora5").fadeOut("slow");
+
+  
+   $(".mora1").animate({top:'-2px'},"slow");
+   $(".mora1").animate({top:'-10px'},"slow");
+   $(".mora1").animate({top:'-10px'},"slow");
+   $(".mora2").animate({top:'-180px'},"slow");
+   $(".mora2").fadeOut("slow");
+   $(".mora3").animate({bottom:'-160px'},"slow");
+  //$(".mora3").fadeToggle();
+  
+   $(".mora4").animate({bottom:'-2px'},"slow");
+   $(".mora4").animate({bottom:'-2px'},"slow");
+   $(".mora4").animate({bottom:'-2px'},"slow");
+  
+   $(".mora3").fadeOut("slow");
+  
+   //$(".mora4").fadeToggle();
+  
+  getuserlist();
+  });
+  
+  function getuserlist(){
+      //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Guesspersonlist?gamehomenum="+localStorage.g_gamenum;
+      
+      var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Guesspersonlist?gamehomenum="+"8439";
+      
+      //alert(jcontact);
+      var userinfo ="<div class='user' id='userlist'>";
+      var usernum;
+      $.getJSON(
+                jcontact,
+                function(data) {
+                $.each(data.item17, function(i) {
+                     userinfo += "<div style='color:white;'>" + data.item17[i].username + "</div>"
+                     usernum = data.item17[i].sum;
+                       });
+                userinfo += "</div> ";
+                //alert(userinfo);
+                $("#userinfo").append(userinfo);
+                });
+   }
+
+
+
+</script>
+<div class="infoarea" id= 'userinfo'></div>
+<div class="mora5"></div>
+
+<div class="mora2"><div class="mora1"></div></div>
+<div class="mora3"><div class="mora4"></div></div>
+
+<div class="playgo"><image style="margin-top:220px;padding-left:40px;" src="./img/mora_start.PNG"></div>
+
+
+</body>

@@ -155,7 +155,8 @@ $routeProvider.when('/homelostview', {templateUrl: 'partials/homelostview.html',
              
          $routeProvider.when('/viewuserlist', {templateUrl: 'partials/ViewUserList.html'});
          
-        
+//猜拳游戏发起者主视图
+$routeProvider.when('/moraview', {templateUrl: 'partials/mora/moramview.html', controller: 'HomeCtrl'});
              
              
         $routeProvider.when('/view1', {templateUrl: 'partials/notificationView.html'});

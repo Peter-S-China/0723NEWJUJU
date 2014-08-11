@@ -1037,6 +1037,18 @@ Icon Group
   margin-left:4px;
 }
 
+.topcoat-button-mora{
+  background-repeat:no-repeat;
+  background-image: url(../img/icons/mora.png);
+  height:auto;
+  width:70px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  float:left;
+  margin-left:4px;
+}
+
 .whoiswobg{
 
 margin: 0;
@@ -1045,6 +1057,18 @@ background-image:url("../img/whoiswo/home.png");
 font: 16px "Source Sans", helvetica, arial, sans-serif;
 font-weight: 200;
 background-repeat: no-repeat;
+
+}
+
+.morabg{
+
+margin-top: 0;
+padding: 0;
+background-image:url("../img/mora/mora_back_top.PNG");
+font: 16px "Source Sans", helvetica, arial, sans-serif;
+font-weight: 200;
+background-repeat: no-repeat;
+
 
 }
 
@@ -2082,6 +2106,19 @@ text-align:center;
   width:220px;
  
   height:115px;
+
+}
+.dice-exitgame-btn{
+
+  background-image: url("../img/dice/diceback.png");
+  background-repeat: no-repeat;
+
+  display:block;
+  width:42px;
+  height:43px;
+  margin-left:55px;
+  margin-top:5px;
+
 
 }
 

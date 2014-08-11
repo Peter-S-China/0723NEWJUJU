@@ -386,6 +386,13 @@ function NavtoGameCtrl($scope,$rootScope,$location) {
      $location.path("/inggameview");
    
     }
+    $scope.gotomora = function(){
+        
+        g_gamename = "mora";
+        
+        $location.path("/inggameview");
+        
+    }
     
 }
 
@@ -457,10 +464,36 @@ function GetTeamList2Ctrl($scope, $rootScope,$location) {
 }
 
 
-function LoginRoomCtrl($scope){
+function LoginRoomCtrl($scope,$rootScope,$location){
 
     $scope.message = g_homenum;
     console.log("roomnum" + g_homenum);
+    
+    $scope.exhome = function(){
+    
+     console.log('---用户名---'+ g_userid);
+     var exhome = g_baseurl+'/JujuDemo/servlet/Exithome?id='+g_userid;
+     console.log(exhome);
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(exhome,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.items;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+
+        $location.path("/step2");
+    }
+
+    
+    
+    
     
 }
 
@@ -572,7 +605,7 @@ function GetGuessScore($scope,$rootScope){
    console.log('获取房间号>>>g_homenum<<<<'+ g_homenum);
    console.log('获取用户ID>>>g_userid<<<<'+ g_userid);
     
-   var sburl = g_baseurl+'/JujuDemo/servlet/Getballgameuser?userid='+g_userid+'&homenum='+g_homenum;;
+   var sburl = g_baseurl+'/JujuDemo/servlet/Getballgameuser?userid='+g_userid+'&homenum='+g_homenum;
     console.log('>>>>发送当前用户信息给服务器获取初始积分<<<<'+ sburl);
     
     $rootScope.itemf=null;
@@ -949,6 +982,11 @@ function createNewGameCtrl($scope,$rootScope,$location){
         }else if(g_gamename == 'whoiswo'){
         
               $location.path("/whoiswo");
+        
+        }else if(g_gamename == 'mora'){
+        
+            $location.path("/moraview");
+            
         }
     }
 
@@ -2916,6 +2954,28 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
     
     }
     
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+
+    
+        $location.path("/step3");
+    
+    }
+    
 
 }
 
@@ -3416,13 +3476,14 @@ function WhoiswoplayergameoverCtrl($scope,$rootScope,$timeout,$location){
         } else {
             console.log('data already loaded');
         }
-        
-        
-        
         $location.path('/whoiswowo');
-        
     }
+}
+
+function morasetup1Ctrl($scope,$rootScope,$timeout,$location){
     
+    console.log('猜拳游戏开始');
+
 
 
 }

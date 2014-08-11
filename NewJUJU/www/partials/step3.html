@@ -7,10 +7,10 @@
 
 </div>-->
 <div class="gamedatingbg">
-
 <div class="new-text-input" ng-controller="LoginRoomCtrl">
-   
-   <lable class="topcoat-text-input" style="padding-top:40px;"
+ <lable ng-click="exhome()">&nbsp;&nbsp;&nbsp;&nbsp;</lable>
+ 
+ <lable class="topcoat-text-input" style="padding-top:40px;"
         ng-click="slidePage('/viewuserlist','modal')"
         
         ng-show="message">{{ message }}局 查看所有用户
@@ -47,6 +47,8 @@
     
     <div class="topcoat-button-whoiswo" ng-click="gotowhoiswo()">
         <span style="width:70px;display:block;margin-top:70px;">谁是卧底</span></div>
+    <div class="topcoat-button-mora" ng-click="gotomora()">
+        <span style="width:70px;display:block;margin-top:70px;">猜拳</span></div>
     
     
 </div>
