@@ -158,6 +158,17 @@ $routeProvider.when('/homelostview', {templateUrl: 'partials/homelostview.html',
 //猜拳游戏发起者主视图
 $routeProvider.when('/moraview', {templateUrl: 'partials/mora/moramview.html', controller: 'HomeCtrl'});
              
+//杀人游戏发起者主视图
+$routeProvider.when('/killer', {templateUrl: 'partials/killer/mview.html', controller: 'HomeCtrl'});
+//法官开始游戏后,系统自动分配角色信息角色分类列表
+$routeProvider.when('/killers1', {templateUrl: 'partials/killer/s1mview.html', controller: 'HomeCtrl'});
+             
+//参与游戏者加入杀人游戏－修改并确认昵称步骤
+$routeProvider.when('/jkiller', {templateUrl: 'partials/killer/jmview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', controller: 'HomeCtrl'});
+
+             
+             
              
         $routeProvider.when('/view1', {templateUrl: 'partials/notificationView.html'});
         $routeProvider.when('/view2', {templateUrl: 'partials/geolocationView.html'});

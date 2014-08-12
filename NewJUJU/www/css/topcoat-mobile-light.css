@@ -1049,6 +1049,47 @@ Icon Group
   margin-left:4px;
 }
 
+.topcoat-button-kill{
+  background-repeat:no-repeat;
+  background-image: url(../img/icons/kill.png);
+  height:auto;
+  width:70px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  float:left;
+  margin-left:4px;
+}
+
+.killgamebg{
+
+margin: 0;
+padding: 0;
+background-image:url("../img/kill/killbg.png");
+
+width:320px;
+height:568px;
+background-repeat: no-repeat;
+
+
+}
+.nickname{
+display:block;
+width:129px;
+height:42px;
+margin-left:90px;
+background-image:url("../img/kill/nickname.PNG");
+}
+
+.kill-bottom{
+background-image:url("../img/kill/bottom.png");
+position:fixed; 
+bottom:0; left:0; 
+width:100%;
+padding:10px;
+
+
+}
 .whoiswobg{
 
 margin: 0;

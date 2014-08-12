@@ -205,6 +205,8 @@ function GetRoomNumCtrl($scope, $rootScope,$location) {
         console.log("------userid-------" + g_userid);
         console.log("------nickname-------" + $scope.formData.name);
         
+         localStorage.nickname = $scope.formData.name;
+        
         if (!$scope.formData.name){
             
           
@@ -253,13 +255,20 @@ function JoinRoomCtrl($scope, $rootScope,$location) {
     
     
     console.log("------UserID-------" + localStorage.j_username);
+    
     g_userid = localStorage.j_username;
     
     var creatresult;
+    
+    
+    
    
     $scope.formData = {};
     
     $scope.JoinRoom = function() {
+        
+    
+        
         if(!$scope.formData.roomnum || !$scope.formData.nickname){
         
             $scope.message="请输入房间号和昵称";
@@ -267,6 +276,8 @@ function JoinRoomCtrl($scope, $rootScope,$location) {
         
         }else{
         
+       localStorage.nickname = $scope.formData.nickname;
+            
         var g_url = g_baseurl+'/JujuDemo/servlet/Createhome?id='+ g_userid +'&name='+ $scope.formData.nickname + '&homenum='+ $scope.formData.roomnum +'&userid=0';
      
             g_homenum =  $scope.formData.roomnum;
@@ -393,6 +404,15 @@ function NavtoGameCtrl($scope,$rootScope,$location) {
         $location.path("/inggameview");
         
     }
+    
+    $scope.gotokill = function(){
+        
+        g_gamename = "kill";
+        
+        $location.path("/inggameview");
+        
+    }
+
     
 }
 
@@ -987,7 +1007,12 @@ function createNewGameCtrl($scope,$rootScope,$location){
         
             $location.path("/moraview");
             
+        }else if(g_gamename == 'kill'){
+            
+            $location.path("/killer");
+        
         }
+        
     }
 
 
@@ -1066,6 +1091,11 @@ function ingGameListCtrl($scope,$rootScope,$location){
                     
                      $location.path("/whoiswowo");
 
+                    }
+                    if(g_gamename=='kill'){
+                    
+                     $location.path("/jkiller");
+                    
                     }
                     
                     
@@ -3025,6 +3055,29 @@ function diceGamewaitCtrl($scope,$rootScope,$location){
 function WhoiswosetupCtrl($scope,$rootScope,$timeout,$location){
     
     
+    
+    $scope.exitgamehome = function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
     var onurl = g_baseurl +'/JujuDemo/servlet/Underpersonlist?gamehomenum='+localStorage.g_gamenum;
     
     $scope.onlinenum = function(){
@@ -3483,7 +3536,94 @@ function WhoiswoplayergameoverCtrl($scope,$rootScope,$timeout,$location){
 function morasetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     console.log('猜拳游戏开始');
+}
 
+
+function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
+    
+    console.log('杀人游戏开始');
+    //var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum='+ localStorage.g_gamenum;
+    var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum=5632';
+    console.log(starturl);
+    
+    $scope.startplay = function(){
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(starturl,function(data){
+                    console.log(JSON.stringify(data));
+                    
+                    $rootScope.items = data.cerateresult;
+                    
+                    if(!$rootScope.items){
+                    
+                    console.log("开始游戏");
+                    
+                    $location.path("/killers1");
+                    
+                    
+                    }else{
+                    
+            navigator.notification.alert("人数不够哟,等待更多的玩家参与吧",function()
+                                         {
+                                         console.log("Alert success"
+                                       
+                                                     )},"友情提示","确定");
+                    
+                     console.log("人数不够哟");
+                    
+                    }
+                    
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+
+    
+    
+    }
+    
+}
+
+function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
+
+    console.log('参与者加入杀人游戏第一步骤确认或修改昵称');
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户昵称<<<<<<'+ localStorage.nickname);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
+    $scope.message = localStorage.nickname;
+    
+    var cunameurl = g_baseurl +'/JujuDemo/servlet/Getkillname?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid +'&username='+localStorage.nickname;
+    
+    console.log(cunameurl);
+    
+    $scope.ccnickname= function(){
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(cunameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        $location.path("/jwkiller");
+     
+      }
+    
+    
 
 
 }
