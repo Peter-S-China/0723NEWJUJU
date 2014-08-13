@@ -13,55 +13,33 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
     })
     .config(['$routeProvider', function($routeProvider) {
         
-    $routeProvider.when('/homeview', {templateUrl: 'partials/homeView.html', controller: 'HomeCtrl'});
+$routeProvider.when('/homeview', {templateUrl: 'partials/homeView.html', controller: 'HomeCtrl'});
              
         //$routeProvider.when('/', {templateUrl: 'partials/homeView.html', controller: 'HomeCtrl'});
         
-       $routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'HomeCtrl'});         
-    
-        $routeProvider.when('/step1', {templateUrl: 'partials/step1.html'});
-             
-        $routeProvider.when('/newroom', {templateUrl: 'partials/newroom.html', controller: 'HomeCtrl'});
-             
-         $routeProvider.when('/joinroom', {templateUrl: 'partials/joinroom.html', controller: 'HomeCtrl'});
-            
-        $routeProvider.when('/mainchat', {templateUrl: 'partials/mainchat.html', controller: 'HomeCtrl'});
-             
-        $routeProvider.when('/step2', {templateUrl: 'partials/step2.html', controller: 'HomeCtrl'});
-             
-         $routeProvider.when('/step3', {templateUrl: 'partials/step3.html', controller: 'HomeCtrl'});
-             
-          $routeProvider.when('/cbsview', {templateUrl: 'partials/CBS_View.html', controller: 'HomeCtrl'});
-             
-             
+$routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'HomeCtrl'});
+$routeProvider.when('/step1', {templateUrl: 'partials/step1.html'});
+$routeProvider.when('/newroom', {templateUrl: 'partials/newroom.html', controller: 'HomeCtrl'});
+$routeProvider.when('/joinroom', {templateUrl: 'partials/joinroom.html', controller: 'HomeCtrl'});
+$routeProvider.when('/mainchat', {templateUrl: 'partials/mainchat.html', controller: 'HomeCtrl'});
+$routeProvider.when('/step2', {templateUrl: 'partials/step2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/step3', {templateUrl: 'partials/step3.html', controller: 'HomeCtrl'});
+$routeProvider.when('/cbsview', {templateUrl: 'partials/CBS_View.html', controller: 'HomeCtrl'});
+//大冒险主视图
+$routeProvider.when('/dmxview', {templateUrl: 'partials/dmx/dmx_view.html', controller: 'HomeCtrl'});
+$routeProvider.when('/dmxview2', {templateUrl: 'partials/dmx/dmx_view2.html', controller: 'HomeCtrl'});
         
              
-             
-    $routeProvider.when('/cbs2', {templateUrl: 'partials/cbs2.html', controller: 'HomeCtrl'});
-             
-        $routeProvider.when('/dmxview', {templateUrl: 'partials/dmx_view.html', controller: 'HomeCtrl'});
-             
-             
-         $routeProvider.when('/dmxview2', {templateUrl: 'partials/dmx_view2.html', controller: 'HomeCtrl'});
-             
-        $routeProvider.when('/inggameview', {templateUrl: 'partials/inggame.html', controller: 'HomeCtrl'});
-             
-       $routeProvider.when('/nophoneview', {templateUrl: 'partials/nophone.html', controller: 'HomeCtrl'});
-             
-        $routeProvider.when('/nophone_is1', {templateUrl: 'partials/nophone_is1.html', controller: 'HomeCtrl'});
-             
-        $routeProvider.when('/nophone_is2', {templateUrl: 'partials/nophone_is2.html', controller: 'HomeCtrl'});
-             
-             
-       $routeProvider.when('/nophoneview2', {templateUrl: 'partials/nophone2.html', controller: 'HomeCtrl'});
-             
-        $routeProvider.when('/jgchview', {templateUrl: 'partials/jgchview.html', controller: 'HomeCtrl'});
-             
-         $routeProvider.when('/jgchview2', {templateUrl: 'partials/jgchview2.html', controller: 'HomeCtrl'});
-             
-     $routeProvider.when('/jgchview3', {templateUrl: 'partials/jgchview3.html', controller: 'HomeCtrl'});
-             
-       $routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
+$routeProvider.when('/cbs2', {templateUrl: 'partials/cbs2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/inggameview', {templateUrl: 'partials/inggame.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophoneview', {templateUrl: 'partials/nophone.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophone_is1', {templateUrl: 'partials/nophone_is1.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophone_is2', {templateUrl: 'partials/nophone_is2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophoneview2', {templateUrl: 'partials/nophone2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview', {templateUrl: 'partials/jgchview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview2', {templateUrl: 'partials/jgchview2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview3', {templateUrl: 'partials/jgchview3.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
 //谁是卧底发起者主视图
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
 
@@ -91,13 +69,7 @@ $routeProvider.when('/whoiswogameover2', {templateUrl: 'partials/whoiswo/over2.h
 
 //参与者游戏结束视图、平民胜利
 $routeProvider.when('/whoiswogameover3', {templateUrl: 'partials/whoiswo/over3.html', controller: 'HomeCtrl'});
-             
-             
-
-    
 $routeProvider.when('/diceview', {templateUrl: 'partials/dicegame/diceview.html', controller: 'HomeCtrl'});
-
-
 //吹牛游戏视图流程
 $routeProvider.when('/diceviewc1', {templateUrl: 'partials/dicegame/diceviewc1.html', controller: 'HomeCtrl'});
 $routeProvider.when('/diceviewc2', {templateUrl: 'partials/dicegame/diceviewc2.html', controller: 'HomeCtrl'});
@@ -140,21 +112,17 @@ $routeProvider.when('/dice6viewcbdxresult', {templateUrl: 'partials/dicegame/dic
 //骰子参与者等待页面
 $routeProvider.when('/diceviewwaiting', {templateUrl: 'partials/dicegame/dice1viewf.html', controller: 'HomeCtrl'});
              
-//-------------------------
-             
+//------------猜比赛相关视图-------------
 $routeProvider.when('/flatview', {templateUrl: 'partials/flatview.html', controller: 'HomeCtrl'});
 $routeProvider.when('/cbsteamdetail', {templateUrl: 'partials/cbsteamdetail.html', controller: 'HomeCtrl'});
 $routeProvider.when('/homelostview', {templateUrl: 'partials/homelostview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/cbsview2', {templateUrl: 'partials/CBS_View2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/myscoreview', {templateUrl: 'partials/myscoreview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/searchteam', {templateUrl: 'partials/searchTeamView.html'});
+
+//游戏大厅用户列表
+$routeProvider.when('/viewuserlist', {templateUrl: 'partials/ViewUserList.html'});
              
-        $routeProvider.when('/cbsview2', {templateUrl: 'partials/CBS_View2.html', controller: 'HomeCtrl'});
-             
-        
-        
-        $routeProvider.when('/myscoreview', {templateUrl: 'partials/myscoreview.html', controller: 'HomeCtrl'});
-             
-             
-         $routeProvider.when('/viewuserlist', {templateUrl: 'partials/ViewUserList.html'});
-         
 //猜拳游戏发起者主视图
 $routeProvider.when('/moraview', {templateUrl: 'partials/mora/moramview.html', controller: 'HomeCtrl'});
              
@@ -167,9 +135,6 @@ $routeProvider.when('/killers1', {templateUrl: 'partials/killer/s1mview.html', c
 $routeProvider.when('/jkiller', {templateUrl: 'partials/killer/jmview.html', controller: 'HomeCtrl'});
 $routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', controller: 'HomeCtrl'});
 
-             
-             
-             
         $routeProvider.when('/view1', {templateUrl: 'partials/notificationView.html'});
         $routeProvider.when('/view2', {templateUrl: 'partials/geolocationView.html'});
         $routeProvider.when('/view3', {templateUrl: 'partials/accelerometerView.html'});
@@ -178,10 +143,5 @@ $routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', co
         $routeProvider.when('/view6', {templateUrl: 'partials/contactsView.html'});
         $routeProvider.when('/view7', {templateUrl: 'partials/compassView.html'});
         $routeProvider.when('/view8', {templateUrl: 'partials/hackerNewsView.html'});
-       $routeProvider.when('/searchteam', {templateUrl: 'partials/searchTeamView.html'});
-        
-             
-             
-             
         $routeProvider.otherwise({redirectTo: '/'});
   }]);
