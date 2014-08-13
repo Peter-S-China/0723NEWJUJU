@@ -1,35 +1,14 @@
-<div class="dmxbg2">
+<div  ng-controller="getdmxCtrl">
 
-<div  class="dmxbackicon" ng-click="slidePage('/dmxview')">
-    &nbsp;&nbsp;&nbsp;
-  
+<div class="dmxbackicon2" ng-click="slidePage('/step3')">
 </div>
 
-<div class="pad" ng-controller="getdmxCtrl">
-    <div class="centerize">
-    <div style="margin-top:120px;width:320px;margin-left:-20px;" >
-    
-<lable class="topcoat-text-input"  >
-
-{{itemsmx.title}}
-
-</lable><br><br>
+<iframe
+    allowtransparency="true"
+    style="background: transparent;"
+    src="partials/dmx/dmxcontent.html"
+    scrolling="yes" frameborder="0" height="568" scrolling="auto">
+</iframe>
 
 
-<lable  style="width:160px; height:60px;text-align:center; display:inline-block;  -webkit-border-radius: 6px;
-    border-radius: 6px;
-    border: 1px solid #a5a8a8;
-    background-color: #e5e9e8;color: #454545;overflow:scroll;">
-  {{itemsmx.content}}
-  
-</lable>
-    </div>
-    
-    
-      <div style="margin-top:160px;"><a class="dmxagicon" ng-click="alertdmxNotify()">
-          
-      &nbsp;&nbsp;&nbsp;&nbsp;</a>
-        </div>
-
-</div>
 </div>

@@ -899,9 +899,7 @@ function Exithome($scope,$rootScope,$location){
 }
 
 function getdmxCtrl($scope,$rootScope,$location){
-    
-
-    $scope.alertdmxNotify = function() {
+  $scope.alertdmxNotify = function() {
         
         $rootScope.itemsmx = null;
         
@@ -916,14 +914,9 @@ function getdmxCtrl($scope,$rootScope,$location){
         } else {
             console.log('data already loaded');
         }
-
-        
-         $location.path("/dmxview2");
+        $location.path("/dmxview2");
         
     };
-
-
-
 }
 
 function createNewGameCtrl($scope,$rootScope,$location){

@@ -42,31 +42,20 @@ $routeProvider.when('/jgchview3', {templateUrl: 'partials/jgchview3.html', contr
 $routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
 //谁是卧底发起者主视图
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
-
 //谁是卧底参与者等待主视图
 $routeProvider.when('/whoiswowo', {templateUrl: 'partials/whoiswo/index1.html', controller: 'HomeCtrl'});
-
 //谁是卧底参与者游戏中主视图
 $routeProvider.when('/whoiswoplay', {templateUrl: 'partials/whoiswo/player.html', controller: 'HomeCtrl'});
-             
-             
-             
-//谁是卧底选择词汇
 $routeProvider.when('/cchh', {templateUrl: 'partials/whoiswo/cchh.html', controller: 'HomeCtrl'});
 //谁是卧底游戏进行主视图
-             
 $routeProvider.when('/whoiswogaming', {templateUrl: 'partials/whoiswo/gameing.html', controller: 'HomeCtrl'});
-             
 $routeProvider.when('/whoiswogaming2', {templateUrl: 'partials/whoiswo/gameing2.html', controller: 'HomeCtrl'});
 //法官游戏结束视图、卧底胜利
 $routeProvider.when('/whoiswogameover', {templateUrl: 'partials/whoiswo/over.html', controller: 'HomeCtrl'});
 //法官游戏结束视图、平民胜利
 $routeProvider.when('/whoiswogameover1', {templateUrl: 'partials/whoiswo/over1.html', controller: 'HomeCtrl'});
-
-
 //参与者游戏结束视图、卧底胜利
 $routeProvider.when('/whoiswogameover2', {templateUrl: 'partials/whoiswo/over2.html', controller: 'HomeCtrl'});
-
 //参与者游戏结束视图、平民胜利
 $routeProvider.when('/whoiswogameover3', {templateUrl: 'partials/whoiswo/over3.html', controller: 'HomeCtrl'});
 $routeProvider.when('/diceview', {templateUrl: 'partials/dicegame/diceview.html', controller: 'HomeCtrl'});

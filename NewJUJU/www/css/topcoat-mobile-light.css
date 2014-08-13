@@ -1708,19 +1708,7 @@ Navigation Bar
   margin: 0 auto;
 }
 
-.dmxbg2{
-  overflow: auto;
-  margin: 0;
-  padding: 0;
-  background-image: url("../img/dmxcjj.png");
-  font: 16px "Source Sans", helvetica, arial, sans-serif;
-  font-weight: 200;
-  text-rendering: optimizeLegibility;
-  width:320px;
-  height:620px;
-  display: block;
-  margin: 0 auto;
-}
+
 
 
 .dmxbackicon{
@@ -1729,7 +1717,20 @@ Navigation Bar
   background-image: url("../img/dmxback.PNG");
   height:26px;
   width:25px;
+ 
 }
+.dmxbackicon2{
+    position:fixed; 
+    top:10px;
+    left:10px; 
+    width:100%;
+    padding:10px;
+    background-image: url("../img/dmxback.PNG");
+    height:26px;
+    width:25px;
+    
+    background-repeat:no-repeat;
+    }
 
 .dmxqdicon{
   margin:10px;
