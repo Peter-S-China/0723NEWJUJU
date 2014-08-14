@@ -117,13 +117,16 @@ $routeProvider.when('/moraview', {templateUrl: 'partials/mora/moramview.html', c
              
 //杀人游戏发起者主视图
 $routeProvider.when('/killer', {templateUrl: 'partials/killer/mview.html', controller: 'HomeCtrl'});
-//法官开始游戏后,系统自动分配角色信息角色分类列表
+//法官开始游戏后,系统自动分配角色信息角色分类列表，游戏主视图
 $routeProvider.when('/killers1', {templateUrl: 'partials/killer/s1mview.html', controller: 'HomeCtrl'});
              
 //参与游戏者加入杀人游戏－修改并确认昵称步骤
 $routeProvider.when('/jkiller', {templateUrl: 'partials/killer/jmview.html', controller: 'HomeCtrl'});
+//确认昵称后，等待游戏开始
 $routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', controller: 'HomeCtrl'});
+             
 
+//======================================================================================
         $routeProvider.when('/view1', {templateUrl: 'partials/notificationView.html'});
         $routeProvider.when('/view2', {templateUrl: 'partials/geolocationView.html'});
         $routeProvider.when('/view3', {templateUrl: 'partials/accelerometerView.html'});
@@ -133,4 +136,5 @@ $routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', co
         $routeProvider.when('/view7', {templateUrl: 'partials/compassView.html'});
         $routeProvider.when('/view8', {templateUrl: 'partials/hackerNewsView.html'});
         $routeProvider.otherwise({redirectTo: '/'});
+//======================================================================================
   }]);

@@ -1126,17 +1126,19 @@ background-repeat: no-repeat;
 
 }
 .anonymousarea{
+
 width:318px;
-height:100px;
+height:90px;
 margin-top:2px;
 background-image:url("../img/MMBBBG.PNG");
 background-repeat: no-repeat;
 background-attachment:fixed;
-background-position: 0px 10px;
-
-
+background-position: 0px 8px;
+padding-top:5px;
+padding-left:5px;
+padding-bottom:10px;
 overflow:scroll;
-padding:5px;
+
 
 
 }
@@ -1445,6 +1447,7 @@ Navigation Bar
   margin: 0 auto;
   text-align: Center;
  
+ 
 
 }
 .onlineuserlist-icon-left-button{
@@ -1733,13 +1736,19 @@ Navigation Bar
     }
 
 .dmxqdicon{
-  margin:10px;
+
   padding: 0;
-  background-image: url("../img/dmxqidong.PNG");
-  height:43px;
-  width:72px;
+  background-image: url("../img/startgame.png");
+  height:40px;
+  width:111px;
   display:block;
   margin-left:100px;
+  margin-top:400px;
+  postion:fixed;
+
+  bottom:20px;
+  background-repeat:no-repeat;
+
 }
 
 .dmxagicon{

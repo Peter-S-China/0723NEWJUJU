@@ -3,13 +3,9 @@
     <script src="../jquery.js"></script>
     <script>
         $(document).ready(function(){
-$(".down").animate({top:'150px'},"slow");
-$(".down").fadeOut(3000);
-
-$(".left").animate({right:'250px'},1000);
-$(".left").fadeOut(3000);
-$(".right").animate({left:'250px'},1000);
-$(".right").fadeOut(3000);
+                          
+                          startgo();
+                          
                           getdmxcontent();
                           
                           $("button").click(function(){
@@ -21,6 +17,16 @@ $(".right").fadeOut(3000);
                  
                           
                           });
+//默认启动
+function startgo(){
+$(".down").animate({top:'180px'},"slow");
+$(".down").fadeOut(3000);
+
+$(".left").animate({right:'100px'},2000);
+$(".left").fadeOut(3000);
+$(".right").animate({left:'100px'},2000);
+$(".right").fadeOut(3000);
+}
 
 function getdmxcontent(){
 
@@ -48,7 +54,7 @@ function getdmxcontent(){
     
     function reload(){
     
-     location.reload();
+    location.reload();
     
     }
 </script>
@@ -78,6 +84,8 @@ function getdmxcontent(){
     display: block;
     margin: 0 auto;
     background-repeat:no-repeat;
+    position:fixed;
+    z-index:100;
 }
 
 .dmxbg{
@@ -144,45 +152,63 @@ function getdmxcontent(){
     background-repeat:no-repeat;
     position:fixed;
 }
+
 .dmxcontent{
 
 padding-top:200px;
 text-align:center;
 color:white;
+
+
 }
 
 .dmxbutton{
     background-image: url("./img/dmxag.png");
-    width:111px;
-    height:40px;
+    width:72px;
+    height:43px;
     display: block;
-    margin-top:120px;
-    margin-left:100px;
+    bottom:90px;
+    left:140px;
     background-repeat:no-repeat;
+    position:fixed;
+    z-index:200;
+   
    
 }
 .dtitle{
     
-    padding:10px;
-    height:20px;
-    border:2px solid #663300;
-    width:200px;
+    background-image: url("./img/kuang.png");
+    padding-top:20px;
+    height:60px;
+   
+    width:210px;
     margin-left:50px;
-     border-radius: 6px;
+ 
+    background-repeat:no-repeat;
+    background-position:10px 0;
 }
 .dcontent{
     
-    padding:10px;
-    height:auto;
-    border:2px solid #663300;
+    padding-top:10px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:40px;
+    
+    height:10px;
     width:200px;
     margin-left:50px;
     margin-top:10px;
-    border-radius: 6px;
+    background-image: url("./img/kuang.png");
+    background-repeat:no-repeat;
+    background-position:10px 0;
+    overflow:auto;
+    
+ 
 }
 </style>
 <div class='dmxbg'>
 <div class='main'>
+</div>
 
 <div class='right'>
 </div>
@@ -197,11 +223,10 @@ color:white;
 
 </div>
 
-<div id="dmxbutton" class="dmxbutton" onclick="reload()">
-  
 </div>
 
-</div>
+<div id="dmxbutton" class="dmxbutton" onclick="reload()">
+    
 </div>
 
 </body>

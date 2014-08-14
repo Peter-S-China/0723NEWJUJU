@@ -213,6 +213,11 @@ function GetRoomNumCtrl($scope, $rootScope,$location) {
             $scope.message="请输入昵称";
 
 
+        }else if($scope.formData.name.length > 10 ){
+            
+            $scope.message="打那么多字儿?你不累么";
+        
+        
         }else{
         
             var g_url = g_baseurl+'/JujuDemo/servlet/Createhome?id='+ g_userid +'&name='+ $scope.formData.name + '&homenum='+ g_homenum +'&userid=1';
@@ -1107,11 +1112,9 @@ function ingGameListCtrl($scope,$rootScope,$location){
 
 function nophonestep3Ctrl($scope,$rootScope,$location){
     
-    var npscorelisturl = g_baseurl +'/JujuDemo/servlet/Sendnophonecover?gamehomenum='+ localStorage.g_gamenum;
+var npscorelisturl = g_baseurl +'/JujuDemo/servlet/Sendnophonecover?gamehomenum='+ localStorage.g_gamenum;
     
     console.log("排名" + npscorelisturl);
-   
-    
     $rootScope.items = null;
     if (!$rootScope.items) {
         
@@ -1124,21 +1127,11 @@ function nophonestep3Ctrl($scope,$rootScope,$location){
         console.log('data already loaded');
      }
      
-    
-
-    
-    
-    
-    
-    
-
-     var exurl= g_baseurl +'/JujuDemo/servlet/Exitgamehome?id='+g_userid+'&gamehomenum='+ localStorage.g_gamenum;
+    var exurl= g_baseurl +'/JujuDemo/servlet/Exitgamehome?id='+g_userid+'&gamehomenum='+ localStorage.g_gamenum;
     $scope.exitnophone = function() {
-        
         $rootScope.items=null;
         // load in data from hacker news unless we already have
         if (!$rootScope.items) {
-            
             jx.load(exurl,function(data){
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.exitresult;
@@ -2024,6 +2017,8 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
 
 }
 
+//摇骰子比大小 6个骰子数目
+
 function diceGamedice6Ctrl($scope,$rootScope,$location){
     
     
@@ -2048,7 +2043,7 @@ function diceGamedice6Ctrl($scope,$rootScope,$location){
     $scope.value6 = Math.floor(Math.random()*6+1);
     $scope.dice6 = 'partials/' + $scope.value6 + '.PNG';
     
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum;
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
     console.log('设置骰子数量' + cuurl);
     
@@ -2414,7 +2409,9 @@ function diceGamedice1Ctrl($scope,$rootScope,$location){
 
 
 }
-function dice6GamefCtrl($scope,$rootScope,$location){
+
+//比大小摇骰子游戏
+function dice6GamefCtrl($scope,$rootScope,$location,$timeout){
     
     console.log('>>>>>>比大小结果获取<<<');
     console.log('摇骰子结果页面');
@@ -2433,6 +2430,13 @@ function dice6GamefCtrl($scope,$rootScope,$location){
             jx.load(dicejg,function(data){
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.item18;
+                    
+                    if($rootScope.items.length >= 1){
+                    
+                     $timeout.cancel($scope.timeout);
+                    
+                    }
+                    
                     $scope.$apply();
                     
                     },'json');
@@ -2444,22 +2448,21 @@ function dice6GamefCtrl($scope,$rootScope,$location){
     }
     
     
-    $scope.getdiceff();
+    function countdown() {
+        $scope.getdiceff();
+        $scope.timeout = $timeout(countdown, 1000);
+    }
+    
+    countdown();
     
     $scope.loadItem = function(item){
         
         console.log(item.bosonscover);
-        
         $scope.gameusername = item.username;
-        
         $scope.totalnum = item.totalnum;
-        
         $scope.image = item.bosonscover;
-        
         $scope.images = $scope.image.split(',');
-        
         for(i=0;i<$scope.images.length;i++){
-            
             $scope.dice1 = 'partials/' + $scope.images[0]+'.PNG';
             $scope.dice2 = 'partials/' + $scope.images[1]+'.PNG';
             $scope.dice3 = 'partials/' + $scope.images[2]+'.PNG';
@@ -2468,20 +2471,56 @@ function dice6GamefCtrl($scope,$rootScope,$location){
             $scope.dice6 = 'partials/' + $scope.images[5]+'.PNG';
             //console.log("输出"+ $scope.images[i]+".PNG")
         }
-        
-        
-        
     }
     
-    
-    
-    
-
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
     
     
 }
 
 function dice5GamefCtrl($scope,$rootScope,$location){
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
     
     
     console.log('>>>>>>比大小结果获取<<<');
@@ -2548,6 +2587,28 @@ function dice5GamefCtrl($scope,$rootScope,$location){
 }
 function dice4GamefCtrl($scope,$rootScope,$location){
     
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
     console.log('>>>>>>比大小结果获取<<<');
     console.log('摇骰子结果页面');
     console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
@@ -2611,6 +2672,28 @@ function dice4GamefCtrl($scope,$rootScope,$location){
 }
 
 function dice3GamefCtrl($scope,$rootScope,$location){
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
     
     console.log('>>>>>>比大小结果获取<<<');
     console.log('摇骰子结果页面');
@@ -2678,6 +2761,27 @@ function dice3GamefCtrl($scope,$rootScope,$location){
 }
 
 function dice2GamefCtrl($scope,$rootScope,$location){
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
     
     console.log('>>>>>>比大小结果获取<<<');
     console.log('摇骰子结果页面');
@@ -2745,6 +2849,28 @@ function dice2GamefCtrl($scope,$rootScope,$location){
 }
 function dice1GamefCtrl($scope,$rootScope,$location){
 
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
     console.log('>>>>>>比大小结果获取<<<');
     console.log('摇骰子结果页面');
     console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
@@ -3002,7 +3128,7 @@ function diceGamesetup4Ctrl($scope,$rootScope,$location){
 
 }
 
-
+//摇骰子游戏---参与者等待视图-----
 function diceGamewaitCtrl($scope,$rootScope,$location){
     
     console.log('摇骰子结果页面');
@@ -3020,12 +3146,45 @@ function diceGamewaitCtrl($scope,$rootScope,$location){
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.bosonsnum;
                     
-                    if($rootScope.items == '6'){
+                    
+                    
+                    if($rootScope.items == '6' && data.flag == '0' ){
                     
                         clearInterval(g_timer);
                         $location.path('/diceviewc2');
                     
+                    }else if($rootScope.items == '5'){
+                    
+                     clearInterval(g_timer);
+                     $location.path('/dice5viewbdx');
+                    
+                    }else if($rootScope.items == '4'){
+                    
+                     clearInterval(g_timer);
+                     $location.path('/dice4viewbdx');
+                    
+                    }else if($rootScope.items == '3'){
+                    
+                    clearInterval(g_timer);
+                    $location.path('/dice3viewbdx');
+                    
+                    }else if($rootScope.items == '2'){
+                    
+                    clearInterval(g_timer);
+                    $location.path('/dice2viewbdx');
+                    
+                    }else if($rootScope.items == '1'){
+                    
+                    clearInterval(g_timer);
+                    $location.path('/dice1viewbdx');
+                    
+                    }else if($rootScope.items == '6' && data.flag == '1'){
+                    
+                    clearInterval(g_timer);
+                    $location.path('/dice6viewbdx');
+                    
                     }
+
                     
                     $scope.$apply();
                     
@@ -3592,11 +3751,28 @@ function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     $scope.message = localStorage.nickname;
     
-    var cunameurl = g_baseurl +'/JujuDemo/servlet/Getkillname?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid +'&username='+localStorage.nickname;
     
-    console.log(cunameurl);
+    
+    $scope.formData = {};
     
     $scope.ccnickname= function(){
+        
+       
+        
+        if(!$scope.formData.nickname){
+        
+         console.log('使用默认昵称'+ localStorage.nickname);
+        
+        }else{
+        
+         console.log('新昵称'+ $scope.formData.nickname);
+         localStorage.nickname = $scope.formData.nickname;
+        }
+        
+        var cunameurl = g_baseurl +'/JujuDemo/servlet/Getkillname?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid +'&username='+localStorage.nickname;
+        
+        console.log(cunameurl);
+    
         
         $rootScope.items = null;
         // load in data from hacker news unless we already have
