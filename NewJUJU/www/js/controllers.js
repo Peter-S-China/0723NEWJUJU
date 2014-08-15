@@ -2017,7 +2017,7 @@ function diceGamesetup2Ctrl($scope,$rootScope,$location){
 
 }
 
-//摇骰子比大小 6个骰子数目
+//摇骰子比大小游戏 6个骰子数目
 
 function diceGamedice6Ctrl($scope,$rootScope,$location){
     
@@ -2043,6 +2043,7 @@ function diceGamedice6Ctrl($scope,$rootScope,$location){
     $scope.value6 = Math.floor(Math.random()*6+1);
     $scope.dice6 = 'partials/' + $scope.value6 + '.PNG';
     
+    //比大小游戏
     var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
     console.log('设置骰子数量' + cuurl);
@@ -2113,7 +2114,8 @@ function diceGamedice5Ctrl($scope,$rootScope,$location){
     $scope.value5 = Math.floor(Math.random()*6+1);
     $scope.dice5 = 'partials/' + $scope.value5 + '.PNG';
     
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum;
+    //比大小游戏
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
     console.log('设置骰子数量' + cuurl);
     
@@ -2177,7 +2179,8 @@ function diceGamedice4Ctrl($scope,$rootScope,$location){
     $scope.value4 = Math.floor(Math.random()*6+1);
     $scope.dice4 = 'partials/' + $scope.value4 + '.PNG';
     
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum;
+    //比大小
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
     console.log('设置骰子数量' + cuurl);
     
@@ -2238,7 +2241,7 @@ function diceGamedice3Ctrl($scope,$rootScope,$location){
     $scope.value3 = Math.floor(Math.random()*6+1);
     $scope.dice3 = 'partials/' + $scope.value3 + '.PNG';
     
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum;
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
     console.log('设置骰子数量' + cuurl);
     
@@ -2305,7 +2308,7 @@ function diceGamedice2Ctrl($scope,$rootScope,$location){
     $scope.dice2 = 'partials/' + $scope.value2 + '.PNG';
     
     
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum;
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
     console.log('设置骰子数量' + cuurl);
     
@@ -2359,8 +2362,9 @@ function diceGamedice1Ctrl($scope,$rootScope,$location){
     $scope.value1 = Math.floor(Math.random()*6+1);
     $scope.dice1 = 'partials/' + $scope.value1 + '.PNG';
     
+    //比大小游戏
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum + '&flag=1';
     
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum='+ g_dicenum;
     console.log('设置骰子数量' + cuurl);
     
     
@@ -2950,8 +2954,9 @@ function diceGamesetup3Ctrl($scope,$rootScope,$location){
     console.log('吹牛骰子随机数第一次bosonscover=' + $scope.alvalue);
     
     $scope.cnstart = function(){
-        
-    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum=6';
+    
+    //吹牛游戏
+    var cuurl = g_baseurl + '/JujuDemo/servlet/GetbosonsNum?gamehomenum='+localStorage.g_gamenum +'&bosonsnum=6'+ '&flag=0';
         
     console.log('设置骰子数量' + cuurl);
         

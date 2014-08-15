@@ -52,12 +52,12 @@
                             function(data) {
                             $.each(data.item18, function(i) {
                     
-            if(data.item18.length >= 1){
+            if(data.item18.length > 1){
             
-        $("#weather").append("<div >" +totaldicenum(data.item18[i].totalnum) +"</div><div>" + data.item18[i].username + "</div>"+"<div>"+ senddicenum(data.item18[i].bosonscover)+"</div>")
+                                   $("#weather").append("<div >" +totaldicenum(data.item18[i].totalnum) +"</div><div>" + data.item18[i].username + "</div>"+"<div>"+ senddicenum(data.item18[i].bosonscover)+"</div>");
               
         clearInterval(g_timer);
-                                   
+             
                                    }
                                    
                                    
