@@ -39,7 +39,7 @@
                                    
                 if(data.item18.length > 1){
                 
-                    $("#weather").append("<div >" +totaldicenum(data.item18[i].totalbosonsnum) +"</div><div>" + data.item18[i].username + "</div>"+"<div>"+ senddicenum(data.item18[i].bosonscover)+"</div>");
+                    $("#weather").append("<div >" + totaldicenum(data.item18[i].totalbosonsnum) +"</div><div>" + data.item18[i].username + "</div>"+"<div>"+ senddicenum(data.item18[i].bosonscover)+"</div>");
                 
                 clearInterval(g_timer);
                     
@@ -53,9 +53,10 @@
               }
         
         
+        var x=0;
         function totaldicenum(item){
+            x = x+1;
             var items = item.split(',');
-            
             var cc="";
             cc += '<img   class=imgdice src=../1.PNG> x' + items[0];
             cc += '<img class=imgdice src=../2.PNG> x' + items[1];
@@ -66,8 +67,14 @@
             
             //alert(cc);
             
+            if(x<=1){
             return cc;
             
+             }else{
+              
+              return "";
+            
+            }
         }
         
         //totaldicenum("2,1,1,1,0,1");
