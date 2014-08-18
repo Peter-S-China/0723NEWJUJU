@@ -33,7 +33,7 @@ function getdmxcontent(){
    var dmxurl = "http://203.100.80.135:8080/JujuDemo/servlet/Singleadventure";
     
     //alert(dmxurl);
-    var userinfo = "<div >";
+    var userinfo = "<div id=newcontent>";
     $.getJSON(
               dmxurl,
               function(data) {
@@ -54,7 +54,11 @@ function getdmxcontent(){
     
     function reload(){
     
-    location.reload();
+    //location.reload();
+    
+    $(".dmxcontent").empty()
+    
+    getdmxcontent();
     
     }
 </script>

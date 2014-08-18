@@ -3699,8 +3699,9 @@ function morasetup1Ctrl($scope,$rootScope,$timeout,$location){
 function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     console.log('杀人游戏开始');
-    //var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum='+ localStorage.g_gamenum;
-    var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum=5632';
+    var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum='+ localStorage.g_gamenum;
+   
+    //var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum=5632';
     console.log(starturl);
     
     $scope.startplay = function(){
