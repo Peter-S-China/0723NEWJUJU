@@ -43,7 +43,7 @@ var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Startkill?gamehom
                                            
                                            if(data[i].ldentity == '1'){
                                            userinfo +=  "";
-                                           userinfo += "<div class='panel3' style='display: none;'><div class='panel3info'>"+ data[i].username+"</div></div>"
+                                           userinfo += "<div class='panel3' style='display: none;'><div class='panel3info' onclick= kill("+data[i].userid+")>"+ data[i].username+"</div> </div>"
                                            }
                                            
                                            
@@ -147,6 +147,25 @@ function reload(){
     
     location.reload();
     
+}
+
+
+function  kill(uid){
+    
+    var killuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Shashoukillperson?gamehomenum="+localStorage.g_gamenum +"&userid=" + uid ;
+    //alert(killuserurl);
+    
+    $.ajax({
+           type: "GET",
+           url: killuserurl,
+           dataType: "script"
+           });
+           
+
+     //location.reload();
+     $(".panel3").slideToggle("slow");
+
+
 }
 
 </script>

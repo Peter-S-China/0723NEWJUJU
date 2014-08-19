@@ -3746,6 +3746,24 @@ function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     }
     
+    $scope.thby = function(){
+    
+    console.log('天黑闭眼');
+        
+    $location.path("/killers2");
+    
+    }
+    
+    $scope.killer = function(){
+        
+        console.log('杀手杀人咯');
+        
+        
+        
+    }
+    
+
+
 }
 
 function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
@@ -3768,14 +3786,18 @@ function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
         if(!$scope.formData.nickname){
         
          console.log('使用默认昵称'+ localStorage.nickname);
+            
+         var cunameurl = g_baseurl +'/JujuDemo/servlet/Getkillname?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid +'&username='+localStorage.nickname;
         
         }else{
         
          console.log('新昵称'+ $scope.formData.nickname);
-         localStorage.nickname = $scope.formData.nickname;
+        
+         var cunameurl = g_baseurl +'/JujuDemo/servlet/Getkillname?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid +'&username='+ $scope.formData.nickname;
+            
         }
         
-        var cunameurl = g_baseurl +'/JujuDemo/servlet/Getkillname?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid +'&username='+localStorage.nickname;
+        
         
         console.log(cunameurl);
     
@@ -3797,8 +3819,50 @@ function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
         $location.path("/jwkiller");
      
       }
+}
+
+
+function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
+    
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
     
+    $scope.waiting = function(){
+     var getpersonrole = g_baseurl +'/JujuDemo/servlet/Sendsinglekill?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid;
+    
+    console.log(getpersonrole);
+    
+    $rootScope.items = null;
+    // load in data from hacker news unless we already have
+    if (!$rootScope.items) {
+        
+        jx.load(getpersonrole,function(data){
+                console.log(JSON.stringify(data));
+                $rootScope.items = data.item19;
+                
+                
+                
+                $scope.$apply();
+                },'json');
+        
+      } else {
+        console.log('data already loaded');
+      }
+
+    }
+    
+    function countdown() {
+        $scope.waiting();
+        $scope.timeout = $timeout(countdown, 1000);
+    }
+    
+    countdown();
+
+}
+
+function JkillGamesetup3Ctrl($scope,$rootScope,$timeout,$location){
+
 
 
 }

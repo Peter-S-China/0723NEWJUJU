@@ -1081,10 +1081,37 @@ margin-left:90px;
 background-image:url("../img/kill/nickname.PNG");
 }
 
+.playkillgame{
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/startgame.PNG");
+}
+
+
+.thby-button{
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/thby.PNG");
+}
+
+
+.killer-button{
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/kill.PNG");
+}
+
 .kill-bottom{
 background-image:url("../img/kill/bottom.png");
 position:fixed; 
-bottom:0; left:0; 
+bottom:-10px; 
+left:0; 
 width:100%;
 padding:10px;
 
