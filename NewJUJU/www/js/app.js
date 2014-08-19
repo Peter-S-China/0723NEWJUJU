@@ -122,6 +122,28 @@ $routeProvider.when('/killers1', {templateUrl: 'partials/killer/s1mview.html', c
              
 $routeProvider.when('/killers2', {templateUrl: 'partials/killer/s2mview.html', controller: 'HomeCtrl'});
              
+$routeProvider.when('/killers3', {templateUrl: 'partials/killer/s3mview.html', controller: 'HomeCtrl'});
+
+$routeProvider.when('/killers4', {templateUrl: 'partials/killer/s4mview.html', controller: 'HomeCtrl'});
+
+$routeProvider.when('/killers5', {templateUrl: 'partials/killer/s5mview.html', controller: 'HomeCtrl'});
+
+$routeProvider.when('/killers6', {templateUrl: 'partials/killer/s6mview.html', controller: 'HomeCtrl'});
+
+$routeProvider.when('/killers7', {templateUrl: 'partials/killer/s7mview.html', controller: 'HomeCtrl'});
+             
+$routeProvider.when('/killers8', {templateUrl: 'partials/killer/s8mview.html', controller: 'HomeCtrl'});
+             
+$routeProvider.when('/killers9', {templateUrl: 'partials/killer/s9mview.html', controller: 'HomeCtrl'});
+
+$routeProvider.when('/killers10', {templateUrl: 'partials/killer/s10mview.html', controller: 'HomeCtrl'});
+             
+$routeProvider.when('/killers4', {templateUrl: 'partials/killer/s4mview.html', controller: 'HomeCtrl'});
+
+$routeProvider.when('/killers4', {templateUrl: 'partials/killer/s4mview.html', controller: 'HomeCtrl'});
+             
+    
+             
 //参与游戏者加入杀人游戏－修改并确认昵称步骤
 $routeProvider.when('/jkiller', {templateUrl: 'partials/killer/jmview.html', controller: 'HomeCtrl'});
 //确认昵称后，等待游戏开始

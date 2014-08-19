@@ -1089,6 +1089,14 @@ margin-left:90px;
 background-image:url("../img/kill/startgame.PNG");
 }
 
+.replaykillgame{
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/restartgame.PNG");
+}
+
 
 .thby-button{
 display:block;
@@ -1107,6 +1115,27 @@ margin-left:90px;
 background-image:url("../img/kill/kill.PNG");
 }
 
+
+.killer-open-button{
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/killeropen.PNG");
+
+}
+
+.killer-close-button{
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/killerclose.PNG");
+
+}
+
+
+
 .kill-bottom{
 background-image:url("../img/kill/bottom.png");
 position:fixed; 
@@ -1117,6 +1146,48 @@ padding:10px;
 
 
 }
+
+
+.police-open-button{
+
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/policeopen.PNG");
+
+}
+
+.police-ff-button{
+
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/policeff.PNG");
+}
+
+.police-close-button{
+
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/policeclose.PNG");
+
+}
+
+.all-open-button{
+
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/allopen.PNG");
+
+}
+
+
 .whoiswobg{
 
 margin: 0;

@@ -3748,19 +3748,113 @@ function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     $scope.thby = function(){
     
-    console.log('天黑闭眼');
+    console.log('天黑闭眼Startkill');
+        
+        
         
     $location.path("/killers2");
     
     }
     
-    $scope.killer = function(){
+    $scope.killeropen = function(){
         
-        console.log('杀手杀人咯');
-        
-        
+        console.log('杀手杀人咯Sendjudgekilllist-1');
+        $location.path("/killers3");
         
     }
+    
+    $scope.kill= function(){
+        
+        console.log('杀手杀人');
+        $location.path("/killers4");
+        
+    }
+    
+    $scope.killclose=function(){
+    
+        console.log('杀手闭眼');
+        $location.path("/killers5");
+    }
+    
+    $scope.policeopen = function(){
+        
+        console.log('警察睁眼');
+        $location.path("/killers6");
+    }
+    $scope.policeff= function(){
+    
+        console.log('警察验人');
+        $location.path("/killers7");
+    }
+    
+    $scope.policeclose=function(){
+    
+        console.log('警察闭眼');
+        $location.path("/killers8");
+    }
+    
+    $scope.allopen = function(){
+        
+        var allopenurl =  g_baseurl +'/JujuDemo/servlet/Getkillflag?gamehomenum='+ localStorage.g_gamenum+'&killflag=4';
+        
+        console.log('天亮了');
+        console.log(allopenurl);
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(allopenurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.getopenflag;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+
+         $location.path("/killers9");
+        
+       
+    
+    
+    }
+
+    $scope.replay = function(){
+        
+        console.log('重新开始');
+        $location.path("/killers1");
+    }
+    
+
+}
+
+function killGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
+    
+     console.log('------天亮了------');
+     var userlisturl = g_baseurl +'/JujuDemo/servlet/Sendjudgekilllist?gamehomenum='+ localStorage.g_gamenum;
+    
+    console.log('------监听用户列表------'+userlisturl);
+    
+    $rootScope.items = null;
+    // load in data from hacker news unless we already have
+    if (!$rootScope.items) {
+        
+        jx.load(userlisturl,function(data){
+                console.log(JSON.stringify(data));
+                $rootScope.items = data.getopenflag;
+                
+                
+                $scope.$apply();
+                },'json');
+        
+        } else {
+        console.log('data already loaded');
+        }
+    
+
+    
     
 
 
