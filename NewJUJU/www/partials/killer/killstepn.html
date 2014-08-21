@@ -41,14 +41,20 @@ var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendkillalllist?g
                           $.getJSON(
                                     gameuserurl,
                                     function(data) {
-                                    $.each(data, function(i) {
+                                    $.each(data.item19, function(i) {
                                            
-                    if(data.item19[i].ldentity == '1'){
+                    if(data.item19[i].ldentity == '1'&& data.item19[i].islive == '1'){
                                            
                         userinfo +=  "";
-                        userinfo += "<div class='panel3' style='display: block;'><div class='panel3info'>"+ data.item19[i].username+"</div> <div class='jcpoint' id='jcpoint"+ data.item19[i].userid +"' onclick= kill("+ data.item19[i].userid+")></div></div>";
+                        userinfo += "<div class='panel3' style='display: block;'><div class='panel3info'>"+ data.item19[i].username+"</div></div>";
                                            
-                    }
+                    }else if(data.item19[i].ldentity == '1'&& data.item19[i].islive == '0'){
+                                
+                        userinfo +=  "<div class='panel3' style='display: block;'><div class='statusinfo'>";
+                        userinfo +=  data.item19[i].username;
+                        userinfo +=  "</div></div>";
+                                
+                                           }
                                            
                                
                                            
@@ -81,13 +87,19 @@ function getgamekillerlist(){
     $.getJSON(
               gameuserurl,
               function(data) {
-              $.each(data, function(i) {
+              $.each(data.item19, function(i) {
                      
-                     if(data.item19[i].ldentity == '2'){
+                     if(data.item19[i].ldentity == '2'&& data.item19[i].islive =='1'){
                      
                      userinfo +=  "";
-                     userinfo += "<div class='panel2' style='display: block;'><div class='panel2info'>"+ data.item19[i].username+"</div><div class='jcpoint' id='jcpoint"+ data.item19[i].userid +"'  onclick= kill("+ data.item19[i].userid+")></div></div>";
+                     userinfo += "<div class='panel2' style='display: block;'><div class='panel2info'>"+ data.item19[i].username+"</div></div>";
+                     }else if(data.item19[i].ldentity == '2'&& data.item19[i].islive =='0'){
+                     
+                     userinfo +=  "";
+                     userinfo += "<div class='panel2' style='display: block;'><div class='statusinfo'>"+ data.item19[i].username+"</div></div>";
+                     
                      }
+                     
                      
                      
                      
@@ -120,13 +132,18 @@ function getgamepmlist(){
     $.getJSON(
               gameuserurl,
               function(data) {
-              $.each(data, function(i) {
+              $.each(data.item19, function(i) {
                      
-                     if(data.item19[i].ldentity == '3'){
+                    if(data.item19[i].ldentity == '3'&& data.item19[i].islive =='1'){
                      userinfo +=  "";
-                     userinfo += "<div class='panel4' style='display: block;'><div class='panel4info'>"+ data.item19[i].username +"</div><div class='jcpoint' id='jcpoint"+ data.item19[i].userid +"'  onclick= kill("+ data.item19[i].userid+")></div></div>";
+                     userinfo += "<div class='panel4' style='display: block;'><div class='panel4info'>"+ data.item19[i].username +"</div></div>";
+                     
+                     }else if(data.item19[i].ldentity == '3'&& data.item19[i].islive =='0'){
+                     
+                     userinfo += "<div class='panel4' style='display: block;'><div class='statusinfo'>"+ data.item19[i].username+"</div></div>";
                      
                      }
+                     
                      
                      
                      
@@ -164,7 +181,7 @@ function  kill(uid){
            dataType: "script"
            });
            
-      $("#jcpoint"+ uid + "").remove();
+      $("#killicon"+ uid + "").remove();
 }
 
 </script>
@@ -338,8 +355,14 @@ z-index:100;
     
 }
 
+.statusinfo{
+    color:white;
+    padding-top:20px;
+    background-color:black;
+    
+}
 
-.jcpoint{
+.killicon{
 
 
 display:block;

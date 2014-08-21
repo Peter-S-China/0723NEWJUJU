@@ -3702,7 +3702,7 @@ function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum='+ localStorage.g_gamenum;
    
     //var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum=5632';
-    console.log(starturl);
+    //console.log(starturl);
     
     $scope.startplay = function(){
         
@@ -3821,41 +3821,112 @@ function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     }
 
-    $scope.replay = function(){
-        
-        console.log('重新开始');
-        $location.path("/killers1");
-    }
     
 
 }
 
 function killGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
     
-     console.log('------天亮了------');
-     var userlisturl = g_baseurl +'/JujuDemo/servlet/Sendjudgekilllist?gamehomenum='+ localStorage.g_gamenum;
-    
-    console.log('------监听用户列表------'+userlisturl);
-    
-    $rootScope.items = null;
-    // load in data from hacker news unless we already have
-    if (!$rootScope.items) {
+    $scope.gongtou = function(){
         
-        jx.load(userlisturl,function(data){
-                console.log(JSON.stringify(data));
-                $rootScope.items = data.getopenflag;
-                
-                
-                $scope.$apply();
-                },'json');
+        console.log('------公投完成------');
+        var gturl = g_baseurl +'/JujuDemo/servlet/Sendjudgekilllist?gamehomenum='+ localStorage.g_gamenum;
         
+        console.log(gturl);
+        console.log($rootScope.items);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(gturl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item23;
+                    
+                    console.log('公投结果' + $rootScope.items.length);
+                    
+                    if($rootScope.items.length == 1){
+                    
+                     $location.path('/killers9');
+                    
+                     }
+                    
+                
+                    
+                    $scope.$apply();
+                    },'json');
+            
         } else {
-        console.log('data already loaded');
+            
+            console.log('BBBB');
+        
         }
+
+        
+        
+         $location.path('/killers2');
+        
+        
+    }
     
+    $scope.replay = function(){
+        
+        console.log('重新开始');
+        
+        var replayurl =  g_baseurl +'/JujuDemo/servlet/Getkillflag?gamehomenum='+ localStorage.g_gamenum+'&killflag=6';
+        
+        console.log(replayurl);
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(replayurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.getopenflag;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/killers1");
+        
+        
+    }
 
     
+    $scope.status = function(){
     
+        console.log('------天亮了------');
+        var userlisturl = g_baseurl +'/JujuDemo/servlet/Sendjudgekilllist?gamehomenum='+ localStorage.g_gamenum;
+        
+        console.log('------监听用户列表------'+userlisturl);
+        
+        $rootScope.items = null;
+  
+        if (!$rootScope.items) {
+            
+            jx.load(userlisturl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item19;
+                    
+                    if($rootScope.items.length > 1){
+                    
+                    $location.path('/killers10');
+                    
+                    }
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+    }
+    
+    $scope.status();
 
 
 }
@@ -3869,15 +3940,11 @@ function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     $scope.message = localStorage.nickname;
     
-    
-    
     $scope.formData = {};
     
     $scope.ccnickname= function(){
         
-       
-        
-        if(!$scope.formData.nickname){
+       if(!$scope.formData.nickname){
         
          console.log('使用默认昵称'+ localStorage.nickname);
             
@@ -3910,7 +3977,7 @@ function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
             console.log('data already loaded');
         }
         
-        $location.path("/jwkiller");
+         $location.path("/jwkiller");
      
       }
 }
@@ -3918,9 +3985,14 @@ function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
 
 function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
     
-    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取用户ID<<<<<<'+ localStorage.g_userid);
+    
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
+    
+  
     
     $scope.waiting = function(){
      var getpersonrole = g_baseurl +'/JujuDemo/servlet/Sendsinglekill?gamehomenum='+ localStorage.g_gamenum + '&userid='+ g_userid;
@@ -3934,6 +4006,20 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
         jx.load(getpersonrole,function(data){
                 console.log(JSON.stringify(data));
                 $rootScope.items = data.item19;
+                console.log("游戏状态等待");
+                
+               
+                
+                if(data.item19[0].username != '0' ){
+                
+                console.log("角色编号" + data.item19[0].ldentity);
+                localStorage.rolenum = data.item19[0].ldentity;
+                console.log("游戏开始");
+                $location.path('jwgame');
+                $timeout.cancel($scope.timeout);
+                
+                }
+                
                 
                 
                 
@@ -3956,6 +4042,8 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
 }
 
 function JkillGamesetup3Ctrl($scope,$rootScope,$timeout,$location){
+    
+     console.log('杀人游戏开始了哟');
 
 
 

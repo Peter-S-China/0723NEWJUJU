@@ -1186,7 +1186,15 @@ margin-left:90px;
 background-image:url("../img/kill/allopen.PNG");
 
 }
+.gongtou-icon{
 
+display:block;
+width:132px;
+height:43px;
+margin-left:90px;
+background-image:url("../img/kill/gongtou.png");
+
+}
 
 .whoiswobg{
 
