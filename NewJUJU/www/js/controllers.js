@@ -4096,14 +4096,23 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
                 
                 for(var i = 0; i < $rootScope.items.length; i++){
                 
-                console.log('>>>>>>>' + $rootScope.items[i].username);
+                if($rootScope.items[i].userid == localStorage.g_userid){
+                
+                    if($rootScope.items[i].gameuserid == '1'){
+                
+                    $location.path('/killer');
+                
+                   }
+                
+                }
+               
                 
                 
                 }
                 
                 
                 // $location.path("/killers1");
-                //$location.path("/jwkiller");
+           
                 
                 
              
@@ -4113,12 +4122,12 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
                 $scope.$apply();
                 },'json');
         
-    } else {
-        console.log('data already loaded');
-    }
+       } else {
+         console.log('data already loaded');
+      }
 
     
-    
+     $location.path("/jwkiller");
     
 
 }
