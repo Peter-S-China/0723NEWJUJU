@@ -4010,7 +4010,7 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
                 console.log("角色编号" + data.item19[0].ldentity);
                 localStorage.rolenum = data.item19[0].ldentity;
                 console.log("游戏开始");
-                $location.path('jwgame');
+                $location.path('/jwgame');
                 $timeout.cancel($scope.timeout);
                 
                 }
@@ -4079,8 +4079,10 @@ function JkillGamesetup3Ctrl($scope,$rootScope,$timeout,$location){
 function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
     
     console.log('谁是法官');
+    localStorage.g_userid = g_userid;
     console.log('>>>>>>获取当前用户ID<<<<<<'+ localStorage.g_userid);
     console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
     var whofgurl = g_baseurl +'/JujuDemo/servlet/Killpersonlist?gamehomenum='+localStorage.g_gamenum;
     console.log(whofgurl);
     
@@ -4092,19 +4094,27 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
                 console.log(JSON.stringify(data));
                 $rootScope.items = data.item17;
                 console.log('>>>>>>>' + $rootScope.items.length);
+                console.log('>>>>>>>' + localStorage.g_userid);
                 
                 
                 for(var i = 0; i < $rootScope.items.length; i++){
                 
-                if($rootScope.items[i].userid == localStorage.g_userid){
+                if($rootScope.items[i].gameuserid == '1'){
                 
-                    if($rootScope.items[i].gameuserid == '1'){
+                   console.log('>>>>>>>' + $rootScope.items[i].userid);
+                   //console.log('>>>>>>>' + $rootScope.items[i].username);
                 
-                    $location.path('/killer');
                 
-                   }
+                        if($rootScope.items[i].userid == localStorage.g_userid){
                 
-                }
+                          $location.path('/killer');
+                
+                        }else{
+                
+                         $location.path('/jwkiller');
+                
+                         }
+               }
                
                 
                 
@@ -4113,12 +4123,6 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
                 
                 // $location.path("/killers1");
            
-                
-                
-             
-                
-                
-                
                 $scope.$apply();
                 },'json');
         
@@ -4127,7 +4131,7 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
       }
 
     
-     $location.path("/jwkiller");
+    
     
 
 }
