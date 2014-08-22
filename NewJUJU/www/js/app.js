@@ -117,6 +117,9 @@ $routeProvider.when('/moraview', {templateUrl: 'partials/mora/moramview.html', c
              
 //杀人游戏发起者主视图
 $routeProvider.when('/killer', {templateUrl: 'partials/killer/mview.html', controller: 'HomeCtrl'});
+//开始游戏前系统自动确定who是法官
+$routeProvider.when('/killerfg', {templateUrl: 'partials/killer/whofview.html', controller: 'HomeCtrl'});
+             
 //法官开始游戏后,系统自动分配角色信息角色分类列表，游戏主视图
 $routeProvider.when('/killers1', {templateUrl: 'partials/killer/s1mview.html', controller: 'HomeCtrl'});
              
@@ -148,8 +151,11 @@ $routeProvider.when('/killers4', {templateUrl: 'partials/killer/s4mview.html', c
 $routeProvider.when('/jkiller', {templateUrl: 'partials/killer/jmview.html', controller: 'HomeCtrl'});
 //确认昵称后，等待游戏开始
 $routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', controller: 'HomeCtrl'});
-             
+//杀人游戏参与者游戏视图
 $routeProvider.when('/jwgame', {templateUrl: 'partials/killer/jkgameview.html', controller: 'HomeCtrl'});
+             
+//杀人游戏参与者游戏结束试图
+$routeProvider.when('/jwgamer', {templateUrl: 'partials/killer/jkgameviewr.html', controller: 'HomeCtrl'});
              
 
 //======================================================================================

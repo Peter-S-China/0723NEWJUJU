@@ -81,7 +81,7 @@ function getgamekillerlist(){
     $.getJSON(
               gameuserurl,
               function(data) {
-              $.each(data, function(i) {
+              $.each(data.item19, function(i) {
                      
                      if(data.item19[i].ldentity == '2'){
                      
@@ -120,7 +120,7 @@ function getgamepmlist(){
     $.getJSON(
               gameuserurl,
               function(data) {
-              $.each(data, function(i) {
+              $.each(data.item19, function(i) {
                      
                      if(data.item19[i].ldentity == '3'){
                      userinfo +=  "";
@@ -178,7 +178,7 @@ function  kill(uid){
         -ms-user-select: none; /*IE10*/
         -khtml-user-select: none; /*早期浏览器*/
         user-select: none;
-        
+        overflow:auto;
     }
 
 .main{
