@@ -3485,7 +3485,7 @@ function WhoiswoingCtrl ($scope,$rootScope,$timeout,$location){
     
     console.log('------谁是卧底游戏进行中------');
     
-    $scope.message = "";
+    $scope.message = "游戏进行中";
     
     var fggameover = g_baseurl +'/JujuDemo/servlet/Sendvoteoutcome?gamehomenum='+ localStorage.g_gamenum + '&flag=1';
     
@@ -3699,6 +3699,30 @@ function morasetup1Ctrl($scope,$rootScope,$timeout,$location){
 function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     console.log('杀人游戏开始');
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
+
     var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum='+ localStorage.g_gamenum;
    
     //var starturl = g_baseurl +'/JujuDemo/servlet/Startkill?gamehomenum=5632';
@@ -3815,13 +3839,18 @@ function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
         }
 
          $location.path("/killers9");
-        
-       
-    
     
     }
 
+    $scope.fgql = function(){
     
+    console.log('法官权利');
+    console.log('当前用户ID'+ g_userid);
+    console.log('当前游戏编号'+ localStorage.g_gamenum);
+    $location.path("/killerfgm");
+        
+        
+    }
 
 }
 

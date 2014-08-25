@@ -22,12 +22,16 @@
         border:solid 1px #CCCCCC;
         border-radius: 6px;
         display:block;
-        width:260px;
+        width:280px;
+        height:30px;
         margin-bottom:10px;
         margin-left:0px;
         color:white;
         font: 16px "Source Sans", helvetica, arial, sans-serif;
         text-shadow: 1px 1px  3px #000;
+      
+      
+        
     }
     
     .flip{
@@ -37,7 +41,7 @@
     border:solid 1px #FF9900;
     border-radius: 6px;
     display:block;
-    width:260px;
+    width:280px;
     margin-bottom:10px;
     margin-left:0px;
     color:white;
@@ -48,8 +52,10 @@
     text-align:left;
     background:#66CC66;
     display:none;
-    position:absolute;
+    position:fixed;
     height:20px;
+    width:60px;
+    left:0px;
     border-radius: 6px;
     border:0px;
     margin-top:-30px;
@@ -62,15 +68,44 @@
     
     border:0px;
     background:transparent;
+    
     }
     .TTT{
-    
-    
     border:0px;
+    margin-top:-10px;
     float:right;
     background-color:#FF6600;
-    border:2px solid #FF6600;
+    width:50px;
+    height:18px;
     
+    padding:10px;
+    border-radius: 6px;
+  
+     
+    }
+    
+    .showword{
+    
+    position:fixed;
+    left:0px;
+    width:40px;
+    height:10px;
+    margin-top:-6px;
+    padding:10px;
+    
+    }
+    
+    .showTT
+    {
+        position:fixed;
+ 
+        width:40px;
+        height:20px;
+        right:60px;
+        padding:10px;
+        margin-top:-30px;
+        border:1px solid #ccc;
+        
     }
     
     
@@ -80,44 +115,28 @@
    
 
     
-    <div style="margin-top:10px;width:300px;overview:auto;">
-    <button class="showarea" id="userlist" >
-    
-    </button>
-    
-    </div>
     
     <script>
-        
-        //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
-        
-        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Startundercover?gamehomenum=" + localStorage.g_gamenum;
-        
-        //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Startundercover?gamehomenum=" + '7691';
-        
-        
-        //alert(jcontact);
-        
-        function getuserlist(){
+       
+       function getuserlist(){
+            
+         var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Startundercover?gamehomenum=" + localStorage.g_gamenum;
+         //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Startundercover?gamehomenum=2356";
+         
          var userinfo ="<div id= 'userinfo'>";
          var usernum;
          
          $.getJSON(
                   jcontact,
                   function(data) {
-                   
-                  //console.log(JSON.stringify(data));
-                   
-                  $.each(data, function(i) {
-                         
-           
+                 
+                   $.each(data, function(i) {
+                          
                          if(data[i].islive== '0'){
-                         
                          userinfo += "<div class='flip2'> ";
                          userinfo += data[i].username + "";
-                         userinfo += "状态:挂了";
-                         
-                         
+                         userinfo += "状态:挂了</div>";
+                         /*
                          if(data[i].ldentity == '1'){
                          
                          userinfo +=  "<p class=ccd > " + "平民词汇是<"+ data[i].phrase+"></p></div>";
@@ -127,27 +146,20 @@
                          userinfo +=  "<p class=ccd > " + "卧底词汇是<"+ data[i].phrase+"></p></div>";
                          
                          }
-                         
+                         */
                          
                          }else if(data[i].islive== '1'){
                          
-                         userinfo += "<div class='flip'> ";
+                        userinfo += "<div class='flip'><div class='showword' onclick='showwordpp()'></div> ";
                          userinfo += data[i].username;
-                         
-                         userinfo += "状态:活着";
+                         userinfo += "";
+                          
+                         userinfo += "<div class='TTT' onclick='Delu_list("+ data[i].userid +");'>踢</div>";
+                  
                         
-                         userinfo += "<span class='TTT' onclick='Delu_list("+ data[i].userid +");'>踢</span>";
+                         userinfo +=  "<p class='ccd' onclick='hiddenwordpp()' > " + "<b>"+ data[i].phrase+"</b></p></div>";
                          
-                         if(data[i].ldentity == '1'){
-                        
-                         userinfo +=  "<p class=ccd > " + "平民词汇是<"+ data[i].phrase+"></p></div>";
-                         
-                         }else if(data[i].ldentity == '0'){
-                         
-                     
-                         userinfo +=  "<p class=ccd > " + "卧底词汇是<"+ data[i].phrase+"></p></div>";
-                         
-                         }
+                 
                          
                          }
                        
@@ -155,7 +167,7 @@
                          });
                    
                 
-                   userinfo += "</div> ";
+                   userinfo += "";
                    
                    //alert(userinfo);
                    
@@ -172,24 +184,21 @@
       $(document).ready(function(){
                         
                         getuserlist();
-                        
-      $("button").click(function(){
-                       
-      var div=$("p");
-      div.animate({height:'20px',opacity:'0.9'},"fast");
-      div.animate({width:'230px',opacity:'0.9'},"fast");
-      div.animate({left:'18px'});
-      div.animate({height:'toggle'});
-                       
-      });
-                        
-                        
                         });
+                        
+                       
+                       function showwordpp(){
+                           
+                         $("p").show();
+                       }
+                       function hiddenwordpp(){
+                           
+                        $("p").hide();
+                      }
     
     
-          function Delu_list(uid){
-              //var duserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Undercoverkickout?gamehomenum="+"5139"+"&userid=" + uid;
-              //$("#myDiv").html(htmlobj.responseText);
+function Delu_list(uid){
+          
               
               var duserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Undercoverkickout?gamehomenum=" + localStorage.g_gamenum + "&userid="+ uid;
         
@@ -206,19 +215,101 @@
                  });
           });
 */
-         window.location.reload();
 
-         }
+      $("#userlist").empty();
+      reloaduserlist();
+    
+     }
+    
+    function reloaduserlist(){
+        
+        var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendjoinunderlist?gamehomenum=" + localStorage.g_gamenum;
+        
+        //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendjoinunderlist?gamehomenum=2356";
+        
+        
+        var userinfo ="<div id= 'userinfo'>";
+        var usernum;
+        
+        $.getJSON(
+                  jcontact,
+                  function(data) {
+                  
+                  //console.log(JSON.stringify(data));
+                  
+                  $.each(data, function(i) {
+                         
+                         
+                         if(data[i].islive== '0'){
+                         userinfo += "<div class='flip2'> ";
+                         userinfo += data[i].username + "";
+                         userinfo += "状态:挂了";
+                         userinfo += "</div>";
+                         /*
+                          if(data[i].ldentity == '1'){
+                          
+                          userinfo +=  "<p class=ccd > " + "平民词汇是<"+ data[i].phrase+"></p></div>";
+                          
+                          }else if(data[i].ldentity == '0'){
+                          
+                          userinfo +=  "<p class=ccd > " + "卧底词汇是<"+ data[i].phrase+"></p></div>";
+                          
+                          }
+                          */
+                         
+                         }else if(data[i].islive== '1'){
+                         
+                         userinfo += "<div class='flip'><div class='showword' onclick='showwordpp()'></div> ";
+                         userinfo += data[i].username;
+                         userinfo += "";
+                         
+                         userinfo += "<div class='TTT' onclick='Delu_list("+ data[i].userid +");'>踢</div>";
+                         
+                         
+                         userinfo +=  "<p class='ccd' onclick='hiddenwordpp()' > " + "<b>"+ data[i].phrase+"</b></p></div>";
+                         
+                  
+                         
+                         
+                      
+                         
+
+                         }
+                         
+                         
+                         });
+                  
+                  
+                  userinfo += " </div>";
+                  
+                  //alert(userinfo);
+                  
+                  $("#userlist").append(userinfo);
+                  
+                  
+                  });
+
     
     
+    
+    
+    
+    }
     
     
     
     
         </script>
    
+   <div style="margin-top:10px;width:300px;overview:auto;">
+       
+       <div class="showarea" id="userlist" >
+           
+       </div>
+       
+   </div>
+
   
-  
-  <div id="myDiv"><h2></h2></div>
+  <div id="myDiv" style="display:none;"></div>
   
 </body></html>

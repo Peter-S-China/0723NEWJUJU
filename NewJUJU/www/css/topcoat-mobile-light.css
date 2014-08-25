@@ -1073,6 +1073,15 @@ background-repeat: no-repeat;
 
 
 }
+
+.exitgamehome{
+display:block;
+width:35px;
+height:35px;
+background-image:url("../img/kill/back.PNG");
+margin-left:10px;
+
+}
 .nickname{
 display:block;
 width:129px;
@@ -1082,11 +1091,23 @@ background-image:url("../img/kill/nickname.PNG");
 }
 
 .playkillgame{
-display:block;
+float:left;
 width:132px;
 height:43px;
-margin-left:90px;
+margin-left:150px;
 background-image:url("../img/kill/startgame.PNG");
+
+}
+
+
+.fgql{
+float:left;
+width:280px;
+height:43px;
+margin-left:10px;
+background-image:url("../img/kill/fgql.PNG");
+
+background-repeat: no-repeat;
 }
 
 .replaykillgame{

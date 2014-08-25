@@ -1,33 +1,114 @@
 <html>
     <head>
+        
+        <style>
+            
+            .whoiswopart2{
+                margin:10px;
+                border-radius: 6px;
+                border: 1px solid #FFCC00;
+                background-color:#FFCC00;
+                color:white;
+                padding:10px;
+                
+            }
+        .whoiswopart1{
+            
+            color:white;
+            font: 16px "Source Sans", helvetica, arial, sans-serif;
+            text-shadow: 1px 1px  3px #000;
+            right:0; top:0; width:100%; position:fixed;
+            text-align:center;
+            margin-bottom:60px;
+            
+        }
+        
+            
+            
+            
+        </style>
         <script src="./jquery.js"></script>
         <script>
+            
+      
+            
+            function getuserlist(){
+                
+                
+                var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
+
+                
+                var userinfo ="<div id= 'userinfo'>";
+                var usernum;
+                
+                $.getJSON(
+                          jcontact,
+                          function(data) {
+                          
+                          //console.log(JSON.stringify(data));
+                          
+                          $.each(data.item17, function(i) {
+                                 
+                                 if(data.item17[i].gameuserid=='1'){
+                                 
+                                 userinfo += "<div class=whoiswopart1> 法官:" + data.item17[i].username + "<div class=whoisworight></div></div>";
+                                 
+                                 }else{
+                                 
+                                 userinfo += "<div class=whoiswopart2>" + data.item17[i].username + "</div>"
+                                 
+                                 }
+                                 
+                                 
+                                 
+                                 usernum = data.item17[i].sum;
+                                 
+                                 
+                                 
+                                 
+                                 });
+                          
+                          
+                          userinfo += "<div STYLE='margin:10px;border-radius: 6px;border: 1px solid #FF6600;background-color:#FF3300;color:white;padding:10px;'>在线人数:" + usernum + "</div>";
+                          
+                          userinfo += "</div> ";
+                          
+                          //alert(userinfo);
+                          
+                          $("#userlist").append(userinfo);
+                          
+                          
+                          });
+                          
+                          
+                          
+            }
+
             $(document).ready(function(){
                              
-                              //setInterval(function(){ autoplay();},2000);
+                              getuserlist();
                               
                               });
           
           
-          function autoplay(){
           
-          var div=$("div");
-          div.animate({height:'300px',opacity:'0.4'},"slow");
-          div.animate({width:'300px',opacity:'0.8'},"slow");
-          div.animate({height:'100px',opacity:'0.4'},"slow");
-          div.animate({width:'100px',opacity:'0.8'},"slow");
-          
-          }
-    
             </script>
   
     </head>
     
     <body>
         
-        
-        <div style="background:#98bf21;height:100px;width:100px;position:absolute;">
+        <div style="margin-top:10px;">
+            
+            
+            
+            <div id="userlist">
+                
+            </div>
+            
         </div>
+        
+   
         
     </body>
 </html>
