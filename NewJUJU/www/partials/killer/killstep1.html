@@ -52,9 +52,22 @@ padding-top:44px;
 padding-right:140px;
 }
 .pminfo{
+    position:absolute;
     color:white;
+    padding-top:20px;
+    margin-left:-30px;
 }
+.TTT{
 
+padding-top:20px;
+float:right;
+background-color:black;
+width:100px;
+display:none;
+color:white;
+
+
+}
 
 </style>
 
@@ -83,7 +96,7 @@ padding-right:140px;
                          
                          var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+localStorage.g_gamenum;
                          
-                         //var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+"5632";
+                         //var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+"2146";
                          //alert(gameuserurl);
                          
                          var userinfo = "<div class='userlist'>";
@@ -99,8 +112,12 @@ padding-right:140px;
         userinfo += "<div style='display:block;height:76px;'></div>";
                                           }else{
                                           
-          
-          userinfo += '<div class=pm><span class=pminfo><br>'+ data.item17[i].username +'</span></div>';
+     userinfo += '<div  class=pm id=pm'+ data.item17[i].userid +'><span class=pminfo onclick=showtt('+ data.item17[i].userid +')>'+ data.item17[i].username +'</span>';
+                                          
+                                          
+      userinfo +='<span class=TTT id=ttt'+ data.item17[i].userid +' onclick=ttt('+ data.item17[i].userid +')>踢</span>';
+                                          
+     userinfo += '</div>';
                                           
                                         }
                                           
@@ -124,10 +141,32 @@ function reload(){
 location.reload();
 
 }
+function showtt(uid){
+
+ $("#ttt" + uid + "").toggle();
+ 
+}
+
+function ttt(uid){
+
+var tttuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+localStorage.g_gamenum +"&userid=" + uid ;
+//alert(killuserurl);
+
+$.ajax({
+       type: "GET",
+       url: tttuserurl,
+       dataType: "script"
+       });
+       
+       $("#pm"+ uid + "").remove();
+
+}
+
+
     </script>
 
 <div>
-<div onclick="reload()" id="gameuser"></div>
+<div  id="gameuser"></div>
 
 
 
