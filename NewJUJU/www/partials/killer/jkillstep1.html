@@ -9,7 +9,7 @@
         -khtml-user-select: none; /*早期浏览器*/
         user-select: none;
         background: transparent;
-         overflow: auto;
+        overflow: auto;
         
     }
 .userlist{
@@ -107,7 +107,7 @@ color:white;
                                           
                                 if(data.item17[i].gameuserid == '1'){
                                 
-        userinfo += '<div class=fg onclick=reload()><span class=fginfo>'+ data.item17[i].username +'</span></div>';
+        userinfo += '<div class=fg><span class=fginfo>'+ data.item17[i].username +'</span></div>';
           
         userinfo += "<div style='display:block;height:76px;'></div>";
                                           }else{
@@ -115,7 +115,7 @@ color:white;
      userinfo += '<div  class=pm id=pm'+ data.item17[i].userid +'><span class=pminfo onclick=showtt('+ data.item17[i].userid +')>'+ data.item17[i].username +'</span>';
                                           
                                           
-      userinfo +='<span class=TTT id=ttt'+ data.item17[i].userid +' onclick=ttt('+ data.item17[i].userid +')>踢</span>';
+
                                           
      userinfo += '</div>';
                                           
@@ -166,7 +166,7 @@ $.ajax({
     </script>
 
 <div>
-<div  id="gameuser"></div>
+<div onclick="reload()" id="gameuser"></div>
 
 
 

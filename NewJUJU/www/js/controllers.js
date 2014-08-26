@@ -3472,7 +3472,23 @@ function  WhoiswowaitingCtrl($scope,$rootScope,$timeout,$location){
         
         $timeout.cancel($scope.timeout);
 
-       $location.path('/step3');
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
         
     }
     
@@ -4189,7 +4205,8 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
             console.log('data already loaded');
         }
         
-        
+        $timeout.cancel($scope.timeout);
+
         $location.path("/step3");
         
     }

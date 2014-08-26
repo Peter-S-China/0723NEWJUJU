@@ -101,7 +101,7 @@ function jcgetgameuserlist(){
                   
                   }else if(data.item19[i].islive =='0'){
                   
-                  userinfo += "<div class='nolive'><div style='padding-top:20px;'>" + data.item19[i].username + "</div></div>";
+                  userinfo += "<div class='islive'><div style='padding-top:20px;'>" + data.item19[i].username + "</div></div>";
                   }
                   
                   
@@ -139,7 +139,7 @@ function pmgetgameuserlist(){
                      
                      }else if(data.item19[i].islive =='0'){
                      
-                     userinfo += "<div class='nolive'><div style='padding-top:20px;'><B>很明显他已经挂了</B>" + data.item19[i].username + "</div></div>";
+                     userinfo += "<div class='islive'><div style='padding-top:20px;'>" + data.item19[i].username + "</div></div>";
                      }
                      
                      
@@ -325,7 +325,7 @@ box-shadow: 3px 3px 3px #000;
 
 
 .yourrole{
-    background-image:url("./img/yourole.png");
+    background-image:url("./img/yourole.PNG");
     display:block;
     width:170px;
     height:43px;

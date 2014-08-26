@@ -1,38 +1,26 @@
+<div class="gamedatingbg">
 
-<div class="topcoat-navigation-bar" ng-controller="HomeCtrl">
-    
-    <div class="topcoat-navigation-bar__item left quarter">
-        <a class="topcoat-icon-button--quiet" ng-click="slidePage('/step3')">
-            <
-                </a>
-    </div>
-    <div class="topcoat-navigation-bar__item center half">
-        <h1 ng-show="gamename" class="topcoat-navigation-bar__title">{{ gamename }}</h1>
-    </div>
-
-
-    
-</div>
 
 
 
 
 <div ng-controller="createNewGameCtrl">
     
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;<a class="topcoat-button--cta" ng-click="creatNewGame()">新建游戏 + </a></p>
+   <a class="topcoat-button--cta" ng-click="slidePage('/step3')">
+        返回游戏大厅
+    </a><br><br><a class="topcoat-button--cta" ng-click="creatNewGame()">新建游戏 + </a></p>
 </div>
 
 
 <div ng-controller="ingGameListCtrl">
+   
+   <lable class="topcoat-text-input" ng-show="message">{{ message }}</lable>
     
-  
     
-    <lable class="topcoat-text-input" ng-show="message">{{ message }}</lable>
-    
-    <ul class="topcoat-list">
-        <li class="topcoat-list__item" ng-repeat="item in items" ng-click="joinGame(item)">
+        <div class="topcoat-button--cta" ng-repeat="item in items" ng-click="joinGame(item)">
              {{item.id}} {{item.username}}
-        </li>
-    </ul>
+        </div>
+   
     
+</div>
 </div>

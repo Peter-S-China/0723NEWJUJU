@@ -13,144 +13,218 @@
             user-select: none;
         }
     
+    .ownerinfo{
     
-    .flip{
-        
-    margin-left:10px;
     padding:10px;
     text-align:center;
     background:#FF9900;
     border:solid 1px #FF9900;
     border-radius: 6px;
-    color:white;
     display:block;
-    width:270px;
-    height:200px;
+    width:280px;
+    height:90px;
+    margin-bottom:10px;
+    margin-left:0px;
+    color:white;
+    font: 16px "Source Sans", helvetica, arial, sans-serif;
+    text-shadow: 1px 1px  3px #000;
+    
     
     }
+    
+    .flip2{
+        padding:10px;
+        text-align:center;
+        background:#CCCCCC;
+        border:solid 1px #CCCCCC;
+        border-radius: 6px;
+        display:block;
+        width:280px;
+        height:30px;
+        margin-bottom:10px;
+        margin-left:0px;
+        color:white;
+        font: 16px "Source Sans", helvetica, arial, sans-serif;
+        text-shadow: 1px 1px  3px #000;
+        
+        
+        
+    }
+    
+    .flip{
+        padding:10px;
+        text-align:center;
+        background:#FF9900;
+        border:solid 1px #FF9900;
+        border-radius: 6px;
+        display:block;
+        width:280px;
+        height:30px;
+        margin-bottom:10px;
+        margin-left:0px;
+        color:white;
+        font: 16px "Source Sans", helvetica, arial, sans-serif;
+        text-shadow: 1px 1px  3px #000;
+    }
+
     .ccd{
-    background:#98bf21;
-    position:absolute;
+    background:#FF9900;
+    top:10px;
+    right:10px;
     display:none;
-    float:left;
+    float:right;
     border-radius: 6px;
+    
     margin:0px;
     padding:5px;
     text-align:left;
     font-size:18px;
+    position:fixed;
  
     }
         </style>
     
     
     
-    <div style="margin-top:10px;width:300px;overview:auto;">
-    
-    <button id="userdetail" class="flip" >
-    
-    </button>
-    
-    </div>
-    
+
     <script>
         
         
-      var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=" + localStorage.g_gamenum + "&userid="+localStorage.g_userid;
-       
-       //var jcontact="http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=9476&userid=2683";
-        
-        //alert(jcontact);
-        
-        function getuserlist(){
-         var userinfo ="<div id= 'userinfo' >";
-          $.getJSON(
-                  jcontact,
-                  function(data) {
-                  //console.log(JSON.stringify(data));
-                  $.each(data, function(i) {
-          
-    userinfo += '<h1>用户<br>'+ data.item19[0].username +'</h1>';
-                    
-                   if( data.item19[0].ldentity=='1'){
-                  
-    userinfo += '<p class=ccd>身份:平民<br> 词汇是:'+ data.item19[0].phrase + '</p>';
-                        
-                    }else{
-                         
-    userinfo += '<p class= ccd>身份:卧底<br> 词汇是:'+ data.item19[0].phrase + '</p>';
-                         
-                         }
-              });
-    userinfo += "</div> ";
-                   
-                   //alert(userinfo);
-                   
-    $("#userdetail").append(userinfo);
-        });
-     }
-      
-      
-      $(document).ready(function(){
+             $(document).ready(function(){
                         
       getuserlist();
                         
                         
                         
-      $("button").click(function(){
+      $("#userdetail").click(function(){
                        
       var div=$("p");
       div.animate({height:'40px',opacity:'0.9'},"fast");
-      div.animate({width:'230px',opacity:'0.9'},"fast");
+      div.animate({width:'120px',opacity:'0.9'},"fast");
+      div.animate({right:'100px'},"fast");
       div.animate({height:'toggle'});
                        
       });
-                        
-         $("#gameinfo").click(function(){
-                              
-                getgameinfo();
-                           
-        
-         });
+               setInterval(function(){cccccc();},6000);
+                             
                         
                         
                         });
                         
+                       function cccccc(){
                         
-      function getgameinfo(){
-          
-          var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ localStorage.g_gamenum +"&flag=0";
-          
-          //var gameinfourl = "http://203.100.80.135:8080/JujuDemo/servlet/Sendvoteoutcome?gamehomenum="+ "6294" +"&flag=0";
-          
-          htmlobj=$.ajax({url:gameinfourl,async:false});
-          $("#myDiv").html(htmlobj.responseText);
-          
-          //var userinfo ="<div id= 'gamedetail' >";
-          var userinfo ="";
-          /*
-          $.getJSON(
-                    gameinfourl,
-                    function(data) {
-                    
-                    $.each(data, function(i) {
-                           
-                           userinfo += ''+ data.item20.content +'';
-                          
-                           });
-                    
-                    //userinfo += "</div> ";
-                    alert(userinfo);
-                    $("#gameinfo").append(userinfo);
-                    
-                   });
-          */
-          
-            }
+                        $("#userinfo").remove();
+                        reloaduserlist();
+                        $("#gameinfo").fadeIn(3000);
+                        $("#gameinfo").fadeOut(3000);
+                        
+                       }
+
+
+function getuserlist(){
+                            
+                            
+var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=" + localStorage.g_gamenum + "&userid="+localStorage.g_userid;
+                            
+//var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendsingleundercover?gamehomenum=4073&userid=1393";
+                            
+                            var userinfo ="<div id= 'userddd' >";
+                            $.getJSON(
+                                      jcontact,
+                                      function(data) {
+                                      //console.log(JSON.stringify(data));
+                                      $.each(data, function(i) {
+                                             
+                                             userinfo += '<h1>用户'+ data.item19[0].username +'</h1>';
+                                             
+                                             if( data.item19[0].ldentity=='1'){
+                                             
+                                             userinfo += '<p class=ccd><br> 词汇是:'+ data.item19[0].phrase + '</p>';
+                                             
+                                             }else{
+                                             
+                                             userinfo += '<p class= ccd><br> 词汇是:'+ data.item19[0].phrase + '</p>';
+                                             
+                                             }
+                                             });
+                                      userinfo += "</div> ";
+                                      
+                                      //alert(userinfo);
+                                      
+                                      $("#userdetail").append(userinfo);
+                                      });
+                        }
+    
+    
+    
+         
+    function reloaduserlist(){
+        
+       var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendjoinunderlist?gamehomenum=" + localStorage.g_gamenum;
+        
+//var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Sendjoinunderlist?gamehomenum=4073";
+        
+        
+        var userinfo ="<div id= 'userinfo'>";
+        var usernum;
+        
+        $.getJSON(
+                  jcontact,
+                  function(data) {
+                  
+                  //console.log(JSON.stringify(data));
+                  
+                  $.each(data, function(i) {
+                         
+                         
+                         if(data[i].islive== '0'){
+                         userinfo += "<div class='flip2'> ";
+                         userinfo += data[i].username + "";
+                         userinfo += "状态:挂了";
+                         userinfo += "</div>";
+                
+                         
+                         }else if(data[i].islive== '1'){
+                         
+                         userinfo += "<div class='flip'>";
+                         userinfo += data[i].username;
+                         userinfo += "</div> ";
+                         
+                          }
+                         
+                         
+                         });
+                  
+                  
+                  userinfo += " </div>";
+                  
+                  //alert(userinfo);
+                  
+                  $("#gameinfo").append(userinfo);
+                  
+                  
+                  });
+                  
+                  
+                  
+                  
+                  
+                  
+    }
+    
+    
+
     
         </script>
     
-    <!--<div id = "gameinfo"> >>>获取游戏信息<<< </div>-->
+  
+        
+        <div id="userdetail" class="ownerinfo" >
+            
+        </div>
+        
+    <div style="display:none;" id = "gameinfo"></div>
     
-     <div id="myDiv"><h2></h2></div>
+     <div id="myDiv"></div>
    
 </body></html>
