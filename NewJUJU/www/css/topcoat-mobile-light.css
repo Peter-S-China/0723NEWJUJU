@@ -1099,6 +1099,15 @@ background-image:url("../img/kill/startgame.PNG");
 
 }
 
+.fgqd{
+float:left;
+width:132px;
+height:43px;
+margin-left:80px;
+background-image:url("../img/kill/fgqd.png");
+
+}
+
 
 .fgql{
 float:left;

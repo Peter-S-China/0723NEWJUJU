@@ -3959,9 +3959,62 @@ function killGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
 function JkillGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
 
     console.log('参与者加入杀人游戏第一步骤确认或修改昵称');
-    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ localStorage.g_userid );
     console.log('>>>>>>获取用户昵称<<<<<<'+ localStorage.nickname);
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
+    
+    $scope.replay = function(){
+        
+        console.log('重新开始');
+        var replayurl =  g_baseurl +'/JujuDemo/servlet/Getkillflag?gamehomenum='+ localStorage.g_gamenum+'&killflag=6';
+        console.log(replayurl);
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(replayurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.getopenflag;
+                    $scope.$apply();
+                    },'json');
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        //$location.path("/killer");
+        $location.path("/killerfg");
+        
+    }
+
+    
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
+
     
     $scope.message = localStorage.nickname;
     
@@ -4015,7 +4068,62 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
     console.log('>>>>>>获取用户ID<<<<<<'+ localStorage.g_userid);
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
-    
+    $scope.whoisfg = function(){
+        
+        var whofgurl = g_baseurl +'/JujuDemo/servlet/Killpersonlist?gamehomenum='+localStorage.g_gamenum;
+        console.log(whofgurl);
+        
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(whofgurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item17;
+                    console.log('>>>>>>>' + $rootScope.items.length);
+                    console.log('>>>>>>>' + localStorage.g_userid);
+                    
+                    
+                    for(var i = 0; i < $rootScope.items.length; i++){
+                    
+                    if($rootScope.items[i].gameuserid == '1'){
+                    
+                    console.log('>>>>>>>' + $rootScope.items[i].userid);
+                    //console.log('>>>>>>>' + $rootScope.items[i].username);
+                    
+                    
+                    if($rootScope.items[i].userid == localStorage.g_userid){
+                    
+                      $location.path('/killer');
+                      $timeout.cancel($scope.timeout);
+                    
+                    }else{
+                    
+                      $location.path('/jwkiller');
+                      //$timeout.cancel($scope.timeout);
+                    
+                     }
+                    }
+                    
+                    
+                    
+                    }
+                    
+                    
+                    // $location.path("/killers1");
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+    }
+ 
+
+     
   
     
     $scope.waiting = function(){
@@ -4057,11 +4165,35 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
     }
     
     function countdown() {
+        $scope.whoisfg();
         $scope.waiting();
         $scope.timeout = $timeout(countdown, 1000);
     }
     
     countdown();
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+
 
 }
 
@@ -4112,54 +4244,58 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
     console.log('>>>>>>获取当前用户ID<<<<<<'+ localStorage.g_userid);
     console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
     
-    var whofgurl = g_baseurl +'/JujuDemo/servlet/Killpersonlist?gamehomenum='+localStorage.g_gamenum;
-    console.log(whofgurl);
+    $scope.whoisfg = function(){
     
-    $rootScope.items = null;
-    // load in data from hacker news unless we already have
-    if (!$rootScope.items) {
+        var whofgurl = g_baseurl +'/JujuDemo/servlet/Killpersonlist?gamehomenum='+localStorage.g_gamenum;
+        console.log(whofgurl);
         
-        jx.load(whofgurl,function(data){
-                console.log(JSON.stringify(data));
-                $rootScope.items = data.item17;
-                console.log('>>>>>>>' + $rootScope.items.length);
-                console.log('>>>>>>>' + localStorage.g_userid);
-                
-                
-                for(var i = 0; i < $rootScope.items.length; i++){
-                
-                if($rootScope.items[i].gameuserid == '1'){
-                
-                   console.log('>>>>>>>' + $rootScope.items[i].userid);
-                   //console.log('>>>>>>>' + $rootScope.items[i].username);
-                
-                
-                        if($rootScope.items[i].userid == localStorage.g_userid){
-                
-                          $location.path('/killer');
-                
-                        }else{
-                
-                         $location.path('/jwkiller');
-                
-                         }
-               }
-               
-                
-                
-                }
-                
-                
-                // $location.path("/killers1");
-           
-                $scope.$apply();
-                },'json');
-        
-       } else {
-         console.log('data already loaded');
-      }
+        $rootScope.items = null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(whofgurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item17;
+                    console.log('>>>>>>>' + $rootScope.items.length);
+                    console.log('>>>>>>>' + localStorage.g_userid);
+                    
+                    
+                    for(var i = 0; i < $rootScope.items.length; i++){
+                    
+                    if($rootScope.items[i].gameuserid == '1'){
+                    
+                    console.log('>>>>>>>' + $rootScope.items[i].userid);
+                    //console.log('>>>>>>>' + $rootScope.items[i].username);
+                    
+                    
+                    if($rootScope.items[i].userid == localStorage.g_userid){
+                    
+                    $location.path('/killer');
+                    
+                    }else{
+                    
+                    $location.path('/jwkiller');
+                    
+                    }
+                    }
+                    
+                    
+                    
+                    }
+                    
+                    
+                    // $location.path("/killers1");
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
 
     
+    }
+    $scope.whoisfg();
     
     
 
