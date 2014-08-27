@@ -42,6 +42,11 @@ $routeProvider.when('/jgchview3', {templateUrl: 'partials/jgchview3.html', contr
 $routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
 //谁是卧底发起者主视图
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
+//谁是卧底 法官权利主视图
+$routeProvider.when('/whoiswofg', {templateUrl: 'partials/whoiswo/fgindex.html', controller: 'HomeCtrl'});
+//更改法官后，何去何从FG
+$routeProvider.when('/fggo', {templateUrl: 'partials/whoiswo/fggo.html', controller: 'HomeCtrl'});
+             
 //谁是卧底参与者等待主视图
 $routeProvider.when('/whoiswowo', {templateUrl: 'partials/whoiswo/index1.html', controller: 'HomeCtrl'});
 //谁是卧底参与者游戏中主视图

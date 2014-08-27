@@ -149,8 +149,9 @@ function showtt(uid){
 
 function ttt(uid){
 
-var tttuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+localStorage.g_gamenum +"&userid=" + uid ;
-//alert(killuserurl);
+var tttuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+localStorage.g_gamenum +"&id=" + uid ;
+
+//alert(tttuserurl);
 
 $.ajax({
        type: "GET",

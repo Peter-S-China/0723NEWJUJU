@@ -26,9 +26,17 @@ background-repeat: no-repeat;
 display:block;
 margin-left:6px;
 
-position:absolute;
+position:fixed;
 z-index:100;
+top:0px;
 }
+.fginfo{
+    color:white;
+    float:right;
+    padding-top:44px;
+    padding-right:140px;
+}
+
 .pm{
 
 z-index:90;
@@ -44,12 +52,8 @@ margin-top:-2px;
 -moz-box-shadow: 3px 3px 3px #000;
 box-shadow: 3px 3px 3px #000;
 
-}
-.fginfo{
-color:white;
-float:right;
-padding-top:44px;
-padding-right:140px;
+
+
 }
 .pminfo{
     position:absolute;
@@ -57,49 +61,41 @@ padding-right:140px;
     padding-top:20px;
     margin-left:-30px;
 }
-.TTT{
 
-padding-top:20px;
-float:right;
-background-color:black;
-width:100px;
-display:none;
-color:white;
-
-
-}
 
 </style>
 
 <script>
     $(document).ready(function(){
-                      $("#FG").click(function(){
-                                       $(".panel1").slideToggle("slow");
-                                       });
-                      $("#KILL").click(function(){
-                                     $(".panel2").slideToggle("slow");
-                                     });
-                      $("#JC").click(function(){
-                                       $(".panel3").slideToggle("slow");
-                                       });
-                      $("#PM").click(function(){
-                                     $(".panel4").slideToggle("slow");
-                                     });
-                      
-                      getgameuserlist();
-                      
-                      
-                      });
-                      
+            
+            
+           getgameuserlist();
+           setInterval(function(){firstsetup();},6000);
+            
+                   
+     });
+     
+     function firstsetup(){
+         
+         $("#gameuser2").fadeIn(3000);
+         getgameuserlist();
+         $("#gameuser2").fadeOut(3000);
+         $("#gameuser2").empty();
+       
+    }
+
+
                      //杀人游戏第一步骤 获取参与游戏人员列表
-                     function getgameuserlist(){
+            function getgameuserlist(){
                          
-                         var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+localStorage.g_gamenum;
+                        var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+localStorage.g_gamenum;
                          
-                         //var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+"2146";
+                         //var gameuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Killpersonlist?gamehomenum="+"0378";
                          //alert(gameuserurl);
                          
-                         var userinfo = "<div class='userlist'>";
+                         var userinfo = "<div id='userlist1'>";
+                         
+                         var userinfo2 = "<div id='userlist2'>";
                          $.getJSON(
                                    gameuserurl,
                                    function(data) {
@@ -109,24 +105,25 @@ color:white;
                                 
         userinfo += '<div class=fg><span class=fginfo>'+ data.item17[i].username +'</span></div>';
           
-        userinfo += "<div style='display:block;height:76px;'></div>";
+       userinfo += "";
+                                          
                                           }else{
-                                          
-     userinfo += '<div  class=pm id=pm'+ data.item17[i].userid +'><span class=pminfo onclick=showtt('+ data.item17[i].userid +')>'+ data.item17[i].username +'</span>';
-                                          
-                                          
-
-                                          
-     userinfo += '</div>';
+     
+        userinfo2 += '<div  class=pm ><span class=pminfo>'+ data.item17[i].username +'</span>';
+        userinfo2 += '</div>';
                                           
                                         }
                                           
                                           
                                           });
                                   userinfo += "</div> ";
-                                   //alert(userinfo);
+                                  userinfo2 += "</div> ";
+                             
+                                  //alert(userinfo);
+                                  //alert(userinfo2);
                                    
                                    $("#gameuser").append(userinfo);
+                                   $("#gameuser2").append(userinfo2);
                                    
                                    });
 
@@ -141,32 +138,15 @@ function reload(){
 location.reload();
 
 }
-function showtt(uid){
 
- $("#ttt" + uid + "").toggle();
- 
-}
-
-function ttt(uid){
-
-var tttuserurl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+localStorage.g_gamenum +"&userid=" + uid ;
-//alert(killuserurl);
-
-$.ajax({
-       type: "GET",
-       url: tttuserurl,
-       dataType: "script"
-       });
-       
-       $("#pm"+ uid + "").remove();
-
-}
 
 
     </script>
 
 <div>
-<div onclick="reload()" id="gameuser"></div>
+<div  id="gameuser"></div>
+<div style='display:block;height:66px;'></div>
+<div  id="gameuser2"></div>
 
 
 
