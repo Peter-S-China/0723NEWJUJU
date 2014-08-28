@@ -36,10 +36,11 @@ $routeProvider.when('/nophoneview', {templateUrl: 'partials/nophone.html', contr
 $routeProvider.when('/nophone_is1', {templateUrl: 'partials/nophone_is1.html', controller: 'HomeCtrl'});
 $routeProvider.when('/nophone_is2', {templateUrl: 'partials/nophone_is2.html', controller: 'HomeCtrl'});
 $routeProvider.when('/nophoneview2', {templateUrl: 'partials/nophone2.html', controller: 'HomeCtrl'});
-$routeProvider.when('/jgchview', {templateUrl: 'partials/jgchview.html', controller: 'HomeCtrl'});
-$routeProvider.when('/jgchview2', {templateUrl: 'partials/jgchview2.html', controller: 'HomeCtrl'});
-$routeProvider.when('/jgchview3', {templateUrl: 'partials/jgchview3.html', controller: 'HomeCtrl'});
-$routeProvider.when('/jgchview4', {templateUrl: 'partials/jgchview4.html', controller: 'HomeCtrl'});
+//击鼓传花游戏相关视图
+$routeProvider.when('/jgchview', {templateUrl: 'partials/jgch/jgchview.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview2', {templateUrl: 'partials/jgch/jgchview2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview3', {templateUrl: 'partials/jgch/jgchview3.html', controller: 'HomeCtrl'});
+$routeProvider.when('/jgchview4', {templateUrl: 'partials/jgch/jgchview4.html', controller: 'HomeCtrl'});
 //谁是卧底发起者主视图
 $routeProvider.when('/whoiswo', {templateUrl: 'partials/whoiswo/index.html', controller: 'HomeCtrl'});
 //谁是卧底 法官权利主视图

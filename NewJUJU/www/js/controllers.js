@@ -3768,10 +3768,13 @@ function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
         jx.load(overurl,function(data){
                 console.log(JSON.stringify(data));
                 $rootScope.items = data.item20;
+                $rootScope.items.title1 = $scope.title1;
+                $rootScope.items.title2 = $scope.title1;
                 
                 if($rootScope.items.content == "卧底胜利"){
                 
                    console.log('卧底胜利');
+                
                 
                   $location.path("/whoiswogameover");
                 
@@ -3846,6 +3849,10 @@ function WhoiswoplayergameoverCtrl($scope,$rootScope,$timeout,$location){
 function morasetup1Ctrl($scope,$rootScope,$timeout,$location){
     
     console.log('猜拳游戏开始');
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取用户ID<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
 }
 
 
