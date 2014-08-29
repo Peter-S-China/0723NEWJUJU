@@ -2416,11 +2416,41 @@ height:568px;
 background-repeat: no-repeat;
 }
 
-.jgchcbtn{
+.jgchhead{
+    
+
+    
+}
+
+
+.exitbtn{
+
+    height:92px;
+    width:91px;
+    background-image:url("../img/jgch/tc.PNG");
+    background-repeat: no-repeat;
+    left:10px;
+
+}
+.jgchcbtnc{
 
 margin: 0;
 padding: 0;
 background-image:url("../img/jgch/chuan.PNG");
+background-repeat: no-repeat;
+display:block;
+width:141px;
+height:142px;
+position:fixed;
+bottom:0px;
+left:86px;
+
+
+}
+.jgchcbtnk{
+margin: 0;
+padding: 0;
+background-image:url("../img/jgch/kaishi.PNG");
 background-repeat: no-repeat;
 display:block;
 width:141px;

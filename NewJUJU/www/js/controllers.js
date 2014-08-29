@@ -1096,6 +1096,13 @@ function ingGameListCtrl($scope,$rootScope,$location){
                     
                     }
                     
+                    if(g_gamename=='mora'){
+                    
+                    $location.path("/moraview");
+                    
+                    }
+
+                    
                     
                     }
                     $scope.$apply();
@@ -1700,7 +1707,30 @@ function jgchstep1GameCtrl1($scope,$timeout,$rootScope,$location){
 
     var jgchurl = g_baseurl + '/JujuDemo/servlet/Senddrumflowerinfo?gamehomenum='+localStorage.g_gamenum+'&istimeover=1&gameuserid=1&id='+g_userid;
     
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
     
+    
+
     
     $scope.startgo = function(){
     
@@ -1780,6 +1810,29 @@ function jgchstep1GameCtrl2($scope,$timeout,$rootScope,$location){
    }
     
      $scope.waiting();
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
 
 }
 
@@ -1824,12 +1877,58 @@ function jgchstep2GameCtrl($scope,$timeout,$rootScope,$location){
             
         }
      }
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+    
 }
 
 
 function jgchstep3GameCtrl($scope,$rootScope,$location){
 
    console.log('你赢了');
+    
+    $scope.exitgamehome= function(){
+        
+        var exgameurl = g_baseurl + "/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ g_userid;
+        console.log(exgameurl);
+        
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            jx.load(exgameurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.cerateresult;
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+        
+    }
+
 
 }
 

@@ -1,9 +1,11 @@
-<script src="./jquery.js"></script>
+<html>
+
+<script src="../jquery.js"></script>
 <script>
-   
-   
-   
-  
+    
+    
+    //localStorage.g_userid='2029';
+    //localStorage.g_gamenum='1846';
 //页面加载时调用
 $(function(){
  
@@ -38,7 +40,14 @@ $(function(){
                     
                      
                      startmoragame();
+                     startmoragame();
+                     startmoragame();
+                     $(".playgo").fadeOut();
+                     $("#userinfo").fadeOut();
+                     getpeerlist();
                      
+                     $(".peerhead").show();
+                     $("#moraitems").show();
               
                     });
   
@@ -50,7 +59,7 @@ $(function(){
       var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Guesspersonlist?gamehomenum=" + localStorage.g_gamenum;
       
       //alert(jcontact);
-      var userinfo ="<div class=infohead></div><div class='user' id='userlist'>";
+      var userinfo ="<div class='user' id='userlist'>";
     
       $.getJSON(
                 jcontact,
@@ -64,24 +73,35 @@ $(function(){
                 $("#userinfo").append(userinfo);
                 });
    }
+
+var teamflag = "";
 function getpeerlist(){
-    //var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Guesspersonlist?gamehomenum="+localStorage.g_gamenum;
-    
-    var jpeer = "http://203.100.80.135:8080/JujuDemo/servlet/Startfingerguess?gamehomenum="+localStorage.g_gamenum + "&userid="+ localStorage.g_userid;
-    
+
+    var baseurl = "http://203.100.80.135:8080/JujuDemo/servlet/Startfingerguess?gamehomenum=";
+    var jpeer = baseurl + localStorage.g_gamenum + "&userid="+ localStorage.g_userid;
+
     //alert(jpeer);
-    var userinfo ="<div class=peerhead></div><div class='user' id='userlist'>";
+    var userinfo ="<div class='peeruser' id='peeruserlist'>";
+    
     $.getJSON(
               jpeer,
               function(data) {
+              
               $.each(data.item21, function(i) {
                      
-    userinfo += "<div style='color:white;'>" + data.item21[i].battleusername + "</div>"
+    userinfo += "<div style='color:white;'>" + data.item21[i].battleusername + "</div>";
+                     
+    teamflag = data.item21[i].teamflag;
+                     
+    userinfo += "<div style='color:white;'>" + teamflag + "</div>";
+                     
                     
                      });
+              
               userinfo += "</div> ";
-              alert(userinfo);
               $("#peerinfo").append(userinfo);
+              
+              
               });
 }
 
@@ -90,7 +110,7 @@ function startmoragame(){
 
 var startrurl = "http://203.100.80.135:8080/JujuDemo/servlet/Getguessflag?gamehomenum="+localStorage.g_gamenum +"&guessflag=1";
 
- //alert(startrurl);
+//alert(startrurl);
 
 $.ajax({
        type: "POST",
@@ -98,10 +118,7 @@ $.ajax({
        dataType: "script"
        });
        
-       $(".playgo").fadeOut();
-       $("#userinfo").fadeOut();
-       getpeerlist();
-       $(".peerhead").fadeIn(3000);
+     
 }
 
 function exit(){
@@ -117,173 +134,285 @@ $.ajax({
        
        history.go(-2);
 }
+
+var x = 0;
+function Getguesscover(cover){
+    
+    x= x + 1;
+    var Getguessurl = "http://203.100.80.135:8080/JujuDemo/servlet/Getguesscover?gamehomenum="+localStorage.g_gamenum + "&userid="+ localStorage.g_userid +"&guesscover="+ cover+ "&teamflag="+ teamflag +"&getnum="+ x;
+    
+   //alert(Getguessurl);
+    
+    htmlobj=$.ajax({url:Getguessurl,async:false});
+    $("#myDiv").html(htmlobj.responseText);
+
+
+    Sendguesscover(x);
+           
+}
+
+function Sendguesscover(num){
+    
+    var Sendguesscover = "http://203.100.80.135:8080/JujuDemo/servlet/Sendguesscover?gamehomenum="+localStorage.g_gamenum + "&userid="+ localStorage.g_userid + "&teamflag="+ teamflag +"&getnum="+num;
+    
+     alert(Sendguesscover);
+     htmlobj=$.ajax({url:Sendguesscover,async:false});
+     $("#myDiv").html(htmlobj.responseText);
+     
+     $("#moraitems").fadeOut();
+     
+
+}
 </script>
 
 <body >
+    
+    <style>
+        
+        body {
+            
+            font: 14px "Source Sans", helvetica, arial, sans-serif;
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none; /*webkit浏览器*/
+            -ms-user-select: none; /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+            color:black;
+            margin:0;
+            padding:0;
+            
+            
+            
+        }
+    
+    .mora1{
+        background-image:url(./img/mora_left_small.PNG);
+        background-repeat: no-repeat;
+        display:block;
+        width:320px;
+        height:115px;
+        
+        position:fixed;
+    }
+    .mora2{
+        background-image:url(./img/mora_left_big.PNG);
+        background-repeat: no-repeat;
+        display:block;
+        width:320px;
+        height:305px;
+        float:left;
+        position:fixed;
+        top:0;
+    }
+    .mora3{
+        
+        background-image:url(./img/mora_right_big.PNG);
+        background-repeat: no-repeat;
+        display:block;
+        width:320px;
+        height:285px;
+        float:left;
+        
+        position:fixed;
+    }
+    .mora4{
+        background-image:url(./img/mora_right_small.PNG);
+        background-repeat: no-repeat;
+        display:block;
+        width:320px;
+        height:98px;
+        float:right;
+        
+        position:fixed;
+        bottom:0px;
+        
+        
+        
+    }
+    .mora5{
+        position:fixed;
+        right:0;
+        top:0;
+        
+        width:54px;
+        height:568px;
+        background-image:url(./img/mora_top.PNG);
+        background-repeat: no-repeat;
+        
+    }
+    .mora6{
+        
+    }
+    
+    .user{
+        -moz-transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        position:fixed;
+        bottom:90px;
+        left:-90px;
+        width:530px;
+        height:50px;
+        
+        
+        background-repeat: no-repeat;
+        font: 14px "Source Sans", helvetica, arial, sans-serif;
+        padding-top:20px;
+        overflow-y:auto;
+        
+    }
+    
+    
+    
+    .peeruser{
+        -moz-transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        position:fixed;
+        bottom:90px;
+        left:-90px;
+        width:530px;
+        height:50px;
+        
+        
+        background-repeat: no-repeat;
+        font: 14px "Source Sans", helvetica, arial, sans-serif;
+        padding-top:20px;
+        overflow-y:auto;
+        
+    }
+
+    .playgo{
+        width:90PX;
+        height:568PX;
+    }
+    
+    .infoarea{
+        
+    }
+    .infohead{
+        
+        background-image:url(./img/mora_list_drawable.PNG);
+        display:block;
+        
+        width:230px;
+        height:20px;
+        position:fixed;
+        top:330px;
+        left:100px;
+        background-repeat:no-repeat;
+        background-position:20px 0;
+        -moz-transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        z-index:-10px;
+    }
+    .exitbtn{
+        
+        position:fixed;
+        background-image:url(./img/mora_back.PNG);
+        top:10px;
+        right:10px;
+        width:30px;
+        height:40px;
+        
+    }
+    .peerarea{
+        
+        display:block;
+        
+    }
+    
+    .peerhead{
+        
+        background-image:url(./img/mora_enemy.PNG);
+        display:none;
+        width:230px;
+        height:20px;
+        position:fixed;
+        top:330px;
+        left:100px;
+        background-repeat:no-repeat;
+        background-position:20px 0;
+        -moz-transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        z-index:-20px;
+    }
+    
+    
+    .shitou{
+        top:180px;
+      
+        width:70px;
+        height:70px;
+        position:fixed;
+        left:20px;
+        z-index:200;
+        background-image:url(./img/mora_one.PNG);
+    }
+    .jianzi{
+        
+        top:270px;
+        
+        width:70px;
+        height:70px;
+        position:fixed;
+        left:20px;
+        z-index:200;
+        background-image:url(./img/mora_two.PNG);    }
+    .bu{
+        
+        top:360px;
+       
+        width:70px;
+        height:70px;
+        position:fixed;
+        left:20px;
+        z-index:200;
+        background-image:url(./img/mora_three.PNG);
+    }
+    .moraitems{
+    
+    display:none;
+    position:fixed;
+    
+    
+    }
+    .youwin{
+        display:none;
+    
+    }
+    .youlost{
+        
+        display:none;
+    
+    }
+
+</style>
 <div onclick="exit()" class="exitbtn"></div>
 
-<div class="infoarea" id= 'userinfo'></div>
+<div class="infoarea" id= 'userinfo'>
+<div class=infohead></div>
+</div>
 
-<div class="peerarea" id= 'peerinfo'></div>
+<div class="peerarea" id= 'peerinfo'>
+<div class=peerhead></div>
+</div>
 
+
+<div id="myDiv"><h2></h2></div>
 
 <div class="mora5"></div>
-
 <div class="mora2"><div class="mora1"></div></div>
 <div class="mora3"><div class="mora4"></div></div>
 
+<div id=moraitems class=moraitems>
+<div class="shitou" onclick="Getguesscover(1)"></div>
+<div class="jianzi" onclick="Getguesscover(2)"></div>
+<div class="bu" onclick="Getguesscover(3)"></div>
+</div>
+
+<div class="youwin"> <image  src="./img/mora_result_win.PNG"></div>
+<div class="youlost"><image  src="./img/mora_lastresult_fail.PNG"></div>
 <div class="playgo"><image style="margin-top:220px;padding-left:40px;" src="./img/mora_start.PNG"></div>
 
 
 </body>
-
-<style>
-    
-    body {
-        
-        font: 14px "Source Sans", helvetica, arial, sans-serif;
-        -moz-user-select: none; /*火狐*/
-        -webkit-user-select: none; /*webkit浏览器*/
-        -ms-user-select: none; /*IE10*/
-        -khtml-user-select: none; /*早期浏览器*/
-        user-select: none;
-        color:black;
-        margin:0;
-        padding:0;
-  
-        
-        
-    }
-
-.mora1{
-    background-image:url(./img/mora_left_small.PNG);
-    background-repeat: no-repeat;
-    display:block;
-    width:320px;
-    height:115px;
-    
-    position:fixed;
-}
-.mora2{
-    background-image:url(./img/mora_left_big.PNG);
-    background-repeat: no-repeat;
-    display:block;
-    width:320px;
-    height:305px;
-    float:left;
-    position:fixed;
-    top:0;
-}
-.mora3{
-    
-    background-image:url(./img/mora_right_big.PNG);
-    background-repeat: no-repeat;
-    display:block;
-    width:320px;
-    height:285px;
-    float:left;
-    
-    position:fixed;
-}
-.mora4{
-    background-image:url(./img/mora_right_small.PNG);
-    background-repeat: no-repeat;
-    display:block;
-    width:320px;
-    height:98px;
-    float:right;
-    
-    position:fixed;
-    bottom:0px;
-    
-    
-    
-}
-.mora5{
-    position:fixed;
-    right:0;
-    top:0;
-    
-    width:54px;
-    height:568px;
-    background-image:url(./img/mora_top.PNG);
-    background-repeat: no-repeat;
-    
-}
-.mora6{
-    
-}
-
-.user{
-    -moz-transform:rotate(90deg);
-    -webkit-transform:rotate(90deg);
-    position:fixed;
-    bottom:90px;
-    left:-90px;
-    width:530px;
-    height:50px;
-    
-    
-    background-repeat: no-repeat;
-    font: 14px "Source Sans", helvetica, arial, sans-serif;
-    padding-top:20px;
-    overflow-y:auto;
-    
-}
-.playgo{
-    width:90PX;
-    height:568PX;
-}
-
-.infoarea{
-    
-}
-.infohead{
-    
-    background-image:url(./img/mora_list_drawable.PNG);
-    display:block;
-    
-    width:230px;
-    height:20px;
-    position:fixed;
-    top:330px;
-    left:100px;
-    background-repeat:no-repeat;
-    background-position:20px 0;
-    -moz-transform:rotate(90deg);
-    -webkit-transform:rotate(90deg);
-    z-index:-10px;
-}
-.exitbtn{
-    
-    position:fixed;
-    background-image:url(./img/mora_back.PNG);
-    top:10px;
-    right:10px;
-    width:30px;
-    height:40px;
-    
-}
-.peerarea{
-
-display:block;
-
-}
-
-.peerhead{
-    
-    background-image:url(./img/mora_enemy.PNG);
-    display:block;
-    width:230px;
-    height:20px;
-    position:fixed;
-    top:330px;
-    left:100px;
-    background-repeat:no-repeat;
-    background-position:20px 0;
-    -moz-transform:rotate(90deg);
-    -webkit-transform:rotate(90deg);
-    z-index:-20px;
-}
-
-</style>
+</html>

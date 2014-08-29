@@ -1,41 +1,15 @@
 <html>
     <head>
-        
-        <style>
-            
-            .whoiswopart2{
-                margin:10px;
-                border-radius: 6px;
-                border: 1px solid #FFCC00;
-                background-color:#FFCC00;
-                color:white;
-                padding:10px;
-                
-            }
-        .whoiswopart1{
-            
-            color:white;
-            font: 16px "Source Sans", helvetica, arial, sans-serif;
-            text-shadow: 1px 1px  3px #000;
-            right:0; top:0; width:100%; position:fixed;
-            text-align:center;
-            margin-bottom:60px;
-            
-        }
-        
-            
-            
-            
-        </style>
-        <script src="./jquery.js"></script>
+     <script src="../jquery.js"></script>
         <script>
             
-      
+           //localStorage.g_gamenum= '9567';
             
             function getuserlist(){
                 
-                
-                var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
+             var jcontact = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum=" + localStorage.g_gamenum;
+
+
 
                 
                 var userinfo ="<div id= 'userinfo'>";
@@ -87,8 +61,27 @@
             $(document).ready(function(){
                              
                               getuserlist();
+                              setInterval(function(){waiting();},6000);
                               
                               });
+                              
+        function waiting(){
+            
+                              $("#userinfo").remove();
+                              getuserlist();
+                              $("#userlist").fadeIn(3000);
+                              $("#userlist").fadeOut(3000);
+                              
+                              
+                              
+                              
+                              }
+                              
+        function reload(){
+            
+            location.reload();
+                              
+        }
           
           
           
@@ -96,13 +89,57 @@
   
     </head>
     
-    <body>
+    <style>
         
-        <div style="margin-top:10px;">
+        .whoiswopart2{
+            margin:10px;
+            border-radius: 6px;
+            border: 1px solid #FFCC00;
+            background-color:#FFCC00;
+            color:white;
+            padding:10px;
+            display:block;
+            
+        }
+    .whoiswopart1{
+        
+        background-image: url("./img/fghead.PNG");
+        color:white;
+        font: 16px "Source Sans", helvetica, arial, sans-serif;
+        text-shadow: 1px 1px  3px #000;
+        right:0; top:0;
+        width:320px;
+        position:fixed;
+        text-align:center;
+        margin-bottom:60px;
+        height:60px;
+        display:block;
+        
+    }
+    
+    .whoisworight{
+        
+        width:60px;
+        height:123px;
+        
+        float:right;
+        background-image: url("./img/faguan.png");
+        
+        background-repeat: no-repeat;
+        margin-top:0px;
+        position:fixed;
+        right:0px;
+        
+    }
+ </style>
+
+<body>
+        
+        <div style="margin-top:62px;" onclick="reload()" >
             
             
             
-            <div id="userlist">
+            <div id="userlist" >
                 
             </div>
             

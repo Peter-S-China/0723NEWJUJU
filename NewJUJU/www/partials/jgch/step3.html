@@ -9,8 +9,11 @@
                               });
                               
                               function btnshow(){
-                              $(".btnshow").fadeIn(3000);
-                              $(".btnshow").fadeOut(3000);
+                                  
+                              $(".flowershow").fadeIn(3000);
+                              $(".flowershow").fadeOut(3000);
+                              
+                              
                               }
            
             </script>
@@ -28,12 +31,14 @@
             padding: 0;
          }
     .jgchcontent{
+        
         top:10px;
      position:fixed;
         width:328px;
         height:328px;
         background-image: url("./img/dg.PNG");
         left:-3px;
+        z-index:100;
     
    }
     
@@ -43,24 +48,44 @@
     width:120px;
     height:120px;
     position:fixed;
-    bottom:104px;
+    bottom:12px;
     left:94px;
-   
+    background-image: url("./img/1.png");
     border-radius: 69px;
-    display:none;
     }
-        
+    .flowershow{
+    
+
+    position:fixed;
+    width:187px;
+    height:172px;
+    background-image: url("./img/hua.PNG");
+    left:70px;
+    top:80px;
+    z-index:100;
+ }
+    .jgchhead{
+    
+    border:1px solid #ccc;
+    height:92px;
+    width:320px;
+    }
+    
+  
+    
     </style>
     <body>
         
-        <div class="jgchhead">
-          
-        </div>
+     
         
         <div class="jgchcontent">
+            
+            <div class="flowershow">
+                
+            </div>
+            
         </div>
         
-        <div class="btnshow">
-        </div>
+        
     </body>
 </html>
