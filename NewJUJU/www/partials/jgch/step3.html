@@ -4,14 +4,15 @@
         <script>
             $(document).ready(function(){
                               
-                              setInterval(function(){btnshow();},3000);
+                              setInterval(function(){btnshow();},1000);
 
                               });
                               
                               function btnshow(){
-                                  
-                              $(".flowershow").fadeIn(3000);
-                              $(".flowershow").fadeOut(3000);
+                               
+                               $(".flowershow").animate({top:'80px'});
+                               $(".flowershow").fadeIn(2000);
+                         
                               
                               
                               }
@@ -61,8 +62,9 @@
     height:172px;
     background-image: url("./img/hua.PNG");
     left:70px;
-    top:80px;
+    top:-280px;
     z-index:100;
+    background-repeat:no-repeat;
  }
     .jgchhead{
     
