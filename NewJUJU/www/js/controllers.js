@@ -417,6 +417,15 @@ function NavtoGameCtrl($scope,$rootScope,$location) {
         $location.path("/inggameview");
         
     }
+    
+    $scope.gotozf = function(){
+        
+        g_gamename = "know";
+        
+        $location.path("/inggameview");
+        
+    }
+
 
     
 }
@@ -1009,6 +1018,9 @@ function createNewGameCtrl($scope,$rootScope,$location){
             
             $location.path("/killer");
         
+        }else if(g_gamename == 'know'){
+          
+             $location.path("/know");
         }
         
     }
@@ -4586,3 +4598,11 @@ function killGamewhofCtrl($scope,$rootScope,$timeout,$location){
 
 }
 
+function knowsetup1Ctrl($scope,$rootScope,$timeout,$location){
+
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取当前用户ID<<<<<<'+ localStorage.g_userid);
+    console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
+
+
+}

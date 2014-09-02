@@ -1061,6 +1061,30 @@ Icon Group
   margin-left:4px;
 }
 
+.topcoat-button-zf{
+  background-repeat:no-repeat;
+  background-image: url(../img/icons/zf.png);
+  height:auto;
+  width:70px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  float:left;
+  margin-left:4px;
+}
+
+.knowbg{
+
+margin: 0;
+padding: 0;
+background-image:url("../img/know/knowbg.png");
+
+width:320px;
+height:568px;
+background-repeat: no-repeat;
+
+}
+
 .killgamebg{
 
 margin: 0;
