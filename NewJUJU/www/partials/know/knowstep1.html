@@ -1,11 +1,345 @@
 <script src="../jquery.js"></script>
 <script>
+    
+    
+    
+    
+    
     $(document).ready(function(){
                
-                 $(".userlist").fadeIn(3000);
-                      });
-</script>
+                 $(".userlist").fadeIn();
+                 getuserlist();
+                  $(".exitbtn").click(function(){
+                                      exit();
+                    
+                    });
+                      
+                  $(".tkbtn").click(function(){
+                                          
+                      $(".tkbtn").fadeOut();
+                      $(".onlineuser").fadeOut();
+                      $(".tkarea").fadeIn();
+                                    
+                    });
+                      
+                      $("#lishi").click(function(){
+                                        
+                            getknowflag("历史");
+                            
+                            $(".tkarea").fadeOut();
+                            $(".questionarea").animate({left:'-10px'});
+                            $(".timers").animate({left:'30px'});
+                            autostart();
+                            autocount();
+                                        
+                                        
+                            });
+                      
+                      $("#tiyu").click(function(){
+                                       getknowflag("体育");
+                                       
+                                       $(".tkarea").fadeOut();
+                                       $(".questionarea").animate({left:'-10px'});
+                                       $(".timers").animate({left:'30px'});
+                                       autostart();
+                                       autocount();
+                                        
+                                        
+                                        });
+                      $("#shehui").click(function(){
+                                         
+                                         getknowflag("社会");
+                                         
+                                         $(".tkarea").fadeOut();
+                                         $(".questionarea").animate({left:'-10px'});
+                                         $(".timers").animate({left:'30px'});
+                                         autostart();
+                                         autocount();
+                                        
+                                        
+                                        
+                                        });
+                      $("#shenghuo").click(function(){
+                                        
+                                           getknowflag("生活");
+                                           
+                                           $(".tkarea").fadeOut();
+                                           $(".questionarea").animate({left:'-10px'});
+                                           $(".timers").animate({left:'30px'});
+                                           autostart();
+                                           autocount();
+                                        
+                                        
+                                        });
+                      $("#baike").click(function(){
+                                        
+                                        getknowflag("百科");
+                                        
+                                        $(".tkarea").fadeOut();
+                                        $(".questionarea").animate({left:'-10px'});
+                                        $(".timers").animate({left:'30px'});
+                                        autostart();
+                                        autocount();
+                                        
+                                        
+                                        });
+                      $("#wenhua").click(function(){
+                                         
+                                         getknowflag("文化");
+                                         
+                                         $(".tkarea").fadeOut();
+                                         $(".questionarea").animate({left:'-10px'});
+                                         $(".timers").animate({left:'30px'});
+                                         autostart();
+                                         autocount();
+                                        
+                                        
+                                        });
+                      $("#zaxue").click(function(){
+                                        
+                                        getknowflag("杂学");
+                                        
+                                        $(".tkarea").fadeOut();
+                                        $(".questionarea").animate({left:'-10px'});
+                                        $(".timers").animate({left:'30px'});
+                                        autostart();
+                                        autocount();
+                                        
+                                        
+                                        });
+                      $("#renwu").click(function(){
+                                        getknowflag("人物");
+                                        
+                                        $(".tkarea").fadeOut();
+                                        $(".questionarea").animate({left:'-10px'});
+                                        $(".timers").animate({left:'30px'});
+                                        autostart();
+                                        autocount();
+                                        
+                                        
+                                        
+                                        });
 
+                      
+                      
+                      });
+                      
+function getknowflag(tkname){
+    var gkt = "http://203.100.80.135:8080/JujuDemo/servlet/Getknowflag?gamehomenum="+localStorage.g_gamenum + "&category=" + tkname;
+   
+   //htmlobj=$.ajax({url:gkt,async:false});
+   //$("#myDiv").html(htmlobj.responseText);
+   
+  
+  
+   var question="";
+   $.getJSON(
+             gkt,
+             function(data) {
+             $.each(data, function(i) {
+                   
+            question +="<div  id= 'tt"+ [i] +"'>";
+            question +="<div class=questiontitle>" + data[i].contents + "</div>";
+                    
+            question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optiona +"','"+ [i] +"')>" + data[i].optiona + data[i].contenta +"</div>";
+                    
+            question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optionb +"','"+ [i] +"')>" + data[i].optionb + data[i].contentb +"</div>";
+                    
+            question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optionc +"','"+ [i] +"')>" + data[i].optionc + data[i].contentc +"</div>";
+                    
+            question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optiond +"','"+ [i] +"')>" + data[i].optiond + data[i].contentd +"</div>";
+                    
+            question +="</div>"
+                    
+                    
+                    
+                    });
+             
+             
+             //alert(question);
+             $(".questionarea").append(question);
+             
+             });
+    
+                    
+}
+                      
+function getuserlist(){
+        var gul = "http://203.100.80.135:8080/JujuDemo/servlet/Underpersonlist?gamehomenum="+localStorage.g_gamenum;
+        
+        var userinfo ="";
+        
+        $.getJSON(
+                  gul,
+                  function(data) {
+                  $.each(data.item17, function(i) {
+                         
+                      userinfo += data.item17[i].username + "<br>";
+                         
+                         });
+        
+                  $("#userlist").append(userinfo);
+                  
+                  });
+
+    
+    
+    }
+
+function exit(){
+    var exiturl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
+    $.ajax({
+           type: "GET",
+           url: exiturl,
+           dataType: "script"
+           });
+           history.go(-2);
+}
+var score = 0;
+function answer(rs,us,n){
+    
+    //alert("answer " +rs +" useranswer "+ us+"当前题目第"+ n +"个");
+    
+    if(rs == us ){
+        
+        score = score+1;
+        
+    
+    }else{
+    
+    
+    }
+    
+    if(n==9){
+        
+        //alert("总耗时"+alltimes);
+        
+        //alert("gameover" + score);
+        var Gknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Getknowcover?gamehomenum="+ localStorage.g_gamenum + "&userid="+ localStorage.g_userid + "&answertrue="+ score +"&toaltcover="+ score*10 +"&totaltime="+ alltimes;
+        
+        //alert(Gknowcover);
+        htmlobj=$.ajax({url:Gknowcover,async:false});
+        //$("#myDiv").html(htmlobj.responseText);
+        
+        autostop();
+        $("#timers").fadeOut();
+        
+        Sendknowcover();
+    
+    }
+    
+  
+    //var Gknowcover="" ;
+   //alert(Gknowcover);
+    //htmlobj=$.ajax({url:Gknowcover,async:false});
+    //$("#myDiv").html(htmlobj.responseText);
+    $("#tt"+ n + "").remove();
+      
+}
+
+var g_timer;
+
+var alltimes=0;
+
+function autostart(){
+
+g_timer = setInterval(function(){
+    alltimes = alltimes+1;
+                      
+    },1000);
+ if(alltimes == 100){
+     autostop();
+     $("#timers").fadeOut();
+     Sendknowcover();
+ }
+                      
+g_timer = setInterval(function(){
+    $("#tt0").remove();
+      },11000);
+                          
+g_timer = setInterval(function(){
+  $("#tt1").remove();
+        },21000);
+g_timer = setInterval(function(){
+  $("#tt2").remove();
+      },31000);
+g_timer = setInterval(function(){
+  $("#tt3").remove();
+       },41000);
+g_timer = setInterval(function(){
+  $("#tt4").remove();
+                      },51000);
+g_timer = setInterval(function(){
+  $("#tt5").remove();
+  },61000);
+g_timer = setInterval(function(){
+  $("#tt6").remove();
+},71000);
+g_timer = setInterval(function(){
+  $("#tt7").remove();
+                      },81000);
+g_timer = setInterval(function(){
+    $("#tt8").remove();
+},91000);
+g_timer = setInterval(function(){
+    $("#tt9").remove();
+                      },110000);
+                      
+g_timer = setInterval(function(){
+   $("#tt9").remove();
+   },12000);
+
+
+}
+
+function autostop(){
+clearInterval(g_timer);
+clearInterval(g_timerc);
+}
+
+var g_timerc
+function autocount(){
+    
+var n=-1;
+g_timerc = setInterval(function(){
+                       n=n+1;
+                       $("#num"+n).animate({height:'toggle'},1000);
+                       
+                       if(n==10){
+                        n=n-10;
+                        $("#num"+n).animate({height:'toggle'},1000);
+                        }
+},1000);
+
+
+}
+
+function Sendknowcover(){
+    var sknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Sendknowcover?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
+
+    //htmlobj=$.ajax({url:sknowcover,async:false});
+    //$("#myDiv").html(htmlobj.responseText);
+    var userinfo="";
+    $.getJSON(
+              sknowcover,
+              function(data) {
+              $.each(data, function(i) {
+                     
+                     userinfo += "<div class=phbitems>"+ " " +data[i].username + "总得分: "+ data[i].toaltcover +"耗用时间: "+ data[i].toalttime +"</div>";
+                     
+                     });
+              
+              $(".phb").append(userinfo);
+              
+              });
+
+        $(".phb").show();
+
+}
+
+
+
+</script>
 <style>
     body {
         
@@ -19,6 +353,7 @@
         margin:0;
         padding:0;
         background-color:transparent;
+        
         }
 
 .onlineuser{
@@ -40,16 +375,189 @@ color:white;
 font-size:20px;
 text-align:center;
 }
+.tkbtn{
+    width:128px;
+    height:128px;
+    position:fixed;
+    bottom:80px;
+    text-align:center;
+    left:100px;
+    color:white;
+    background-image:url(./img/start.png);
+    background-repeat: no-repeat;
+    background-position:0;
+    
+}
+.exitbtn{
+
+width:100%;
+height:40px;
+padding:10px;
+position:fixed;
+top:0px;
+text-align:center;
+color:white;
+
+}
+.tkarea{
+
+top:80px;
+position:fixed;
+width:310px;
+left:5px;
+height:270px;
+
+display:none;
+background-image:url(./img/tkbg.png);
+background-repeat: no-repeat;
+background-position:0;
+
+
+
+}
+.tkitem{
+    display:block;
+    width:100px;
+    height:48px;
+
+    margin-top:30px;
+    margin-left:3px;
+
+    float:left;
+}
+
+.questionarea{
+    top:80px;
+    left:320px;
+    position:fixed;
+    width:350px;
+    height:568px;
+    color:white;
+    
+    overflow:auto;
+    z-index:100;
+    padding:10px;
+    background-color:transparent;
+}
+
+.questiontitle{
+    width:320px;
+    height:250px;
+    background-image:url(./img/questionbg.PNG);
+    background-repeat: no-repeat;
+    background-position:0;
+    padding-top:60px;
+    padding-left:10px;
+    padding-right:20px;
+    
+}
+
+
+
+
+.questionopp{
+    
+    font: 16px "Source Sans", helvetica, arial, sans-serif;
+    line-height: 40px;
+    background-image:url(./img/yinying.png);
+    background-repeat: no-repeat;
+    background-position:10;
+    margin-top:5px;
+    margin-left:70px;
+    text-align:center;
+    height:30px;
+    display:block;
+    width:160px;
+    
+}
+.timers{
+    width:260px;
+    height:20px;
+    position:fixed;
+    right:-260px;
+    top:290px;
+    z-index:300;
+    display:block;
+    
+    
+}
+.items{
+    display:block;
+    float:left;
+    width:15px;
+}
+.phb{
+margin-top:80px;
+margin-left:70px;
+display:none;
+width:240px;
+height:200px;
+background-image:url(./img/phb.PNG);
+background-repeat: no-repeat;
+padding-top:80px;
+}
+.phbitems{
+color:white;
+font-size:14px;
+}
+
 </style>
-<div class=onlineuser>
-<div class=userlist>
-user1<br>
-user1<br>
-user1<br>
-user1<br>
-user1<br>
-user1<br>
-user1<br>
-</div>
+
+<div class=exitbtn></div>
+
+
+<div class=tkarea>
+
+<span class=tkitem id=lishi></span>
+<span class=tkitem id=tiyu></span>
+<span class=tkitem id=shehui></span>
+
+
+<span class=tkitem id=shenghuo></span>
+<span class=tkitem id=baike></span>
+<span class=tkitem id=wenhua></span>
+
+
+<span class=tkitem id=zaxue></span>
+<span class=tkitem id=renwu></span>
+<span class=tkitem></span>
+
 
 </div>
+
+
+
+<div class=onlineuser>
+<div class=userlist id=userlist>
+
+</div>
+</div>
+
+
+
+<div class=tkbtn>
+</div>
+
+
+<div class=questionarea>
+</div>
+
+<div class=timers id=timers>
+<span class=items id=num0><img src="./img/0.PNG"></span>
+<span class=items id=num1><img src="./img/1.PNG"></span>
+<span class=items id=num2><img src="./img/2.PNG"></span>
+<span class=items id=num3><img src="./img/3.PNG"></span>
+<span class=items id=num4><img src="./img/4.PNG"></span>
+<span class=items id=num5><img src="./img/5.PNG"></span>
+<span class=items id=num6><img src="./img/6.PNG"></span>
+<span class=items id=num7><img src="./img/7.PNG"></span>
+<span class=items id=num8><img src="./img/8.PNG"></span>
+<span class=items id=num9><img src="./img/9.PNG"></span>
+</div>
+
+<div class="phb">
+
+</div>
+
+
+<div id="myDiv"></div>
