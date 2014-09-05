@@ -119,9 +119,10 @@ $routeProvider.when('/searchteam', {templateUrl: 'partials/searchTeamView.html'}
 $routeProvider.when('/viewuserlist', {templateUrl: 'partials/ViewUserList.html'});
 
              
-//知否游戏主视图
+//知否游戏游戏发起者主视图
 $routeProvider.when('/know', {templateUrl: 'partials/know/knows1.html', controller: 'HomeCtrl'});
-             
+//知否游戏参与者主视图
+$routeProvider.when('/knowj', {templateUrl: 'partials/know/knowjs1.html', controller: 'HomeCtrl'});
              
              
 //猜拳游戏发起者主视图

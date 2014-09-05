@@ -1113,6 +1113,11 @@ function ingGameListCtrl($scope,$rootScope,$location){
                     $location.path("/moraview");
                     
                     }
+                    if(g_gamename=='know'){
+                    
+                    $location.path("/knowj");
+                    
+                    }
 
                     
                     
@@ -4604,5 +4609,13 @@ function knowsetup1Ctrl($scope,$rootScope,$timeout,$location){
     console.log('>>>>>>获取当前用户ID<<<<<<'+ localStorage.g_userid);
     console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
 
+
+}
+
+function knowjsetup1Ctrl($scope,$rootScope,$timeout,$location){
+
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取当前用户ID<<<<<<'+ localStorage.g_userid);
+    console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
 
 }
