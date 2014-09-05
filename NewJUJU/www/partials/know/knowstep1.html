@@ -7,10 +7,21 @@
     
     $(document).ready(function(){
                
-                 $(".userlist").fadeIn();
+                
                  getuserlist();
+                 g_timer = setInterval(function(){
+                                 $(".userlist").fadeIn(1000);      
+                                 $(".userlist").fadeOut(1000);
+                                 $(".userlist").empty();
+                                 getuserlist();
+                                 
+                                            
+                        },2000);
+                      
+                      
                   $(".exitbtn").click(function(){
                                       exit();
+                                      clearInterval(g_timer);
                     
                     });
                       
@@ -19,6 +30,7 @@
                       $(".tkbtn").fadeOut();
                       $(".onlineuser").fadeOut();
                       $(".tkarea").fadeIn();
+                      clearInterval(g_timer);
                                     
                     });
                       
@@ -42,8 +54,7 @@
                                        $(".questionarea").animate({left:'-10px'});
                                        $(".timers").animate({left:'30px'});
                                        autostart();
-                                       autocount();
-                                        
+                                       autocount(-1);
                                         
                                         });
                       $("#shehui").click(function(){
@@ -54,7 +65,7 @@
                                          $(".questionarea").animate({left:'-10px'});
                                          $(".timers").animate({left:'30px'});
                                          autostart();
-                                         autocount();
+                                         autocount(-1);
                                         
                                         
                                         
@@ -67,8 +78,7 @@
                                            $(".questionarea").animate({left:'-10px'});
                                            $(".timers").animate({left:'30px'});
                                            autostart();
-                                           autocount();
-                                        
+                                           autocount(-1);
                                         
                                         });
                       $("#baike").click(function(){
@@ -79,7 +89,7 @@
                                         $(".questionarea").animate({left:'-10px'});
                                         $(".timers").animate({left:'30px'});
                                         autostart();
-                                        autocount();
+                                        autocount(-1);
                                         
                                         
                                         });
@@ -91,7 +101,7 @@
                                          $(".questionarea").animate({left:'-10px'});
                                          $(".timers").animate({left:'30px'});
                                          autostart();
-                                         autocount();
+                                         autocount(-1);
                                         
                                         
                                         });
@@ -103,7 +113,7 @@
                                         $(".questionarea").animate({left:'-10px'});
                                         $(".timers").animate({left:'30px'});
                                         autostart();
-                                        autocount();
+                                        autocount(-1);
                                         
                                         
                                         });
@@ -114,7 +124,7 @@
                                         $(".questionarea").animate({left:'-10px'});
                                         $(".timers").animate({left:'30px'});
                                         autostart();
-                                        autocount();
+                                        autocount(-1);
                                         
                                         
                                         
@@ -390,7 +400,7 @@ background-position:0;
 .userlist{
 margin-top:10px;
 width:300px;
-display:none;
+display:block;
 padding:8px;
 color:white;
 font-size:20px;

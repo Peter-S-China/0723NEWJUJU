@@ -2484,3 +2484,24 @@ bottom:0px;
 left:86px;
 
 }
+.viewalluser{
+
+display:block;
+width:150px;
+height:20px;
+padding:10px;
+border:2px solid #ccc;
+position:fixed;
+top:0px;
+left:80px;
+}
+.exithomebtn{
+display:block;
+width:50px;
+border:2px solid #ccc;
+height:20px;
+position:fixed;
+left:0px;
+padding:10px;
+top:0px;
+}
