@@ -6,18 +6,19 @@
 
 <div ng-controller="createNewGameCtrl">
     
-   <a class="topcoat-button--cta" ng-click="slidePage('/step3')">
-        返回游戏大厅
-    </a><br><br><a class="topcoat-button--cta" ng-click="creatNewGame()">新建游戏 + </a></p>
+   <a class="backgamecenter" ng-click="slidePage('/step3')">
+        返回大厅
+    </a>
+    <a class="creatnewgame" ng-click="creatNewGame()">新建游戏 + </a>
 </div>
 
 
-<div ng-controller="ingGameListCtrl">
+<div  class="gameinfoarea" ng-controller="ingGameListCtrl">
    
-   <lable class="topcoat-text-input" ng-show="message">{{ message }}</lable>
+   <lable   ng-show="message">{{ message }}</lable>
     
     
-        <div class="topcoat-button--cta" ng-repeat="item in items" ng-click="joinGame(item)">
+        <div class="gameitemsinfo" ng-repeat="item in items" ng-click="joinGame(item)">
              {{item.username}}
         </div>
    

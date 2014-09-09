@@ -2505,3 +2505,46 @@ left:0px;
 padding:10px;
 top:0px;
 }
+
+.backgamecenter{
+display:block;
+width:80px;
+border:2px solid #ccc;
+height:20px;
+position:fixed;
+left:0px;
+padding:10px;
+top:0px;
+}
+
+.creatnewgame{
+display:block;
+width:296px;
+border:2px solid #ccc;
+height:20px;
+position:fixed;
+left:0px;
+padding:10px;
+top:46px;
+}
+.gameinfoarea{
+
+display:block;
+width:296px;
+border:2px solid #ccc;
+height:450px;
+position:fixed;
+left:0px;
+padding:10px;
+top:92px;
+
+}
+
+.gameitemsinfo{
+width:280px;
+
+height:20px;
+padding:10px;
+position: relative;
+
+}
