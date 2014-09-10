@@ -203,6 +203,11 @@ var score = 0;
 
 function answer(rs,us,n){
     
+    
+      clearInterval(g_timerc);
+      autocount(-1);
+   
+    
     //alert("answer " +rs +" useranswer "+ us+"当前题目第"+ n +"个");
     
     if( n==9){
@@ -217,6 +222,7 @@ function answer(rs,us,n){
         //$("#myDiv").html(htmlobj.responseText);
         
         autostop();
+        
         $("#timers").fadeOut(1000);
         
         Sendknowcover();
@@ -229,12 +235,14 @@ function answer(rs,us,n){
         
         $("#opp"+ us + n +"").css("background-color","#009966");
         $("#tt"+ n + "").delay(1000).fadeOut();
+        
     
     }else{
     
      $("#opp"+ us + n +"").css("background-color","#8b0000");
      $("#opp"+ rs + n +"").css("background-color","#009966");
      $("#tt"+ n + "").delay(1000).fadeOut();
+     
     
     }
 
@@ -249,6 +257,9 @@ function autostart(){
 g_timer = setInterval(function(){
     
     $("#tt"+alltimes+"").remove();
+    clearInterval(g_timerc);
+    autocount(-1);
+                      
     alltimes = alltimes+1;
     //alert(alltimes);
                       if(alltimes >= 10){
@@ -281,10 +292,12 @@ function autocount(n){
 
 g_timerc = setInterval(function(){
                       
-                       $("#timers").fadeIn(500);
+                       //$("#timers").fadeIn(500);
                        
                         n=n+1;
-                        $("#num"+n).animate({height:'toggle'},1000);
+                        //$("#num"+n).animate({left:'10px;'},1000);
+                       $("#num"+n).fadeIn(500);
+                       $("#num"+n).fadeOut(500);
                        
                        
                        
@@ -489,15 +502,15 @@ line-height: 20px;
     width:260px;
     height:20px;
     position:fixed;
-    right:0px;
+    left:280px;
     top:290px;
     z-index:300;
-    display:none;
+    display:block;
     
 }
 .items{
-    display:block;
-    float:left;
+    display:none;
+    float:right;
     width:15px;
 }
 .phb{

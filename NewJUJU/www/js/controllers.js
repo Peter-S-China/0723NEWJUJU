@@ -140,6 +140,98 @@ var g_baseurl='http://203.100.80.135:8080';
 
 //-----------------------------
 
+function LoginCtrl($scope,$location,$rootScope) {
+    
+    
+    
+    $scope.formData = {};
+    $scope.uulogin = function(){
+        
+        //console.log("电话号码>>>>>>" + $scope.formData.tel);
+        
+        if(!$scope.formData.tel){
+            
+            $scope.message = "电话号码不能为空";
+            console.log("电话号码是空的哟");
+            
+        }else{
+            
+            localStorage.usertel = "139000";
+            console.log("电话号码>>>>"+  localStorage.usertel);
+            $scope.autologin();
+            $location.path("/step1");
+            
+            
+        }
+        
+        
+    }
+    
+    $scope.autologin = function(){
+        
+         console.log("电话号码>>>>"+  localStorage.usertel);
+        
+        if(localStorage.usertel == "139000"){
+            if (!$rootScope.items) {
+                
+                jx.load(g_baseurl+'/JujuDemo/servlet/sendnum?username=139',function(data){
+                        console.log(JSON.stringify(data));
+                        $rootScope.items = data.item3 ;
+                        
+                        g_codenum = $rootScope.items.result;
+                        
+                        console.log("------成功获取验证码------codenum-------" + g_codenum);
+                        
+                        $location.path("/step2");
+                        
+                        $scope.$apply();
+                        },'json');
+                
+                
+                
+            } else {
+                console.log('data already loaded');
+            }
+            
+
+        
+        }
+        
+        
+    }
+    
+    
+    $scope.autologin();
+    
+    
+    
+    
+}
+
+
+function RoomSetupCtrl($scope,$rootScope,$location){
+    
+    $scope.loadItem = function() {
+        
+        jx.load(g_baseurl+'/JujuDemo/servlet/Loginservlet?codenum=' + g_codenum ,function(data){
+                console.log(JSON.stringify(data));
+                $rootScope.items = data.item4;
+                
+                g_userid = $rootScope.items.id;
+                
+                console.log("------用户编号-------" + g_userid);
+                localStorage.j_username = g_userid;
+                
+                console.log("------成功登陆房间------用户编号-------" + localStorage.j_username);
+                
+                $scope.$apply();
+                },'json');
+    };
+
+    $scope.loadItem();
+    
+}
+
 function GetCodesCtrl($scope, $rootScope,$location) {
     
    // load in data from hacker news unless we already have
@@ -160,11 +252,7 @@ function GetCodesCtrl($scope, $rootScope,$location) {
                 $scope.$apply();
                 },'json');
 
-        
-        
-        //navigator.notification.alert(item.result,function() {console.log("Alert success")},"My Alert","Close");
-        
-        $location.path("/step2"); // URL with query string
+        $location.path("/step2");
         
         
     };
@@ -531,70 +619,6 @@ function LoginRoomCtrl($scope,$rootScope,$location){
     
 }
 
-function LoginCtrl($scope,$location,$rootScope) {
-    
-    
-    
-    $scope.formData = {};
-    
-    $scope.uulogin = function(){
-        
-        //console.log("电话号码>>>>>>" + $scope.formData.tel);
-        
-        if(!$scope.formData.tel){
-            
-            console.log("电话号码是空的哟");
-        
-        }else{
-            
-         localStorage.usertel = $scope.formData.tel;
-         console.log("电话号码>>>>"+  localStorage.usertel);
-         $location.path("/step1");
-            
-        
-        }
-        
-        
-    }
- 
-   $scope.autologin = function(){
-   if (!$rootScope.items) {
-            
-            jx.load(g_baseurl+'/JujuDemo/servlet/sendnum?username=139',function(data){
-                    console.log(JSON.stringify(data));
-                    $rootScope.items = data.item3 ;
-                    
-                    g_codenum = $rootScope.items.result;
-                    
-                    console.log("------成功获取验证码------codenum-------" + g_codenum);
-                    
-                    $scope.$apply();
-                    },'json');
-            
-            
-            
-        } else {
-            console.log('data already loaded');
-        }
-
-        console.log("验证码" + g_codenum);
-    
-      }
-    
-    
-    
-
-    if(!localStorage.usertel){
-        
-        $scope.autologin();
-        
-    }else{
-    
-        $location.path("/step2");
-    
-    }
-
-}
 
 function AnonymousChatCtrl($scope, $rootScope,$location){
 
@@ -4657,3 +4681,4 @@ function knowjsetup1Ctrl($scope,$rootScope,$timeout,$location){
     console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
 
 }
+

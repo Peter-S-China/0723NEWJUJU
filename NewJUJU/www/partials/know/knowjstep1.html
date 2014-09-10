@@ -1,10 +1,5 @@
 <script src="../jquery.js"></script>
 <script>
-    
-    
-    
-    
-    
     $(document).ready(function(){
                       
                       
@@ -16,57 +11,146 @@
                                             getuserlist();
                                             
                                             
+                                            getknowflag();
+                                            
+                                            
                                             },2000);
                       
                       
-                      $(".exitbtn").click(function(){
-                                          exit();
-                                          clearInterval(g_timer);
-                                          });
+                      
+                      
                       
                       $(".tkbtn").click(function(){
-                                        clearInterval(g_timer);
+                                        
                                         $(".tkbtn").fadeOut();
                                         $(".onlineuser").fadeOut();
-                                        //$(".tkarea").fadeIn();
-                                        getknowflag();
+                                        $(".tkarea").fadeIn();
+                                        clearInterval(g_timer);
+                                        
+                                        });
+                      
+                      $("#lishi").click(function(){
+                                        
+                                        getknowflag("历史");
+                                        
+                                        $(".tkarea").fadeOut();
                                         $(".questionarea").animate({left:'-10px'});
                                         $(".timers").animate({left:'30px'});
                                         autostart();
                                         autocount(-1);
                                         
+                                        
                                         });
                       
-                   
+                      $("#tiyu").click(function(){
+                                       getknowflag("体育");
+                                       
+                                       $(".tkarea").fadeOut();
+                                       $(".questionarea").animate({left:'-10px'});
+                                       $(".timers").animate({left:'30px'});
+                                       autostart();
+                                       autocount(-1);
+                                       
+                                       });
+                      $("#shehui").click(function(){
+                                         
+                                         getknowflag("社会");
+                                         
+                                         $(".tkarea").fadeOut();
+                                         $(".questionarea").animate({left:'-10px'});
+                                         $(".timers").animate({left:'30px'});
+                                         autostart();
+                                         autocount(-1);
+                                         
+                                         
+                                         
+                                         });
+                      $("#shenghuo").click(function(){
+                                           
+                                           getknowflag("生活");
+                                           
+                                           $(".tkarea").fadeOut();
+                                           $(".questionarea").animate({left:'-10px'});
+                                           $(".timers").animate({left:'30px'});
+                                           autostart();
+                                           autocount(-1);
+                                           
+                                           });
+                      $("#baike").click(function(){
+                                        
+                                        getknowflag("百科");
+                                        
+                                        $(".tkarea").fadeOut();
+                                        $(".questionarea").animate({left:'-10px'});
+                                        $(".timers").animate({left:'30px'});
+                                        autostart();
+                                        autocount(-1);
+                                        
+                                        
+                                        });
+                      $("#wenhua").click(function(){
+                                         
+                                         getknowflag("文化");
+                                         
+                                         $(".tkarea").fadeOut();
+                                         $(".questionarea").animate({left:'-10px'});
+                                         $(".timers").animate({left:'30px'});
+                                         autostart();
+                                         autocount(-1);
+                                         
+                                         
+                                         });
+                      $("#zaxue").click(function(){
+                                        
+                                        getknowflag("杂学");
+                                        
+                                        $(".tkarea").fadeOut();
+                                        $(".questionarea").animate({left:'-10px'});
+                                        $(".timers").animate({left:'30px'});
+                                        autostart();
+                                        autocount(-1);
+                                        
+                                        
+                                        });
+                      $("#renwu").click(function(){
+                                        getknowflag("人物");
+                                        
+                                        $(".tkarea").fadeOut();
+                                        $(".questionarea").animate({left:'-10px'});
+                                        $(".timers").animate({left:'30px'});
+                                        autostart();
+                                        autocount(-1);
+                                        
+                                        
+                                        
+                                        });
                       
                       
                       
                       });
                       
-function getknowflag(){
+                      
+                      function getknowflag(){
+                          
                           var gkt = "http://203.100.80.135:8080/JujuDemo/servlet/Startknow?gamehomenum="+localStorage.g_gamenum;
                           
-                          //htmlobj=$.ajax({url:gkt,async:false});
-                          //$("#myDiv").html(htmlobj.responseText);
-                          
-                          
-                          
                           var question="";
+                          
                           $.getJSON(
                                     gkt,
                                     function(data) {
                                     $.each(data, function(i) {
                                            
                                            question +="<div  id= 'tt"+ [i] +"'>";
-                                           question +="<div class=questiontitle>" + data[i].contents + "</div>";
+                                           question +="<div class=questiontitle><div class=questiontt>" + data[i].contents + "</div></div>";
                                            
-                                           question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optiona +"','"+ [i] +"')>" + data[i].optiona + data[i].contenta +"</div>";
+                                           question +="<div id=opp"+ data[i].optiona + [i]+"  class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optiona +"','"+ [i] +"')>" + data[i].optiona + data[i].contenta +"</div>";
                                            
-                                           question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optionb +"','"+ [i] +"')>" + data[i].optionb + data[i].contentb +"</div>";
+                                           question +="<div id=opp"+ data[i].optionb + [i]+" class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optionb +"','"+ [i] +"')>" + data[i].optionb + data[i].contentb +"</div>";
                                            
-                                           question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optionc +"','"+ [i] +"')>" + data[i].optionc + data[i].contentc +"</div>";
+                                           question +="<div id=opp"+ data[i].optionc + [i]+" class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optionc +"','"+ [i] +"')>" + data[i].optionc + data[i].contentc +"</div>";
                                            
-                                           question +="<div class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optiond +"','"+ [i] +"')>" + data[i].optiond + data[i].contentd +"</div>";
+                                           question +="<div  id=opp"+ data[i].optiond + [i]+" class=questionopp onclick=answer('"+ data[i].answer + "','"+ data[i].optiond +"','"+ [i] +"')>" + data[i].optiond + data[i].contentd +"</div>";
                                            
                                            question +="</div>"
                                            
@@ -74,11 +158,24 @@ function getknowflag(){
                                            
                                            });
                                     
+                                 $(".questionarea").append(question);
                                     
-                                    //alert(question);
-                                    $(".questionarea").append(question);
+                                    
+                                    if(question.length > 0){
+                                    
+                                    $(".onlineuser").fadeOut();
+                                    clearInterval(g_timer);
+                                    $(".questionarea").animate({left:'-10px'});
+                                    $(".timers").animate({left:'30px'});
+                                    autostart();
+                                    autocount(-1);
+                                    
+                                    
+                                    }
+
                                     
                                     });
+                                    
                                     
                                     
                       }
@@ -106,6 +203,9 @@ function getuserlist(){
 }
 
 function exit(){
+    
+    clearInterval(g_timer);
+    
     var exiturl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
     $.ajax({
            type: "GET",
@@ -115,28 +215,29 @@ function exit(){
            history.go(-2);
 }
 var score = 0;
+
 function answer(rs,us,n){
+    
+    
+    clearInterval(g_timerc);
+    autocount(-1);
+    
     
     //alert("answer " +rs +" useranswer "+ us+"当前题目第"+ n +"个");
     
-    if(rs == us ){
-        
-        score = score+1;
-        
-        
-    }
-    if(n==9){
+    if( n==9){
         
         //alert("总耗时"+alltimes);
         
         //alert("gameover" + score);
-        var Gknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Getknowcover?gamehomenum="+ localStorage.g_gamenum + "&userid="+ localStorage.g_userid + "&answertrue="+ score +"&toaltcover="+ score*10 +"&totaltime="+ alltimes;
+        var Gknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Getknowcover?gamehomenum="+ localStorage.g_gamenum + "&userid="+ localStorage.g_userid + "&answertrue="+ score +"&toaltcover="+ score*10 +"&totaltime="+ alltimes*10;
         
-        alert(Gknowcover);
+        //alert(Gknowcover);
         htmlobj=$.ajax({url:Gknowcover,async:false});
         //$("#myDiv").html(htmlobj.responseText);
         
         autostop();
+        
         $("#timers").fadeOut(1000);
         
         Sendknowcover();
@@ -144,11 +245,21 @@ function answer(rs,us,n){
     }
     
     
-    //var Gknowcover="" ;
-    //alert(Gknowcover);
-    //htmlobj=$.ajax({url:Gknowcover,async:false});
-    //$("#myDiv").html(htmlobj.responseText);
-    $("#tt"+ n + "").remove();
+    if(rs == us ){
+        score = score+1;
+        
+        $("#opp"+ us + n +"").css("background-color","#009966");
+        $("#tt"+ n + "").delay(1000).fadeOut();
+        
+        
+    }else{
+        
+        $("#opp"+ us + n +"").css("background-color","#8b0000");
+        $("#opp"+ rs + n +"").css("background-color","#009966");
+        $("#tt"+ n + "").delay(1000).fadeOut();
+        
+        
+    }
     
 }
 
@@ -159,56 +270,30 @@ var alltimes=0;
 function autostart(){
     
     g_timer = setInterval(function(){
+                          
+                          $("#tt"+alltimes+"").remove();
+                          clearInterval(g_timerc);
+                          autocount(-1);
+                          
                           alltimes = alltimes+1;
+                          //alert(alltimes);
+                          if(alltimes >= 10){
+                          autostop();
+                          $("#timers").fadeOut(1000);
+                          var Gknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Getknowcover?gamehomenum="+ localStorage.g_gamenum + "&userid="+ localStorage.g_userid + "&answertrue="+ score +"&toaltcover="+ score*10 +"&totaltime="+ "100";
                           
-                          },1000);
+                          //alert(Gknowcover);
+                          htmlobj=$.ajax({url:Gknowcover,async:false});
                           
-                          if(alltimes >= 100){
-                              autostop();
-                              $("#timers").fadeOut(1000);
-                              Sendknowcover();
+                          
+                          Sendknowcover();
+                          
                           }
                           
-                          g_timer = setInterval(function(){
-                                                $("#tt0").remove();
-                                                },11000);
-                                                
-                                                g_timer = setInterval(function(){
-                                                                      $("#tt1").remove();
-                                                                      },21000);
-                                                                      g_timer = setInterval(function(){
-                                                                                            $("#tt2").remove();
-                                                                                            },31000);
-                                                                                            g_timer = setInterval(function(){
-                                                                                                                  $("#tt3").remove();
-                                                                                                                  },41000);
-                                                                                                                  g_timer = setInterval(function(){
-                                                                                                                                        $("#tt4").remove();
-                                                                                                                                        },51000);
-                                                                                                                                        g_timer = setInterval(function(){
-                                                                                                                                                              $("#tt5").remove();
-                                                                                                                                                              },61000);
-                                                                                                                                                              g_timer = setInterval(function(){
-                                                                                                                                                                                    $("#tt6").remove();
-                                                                                                                                                                                    },71000);
-                                                                                                                                                                                    g_timer = setInterval(function(){
-                                                                                                                                                                                                          $("#tt7").remove();
-                                                                                                                                                                                                          },81000);
-                                                                                                                                                                                                          g_timer = setInterval(function(){
-                                                                                                                                                                                                                                $("#tt8").remove();
-                                                                                                                                                                                                                                },91000);
-                                                                                                                                                                                                                                g_timer = setInterval(function(){
-                                                                                                                                                                                                                                                      $("#tt9").remove();
-                                                                                                                                                                                                                                                      },110000);
-                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                      g_timer = setInterval(function(){
-                                                                                                                                                                                                                                                                            $("#tt9").remove();
-                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                            autostop();
-                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                            },12000);
-                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                            
+                          },10000);
+                          
+                          
+                          
 }
 
 function autostop(){
@@ -222,10 +307,12 @@ function autocount(n){
     
     g_timerc = setInterval(function(){
                            
-                           $("#timers").fadeIn(500);
+                           //$("#timers").fadeIn(500);
                            
                            n=n+1;
-                           $("#num"+n).animate({height:'toggle'},1000);
+                           //$("#num"+n).animate({left:'10px;'},1000);
+                           $("#num"+n).fadeIn(500);
+                           $("#num"+n).fadeOut(500);
                            
                            
                            
@@ -238,16 +325,17 @@ function autocount(n){
 
 function Sendknowcover(){
     
-    //alert("cc");
+    
     //htmlobj=$.ajax({url:sknowcover,async:false});
     //$("#myDiv").html(htmlobj.responseText);
+    
     
     S1endknowcover();
     $(".phb").fadeOut(2000);
     
     g_timer = setInterval(function(){
                           
-                          $(".phb").empty();
+                          $("#scorelist").remove();
                           
                           S1endknowcover();
                           
@@ -261,15 +349,16 @@ function S1endknowcover(){
     var sknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Sendknowcover?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
     
     //alert(sknowcover);
-    var userinfo="";
+    var userinfo="<div id=scorelist>";
     $.getJSON(
               sknowcover,
               function(data) {
               $.each(data, function(i) {
                      
-                     userinfo += "<div class=phbitems>"+ " " +data[i].username + "总得分: "+ data[i].toaltcover +"耗用时间: "+ data[i].toalttime +"</div>";
+                     userinfo += "<div class=phbitems>"+ " " +data[i].username + "总得分: "+ data[i].toaltcover +"耗用时间: "+ data[i].toalttime +"秒"+ " "+" </div>";
                      
                      });
+              userinfo += "</div>";
               
               $(".phb").append(userinfo);
               
@@ -330,11 +419,10 @@ function S1endknowcover(){
     background-repeat: no-repeat;
     background-position:0;
     
-    
 }
 .exitbtn{
     
-    width:100%;
+    width:10%;
     height:40px;
     padding:10px;
     position:fixed;
@@ -342,13 +430,14 @@ function S1endknowcover(){
     text-align:center;
     color:white;
     
+    
 }
 .tkarea{
     
     top:80px;
     position:fixed;
-    width:310px;
-    left:5px;
+    width:300px;
+    left:10px;
     height:270px;
     
     display:none;
@@ -371,7 +460,7 @@ function S1endknowcover(){
 }
 
 .questionarea{
-    top:80px;
+    top:40px;
     left:320px;
     position:fixed;
     width:350px;
@@ -391,43 +480,52 @@ function S1endknowcover(){
     background-image:url(./img/questionbg.PNG);
     background-repeat: no-repeat;
     background-position:0;
-    padding-top:60px;
-    padding-left:10px;
-    padding-right:20px;
+    margin-top:42px;
+    
+    
     
 }
-
-
+.questiontt{
+    
+    padding-top:60px;
+    padding-left:10px;
+    padding-right:10px;
+    font: 16px "Source Sans", helvetica, arial, sans-serif;
+    line-height: 20px;
+    
+}
 
 
 .questionopp{
     
     font: 16px "Source Sans", helvetica, arial, sans-serif;
-    line-height: 40px;
+    line-height: 20px;
     background-image:url(./img/yinying.png);
     background-repeat: no-repeat;
-    background-position:10;
-    margin-top:5px;
-    margin-left:70px;
-    text-align:center;
-    height:30px;
+    background-position:0;
+    margin-top:15px;
+    margin-left:30px;
+    text-align:left;
+    height:20px;
     display:block;
-    width:160px;
+    width:250px;
+    padding:5px;
+    border-radius: 4px;
     
 }
 .timers{
     width:260px;
     height:20px;
     position:fixed;
-    right:0px;
+    left:280px;
     top:290px;
     z-index:300;
-    display:none;
+    display:block;
     
 }
 .items{
-    display:block;
-    float:left;
+    display:none;
+    float:right;
     width:15px;
 }
 .phb{
@@ -447,7 +545,7 @@ function S1endknowcover(){
 
     </style>
 
-<div class=exitbtn></div>
+<div onclick="exit()" class=exitbtn></div>
 
 
 <div class=tkarea>
@@ -479,8 +577,6 @@ function S1endknowcover(){
 
 
 
-<div class=tkbtn>
-</div>
 
 
 <div class=questionarea>

@@ -1256,7 +1256,9 @@ background-image:url("../img/whoiswo/home.png");
 font: 16px "Source Sans", helvetica, arial, sans-serif;
 font-weight: 200;
 background-repeat: no-repeat;
-
+background: url("../img/bg.PNG") repeat-x;
+width:320px;
+height:568px;
 }
 
 .morabg{
@@ -1288,7 +1290,7 @@ float:right;
   font-weight: 200;
   text-rendering: optimizeLegibility;
   width:320px;
-  height:660px;
+  height:568px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
