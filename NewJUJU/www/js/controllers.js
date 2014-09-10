@@ -532,7 +532,32 @@ function LoginRoomCtrl($scope,$rootScope,$location){
 }
 
 function LoginCtrl($scope,$location,$rootScope) {
-     
+    
+    
+    
+    $scope.formData = {};
+    
+    $scope.uulogin = function(){
+        
+        //console.log("电话号码>>>>>>" + $scope.formData.tel);
+        
+        if(!$scope.formData.tel){
+            
+            console.log("电话号码是空的哟");
+        
+        }else{
+            
+         localStorage.usertel = $scope.formData.tel;
+         console.log("电话号码>>>>"+  localStorage.usertel);
+         $location.path("/step1");
+            
+        
+        }
+        
+        
+    }
+ 
+   $scope.autologin = function(){
    if (!$rootScope.items) {
             
             jx.load(g_baseurl+'/JujuDemo/servlet/sendnum?username=139',function(data){
@@ -554,7 +579,20 @@ function LoginCtrl($scope,$location,$rootScope) {
 
         console.log("验证码" + g_codenum);
     
-   
+      }
+    
+    
+    
+
+    if(!localStorage.usertel){
+        
+        $scope.autologin();
+        
+    }else{
+    
+        $location.path("/step2");
+    
+    }
 
 }
 

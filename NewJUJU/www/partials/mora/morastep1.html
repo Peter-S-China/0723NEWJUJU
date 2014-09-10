@@ -129,6 +129,7 @@ function Sendguesscover(num){
 //不间断访问方法
 var x=0;
 x = localStorage.times;
+
 function fuckcc(){
 
 var content="";
@@ -150,6 +151,7 @@ if(x == 0 ){
                  });
          
             if(content == '0'){
+            
              clearInterval(g_timer);
              
             $("#pjinfo").fadeIn();
@@ -283,7 +285,7 @@ if(x == 0 ){
                  
                  });
 
-    } else {
+    } else  if(x==3){
    //局内第三轮
    
    
@@ -577,14 +579,29 @@ if(x == 0 ){
     }
     .youwin{
         display:none;
-        
+        position:fixed;
+        left:70px;
     
     }
     .youlost{
         
         display:none;
+        position:fixed;
+        left:70px;
     
     }
+    
+    .pjinfo{
+        
+        position:fixed;
+        background-image:url(./img/mora_result_draw.PNG);
+        display:none;
+        width:120px;
+        height:568px;
+        left:70px;
+        
+    }
+
     .round1info{
      position:fixed;
      background-image:url(./img/mora_first.PNG);
@@ -611,16 +628,6 @@ if(x == 0 ){
         height:430px;
 
      background-image:url(./img/mora_third.PNG);
-    }
-    .pjinfo{
-    
-    position:fixed;
-    background-image:url(./img/mora_result_draw.PNG);
-    display:none;
-    width:120px;
-    height:568px;
-
-
     }
     
     #myDiv{

@@ -1,5 +1,5 @@
-<div class="loginpage">
-    <div class="new-navigation-bar" ng-controller="HomeCtrl">
+<div class="loginpage"  ng-controller="LoginCtrl">
+    <div class="new-navigation-bar" >
         <div class="new-navigation-bar__item left quarter">
             <a class="new-icon-button--quiet">
                 
@@ -9,12 +9,12 @@
             <h1 class="new-navigation-bar__title">用户登录</h1>
         </div>
         <div class="new-navigation-bar__item right quarter">
-            <a  ng-click="slidePage('/step1')">确定</a>
+            <a ng-click="uulogin()">下一步</a>
         </div>
     </div>
 
-<div class="pad" ng-controller="LoginCtrl" >
-     <div class="centerize" style="margin-top:40px;">
+
+     <div   class="centerize" style="margin-top:20px;">
   
      <input
          type="tel"
@@ -23,9 +23,11 @@
          value=""
          ng-model="formData.tel"
          placeholder="请输入手机号码">
-         <br>
-   
-    </div>
+
+
+    
+    
+     </div>
     
 </div>
 
