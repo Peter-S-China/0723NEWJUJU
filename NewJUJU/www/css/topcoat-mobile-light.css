@@ -2098,13 +2098,14 @@ Navigation Bar
   font-weight: 200;
   text-rendering: optimizeLegibility;
   width:320px;
-  height:660px;
+  height:568px;
+  background-color:#ccc;
 
 }
 
 
 .nophonemain{
-
+   
     margin: 0 auto;
     text-align: center;
     margin-left:70px;
@@ -2114,11 +2115,14 @@ Navigation Bar
 }
 .nophonebackicon{
 
-  margin: 0;
-  padding: 0;
+  margin-left: -60px;
+  padding-top: 20px;
+
+
   background-image: url("../img/nophoneback.png");
   height:26px;
   width:42px;
+  background-repeat:no-repeat;
 
 }
 
@@ -2145,12 +2149,10 @@ Navigation Bar
 }
 .npbottomNav{
 
-z-index:999; 
-position:fixed; 
-bottom:0; 
-left:8%;
-width:100%; 
+
+width:100%;
 text-align:center;
+
 }
 
 
@@ -2171,8 +2173,8 @@ text-align:center;
   width:86px;
   height:48px;
   display:block;
-  text-align: center;
-  margin-left:90px;
+  margin-left:50px;
+  margin-top:80px;
 
 }
 
@@ -2184,7 +2186,7 @@ text-align:center;
   height:48px;
   display:block;
   text-align: center;
-  margin-left:80px;
+  margin-left:60px;
   background-repeat:no-repeat;
 }
 

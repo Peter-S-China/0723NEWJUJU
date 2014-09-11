@@ -32,10 +32,14 @@ $routeProvider.when('/dmxview2', {templateUrl: 'partials/dmx/dmx_view2.html', co
              
 $routeProvider.when('/cbs2', {templateUrl: 'partials/cbs2.html', controller: 'HomeCtrl'});
 $routeProvider.when('/inggameview', {templateUrl: 'partials/inggame.html', controller: 'HomeCtrl'});
-$routeProvider.when('/nophoneview', {templateUrl: 'partials/nophone.html', controller: 'HomeCtrl'});
-$routeProvider.when('/nophone_is1', {templateUrl: 'partials/nophone_is1.html', controller: 'HomeCtrl'});
-$routeProvider.when('/nophone_is2', {templateUrl: 'partials/nophone_is2.html', controller: 'HomeCtrl'});
-$routeProvider.when('/nophoneview2', {templateUrl: 'partials/nophone2.html', controller: 'HomeCtrl'});
+             
+//nophone游戏相关视图
+$routeProvider.when('/nophoneview', {templateUrl: 'partials/nophone/nophone.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophone_is1', {templateUrl: 'partials/nophone/nophone_is1.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophone_is2', {templateUrl: 'partials/nophone/nophone_is2.html', controller: 'HomeCtrl'});
+$routeProvider.when('/nophoneview2', {templateUrl: 'partials/nophone/nophone2.html', controller: 'HomeCtrl'});
+             
+             
 //击鼓传花游戏相关视图
 $routeProvider.when('/jgchview', {templateUrl: 'partials/jgch/jgchview.html', controller: 'HomeCtrl'});
 $routeProvider.when('/jgchview2', {templateUrl: 'partials/jgch/jgchview2.html', controller: 'HomeCtrl'});

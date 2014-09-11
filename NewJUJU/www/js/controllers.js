@@ -230,6 +230,19 @@ function RoomSetupCtrl($scope,$rootScope,$location){
 
     $scope.loadItem();
     
+    
+    $scope.setupnewroom = function(){
+    
+        $location.path("/newroom");
+    
+    }
+    
+    $scope.setupjoinroom = function(){
+        
+        $location.path("/joinroom");
+        
+        
+    }
 }
 
 function GetCodesCtrl($scope, $rootScope,$location) {
