@@ -4249,6 +4249,10 @@ function killGamesetup1Ctrl($scope,$rootScope,$timeout,$location){
 
 function killGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
     
+    
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
+    
     $scope.gongtou = function(){
         
         console.log('------公投完成------');
@@ -4292,7 +4296,7 @@ function killGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
     $scope.replay = function(){
         
         console.log('重新开始');
-        var replayurl =  g_baseurl +'/JujuDemo/servlet/Getkillflag?gamehomenum='+ localStorage.g_gamenum+'&killflag=6';
+        var replayurl =  g_baseurl +'/JujuDemo/servlet/Getkillflag?gamehomenum='+ localStorage.g_gamenum+'&killflag=6' + '&userid=' + g_userid;
         console.log(replayurl);
         $rootScope.items = null;
         // load in data from hacker news unless we already have
