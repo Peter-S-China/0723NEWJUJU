@@ -173,7 +173,7 @@ $routeProvider.when('/jwkiller', {templateUrl: 'partials/killer/jwview.html', co
 //杀人游戏参与者游戏视图
 $routeProvider.when('/jwgame', {templateUrl: 'partials/killer/jkgameview.html', controller: 'HomeCtrl'});
              
-//杀人游戏参与者游戏结束试图
+//杀人游戏参与者游戏结束视图图
 $routeProvider.when('/jwgamer', {templateUrl: 'partials/killer/jkgameviewr.html', controller: 'HomeCtrl'});
              
 

@@ -1094,6 +1094,9 @@ background-image:url("../img/kill/killbg.png");
 width:320px;
 height:568px;
 background-repeat: no-repeat;
+display:block;
+
+
 
 
 }
@@ -1191,12 +1194,18 @@ background-image:url("../img/kill/killerclose.PNG");
 
 
 .kill-bottom{
+
+position: fixed;
+
 background-image:url("../img/kill/bottom.png");
-position:fixed; 
-bottom:-10px; 
-left:0; 
-width:100%;
+
+top:513px;
+left:0px;
+width:320px;
+height:55px;
 padding:10px;
+
+
 }
 
 

@@ -158,7 +158,7 @@ function LoginCtrl($scope,$location,$rootScope) {
             
             localStorage.usertel = "139000";
             console.log("电话号码>>>>"+  localStorage.usertel);
-            $scope.autologin();
+            //$scope.autologin();
             $location.path("/step1");
             
             
@@ -246,6 +246,29 @@ function RoomSetupCtrl($scope,$rootScope,$location){
 }
 
 function GetCodesCtrl($scope, $rootScope,$location) {
+    
+    if (!$rootScope.items) {
+        
+        jx.load(g_baseurl+'/JujuDemo/servlet/sendnum?username=139',function(data){
+                console.log(JSON.stringify(data));
+                $rootScope.items = data.item3 ;
+                
+                g_codenum = $rootScope.items.result;
+                
+                console.log("------成功获取验证码------codenum-------" + g_codenum);
+                
+                //$location.path("/step2");
+                
+                $scope.$apply();
+                },'json');
+        
+        
+        
+    } else {
+        console.log('data already loaded');
+    }
+    
+
     
    // load in data from hacker news unless we already have
     
@@ -4469,6 +4492,7 @@ function JkillGamesetup2Ctrl($scope,$rootScope,$timeout,$location){
                     
                       $location.path('/killer');
                       $timeout.cancel($scope.timeout);
+                    
                     }else {
                     
                       $location.path('/jwkiller');

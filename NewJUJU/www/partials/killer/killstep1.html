@@ -59,13 +59,30 @@ padding-right:140px;
 }
 .TTT{
 
-padding-top:20px;
+padding-top:10px;
 float:right;
 background-color:black;
 width:100px;
+height:20px;
 display:none;
 color:white;
+background-image:url("./img/kuang.PNG");
+background-repeat: no-repeat;
+border-radius: 10px;
+margin-top:10px;
+}
+.rrr{
+float:left;
+display:block:
 
+width:5px;
+height:5px;
+padding:5px;
+background-image:url("./img/readygo.PNG");
+background-repeat: no-repeat;
+
+margin-top:22px;
+margin-left:10px;
 
 }
 
@@ -117,6 +134,11 @@ color:white;
                                           
       userinfo +='<span class=TTT id=ttt'+ data.item17[i].userid +' onclick=ttt('+ data.item17[i].userid +')>踢</span>';
                                           
+      if(data.item17[i].isgame =='1'){
+                                          
+        userinfo += '<span class=rrr ></span>';
+         
+                                          }
      userinfo += '</div>';
                                           
                                         }
