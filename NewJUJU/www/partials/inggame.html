@@ -15,11 +15,11 @@
 
 <div  class="gameinfoarea" ng-controller="ingGameListCtrl">
    
-   <lable   ng-show="message">{{ message }}</lable>
-    
+   
+    <lable  style="width:320px;padding:10px;font-size:14px;border-bottom:1px solid #ccc;" >正在进行中的游戏</lable>
     
         <div class="gameitemsinfo" ng-repeat="item in items" ng-click="joinGame(item)">
-             {{item.username}} 
+             {{item.username}} <lable   ng-show="message">{{ message }}</lable>
         </div>
    
     

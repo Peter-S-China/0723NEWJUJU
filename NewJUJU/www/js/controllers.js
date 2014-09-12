@@ -1134,6 +1134,8 @@ function ingGameListCtrl($scope,$rootScope,$location){
     var getinggurl= g_baseurl +'/JujuDemo/servlet/Gameinfolist?gamename='+ g_gamename +'&homenum=' + g_homenum;
         
         console.log("获取进行中的游戏列表"+ getinggurl);
+    
+    
         
         $rootScope.items = null;
         if (!$rootScope.items) {
@@ -1141,8 +1143,8 @@ function ingGameListCtrl($scope,$rootScope,$location){
             jx.load(getinggurl,function(data){
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.item15;
-                    $scope.message = $rootScope.items.id;
-                    
+                   
+                    $scope.message = "马上加入";
                     $scope.$apply();
                     },'json');
             

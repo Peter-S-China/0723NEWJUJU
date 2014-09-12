@@ -3,7 +3,7 @@
      <script src="../jquery.js"></script>
         <script>
             
-           //localStorage.g_gamenum= '9567';
+           //localStorage.g_gamenum= '0623';
             
             function getuserlist(){
                 
@@ -25,7 +25,8 @@
                                  
                                  if(data.item17[i].gameuserid=='1'){
                                  
-                                 userinfo += "<div class=whoiswopart1> 法官:" + data.item17[i].username + "<div class=whoisworight></div></div>";
+                                 userinfo += "<div class=whoiswopart1> <br>法官:" + data.item17[i].username + "<div class=whoisworight></div></div>";
+                                 
                                  
                                  }else{
                                  
@@ -91,6 +92,39 @@
     
     <style>
         
+        
+        .whoiswopart1{
+            
+            background-image: url("./img/fghead.png");
+            color:white;
+            font: 16px "Source Sans", helvetica, arial, sans-serif;
+            text-shadow: 1px 1px  3px #000;
+            left:2px;
+            top:0;
+            width:320px;
+            height:62px;
+            position:fixed;
+            text-align:center;
+            
+            height:60px;
+            display:block;
+        
+            
+            
+        }
+    
+    .whoisworight{
+        
+        width:60px;
+        height:123px;
+        background-image: url("./img/faguan.png");
+        top:0px;
+        position:fixed;
+        right:0px;
+        
+    }
+    
+
         .whoiswopart2{
             margin:10px;
             border-radius: 6px;
@@ -99,43 +133,25 @@
             color:white;
             padding:10px;
             display:block;
+            width:260px;
             
         }
-    .whoiswopart1{
-        
-        background-image: url("./img/fghead.PNG");
-        color:white;
-        font: 16px "Source Sans", helvetica, arial, sans-serif;
-        text-shadow: 1px 1px  3px #000;
-        right:0; top:0;
-        width:320px;
-        position:fixed;
-        text-align:center;
-        margin-bottom:60px;
-        height:60px;
-        display:block;
-        
-    }
     
-    .whoisworight{
-        
-        width:60px;
-        height:123px;
-        
-        float:right;
-        background-image: url("./img/faguan.png");
-        
-        background-repeat: no-repeat;
-        margin-top:0px;
-        position:fixed;
-        right:0px;
-        
+    #userlist{
+    
+    overflow:auto;
+    top:62px;
+    left:0px;
+    width:320px;
+    height:400px;
+  
+    position:fixed;
     }
  </style>
 
 <body>
         
-        <div style="margin-top:62px;" onclick="reload()" >
+       
             
             
             
@@ -143,7 +159,7 @@
                 
             </div>
             
-        </div>
+      
         
    
         
