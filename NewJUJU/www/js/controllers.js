@@ -3676,6 +3676,7 @@ function WhoiswofgCtrl($scope,$rootScope,$timeout,$location){
                     
                     $location.path('/step3');
                     $timeout.cancel($scope.timeout);
+                    
                     };
                     
                     
@@ -3924,7 +3925,7 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
         console.log('参与者游戏状态获取一直监听' +  gameinfourl);
         
         $rootScope.items = null;
-        // load in data from hacker news unless we already have
+ 
         if (!$rootScope.items) {
             jx.load(gameinfourl,function(data){
                     console.log(JSON.stringify(data));
@@ -3936,7 +3937,7 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
                     
                     $timeout.cancel($scope.timeout);
                     
-                    $location.path('/whoiswogameover3');
+                    $location.path('/whoiswogameover2');
                     
                     
                     }else if(data.item20.content =='卧底胜利'){
@@ -3975,40 +3976,7 @@ function WhoiswoplayerCtrl($scope,$rootScope,$timeout,$location){
 //法官视图
 function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
     
-     console.log('------谁是卧底游戏结束------');
-    
-     var overurl = g_baseurl +'/JujuDemo/servlet/Sendvoteoutcome?gamehomenum='+ localStorage.g_gamenum + '&flag=1';
-    
-    $rootScope.items = null;
-     if (!$rootScope.items) {
-        jx.load(overurl,function(data){
-                console.log(JSON.stringify(data));
-                $rootScope.items = data.item20;
-                $rootScope.items.title1 = $scope.title1;
-                $rootScope.items.title2 = $scope.title1;
-                
-                if($rootScope.items.content == "卧底胜利"){
-                
-                   console.log('卧底胜利');
-                
-                
-                  $location.path("/whoiswogameover");
-                
-                
-                 }else if($rootScope.items.content == "平民胜利"){
-                
-                  console.log('平民胜利');
-                
-                  $location.path("/whoiswogameover1");
-                
-                }
-                
-                $scope.$apply();
-                },'json');
-        
-     } else {
-        console.log('data already loaded');
-     }
+     console.log('------谁是卧底游戏结束------'+ localStorage.g_gamenum);
 
 
     $scope.playgo = function(){
@@ -4035,13 +4003,13 @@ function WhoiswogameoverCtrl($scope,$rootScope,$timeout,$location){
       }
     }
 
+
 function WhoiswoplayergameoverCtrl($scope,$rootScope,$timeout,$location){
 
-
-    
     $scope.playgo2 = function(){
        
-        console.log('------游戏参与者继续游戏重玩------');
+        console.log('------游戏参与者继续游戏重玩------'+ localStorage.g_gamenum);
+        
         var fgagurl = g_baseurl +'/JujuDemo/servlet/Sendunderagainflag?gamehomenum='+ localStorage.g_gamenum;
         
         $rootScope.items = null;
@@ -4061,6 +4029,8 @@ function WhoiswoplayergameoverCtrl($scope,$rootScope,$timeout,$location){
         $location.path('/whoiswowo');
     }
 }
+
+
 
 function morasetup1Ctrl($scope,$rootScope,$timeout,$location){
     

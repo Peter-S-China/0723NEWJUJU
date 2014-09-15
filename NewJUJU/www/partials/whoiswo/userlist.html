@@ -1,6 +1,6 @@
 <html>
 <body style="background-color:transparent;">
-    <script src="./jquery.js"></script>
+    <script src="../jquery.js"></script>
    <style>
         
         body{
@@ -110,6 +110,11 @@
        padding:10px;
    
    }
+   
+   .ready{
+   
+   float:left;
+   }
         </style>
     
     <script>
@@ -139,7 +144,17 @@
                          
                          }else{
                          
-    userinfo2 += "<div class=whoiswopart2 id=useritem"+ data.item17[i].userid +"><span onclick=tuser("+ data.item17[i].userid +") class=tuser id=tuser"+ data.item17[i].userid +">踢出</span><span onclick='showtt("+ data.item17[i].userid +")'>" + data.item17[i].username + "</span></div>"
+    userinfo2 += "<div class=whoiswopart2 id=useritem"+ data.item17[i].userid +">";
+                         
+    if(data.item17[i].isgame == "1"){
+                         
+     userinfo2 += "<span class=ready><img src='./img/ready.PNG'></span>";
+    
+                         }
+    userinfo2 +="<span onclick=tuser("+ data.item17[i].userid +") class=tuser id=tuser"+ data.item17[i].userid +">踢出</span><span onclick='showtt("+ data.item17[i].userid +")'>" + data.item17[i].username + "</span>"
+                         
+    
+    userinfo2 += "</div>";
                          
                          }
                          
@@ -210,7 +225,7 @@
     
     function showtt(uid){
         
-     $("#tuser" + uid + "").fadeIn(3000);
+     $("#tuser" + uid + "").toggle();
     
     }
     
@@ -223,8 +238,7 @@
     <div class=whoiswopart1></div>
     <div style="display:block;height:50px;"></div>
     <div class=joinuserlist></div>
-    <div id='usernum' STYLE='margin:10px;border-radius: 6px;border: 1px solid #FF6600;background-color:#FF3300;color:white;padding:10px;'></div>
-    <button type="button" class='reload'>获取最新在线人员列表</button>
+    <button  id='usernum' type="button" class='reload'></button>
   </div>
         
     </div>
