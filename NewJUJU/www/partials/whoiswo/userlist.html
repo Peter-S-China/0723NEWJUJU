@@ -113,7 +113,8 @@
    
    .ready{
    
-   float:left;
+   display:block;
+   
    }
         </style>
     
@@ -146,13 +147,13 @@
                          
     userinfo2 += "<div class=whoiswopart2 id=useritem"+ data.item17[i].userid +">";
                          
-    if(data.item17[i].isgame == "1"){
+      userinfo2 +="<span onclick=tuser("+ data.item17[i].userid +") class=tuser id=tuser"+ data.item17[i].userid +">踢出</span><span onclick='showtt("+ data.item17[i].userid +")'>" + data.item17[i].username + "</span>"
+                         if(data.item17[i].isgame == "1"){
                          
-     userinfo2 += "<span class=ready><img src='./img/ready.PNG'></span>";
-    
+                         userinfo2 += "<span><img src='./img/ready.PNG'></span>";
+                         
                          }
-    userinfo2 +="<span onclick=tuser("+ data.item17[i].userid +") class=tuser id=tuser"+ data.item17[i].userid +">踢出</span><span onclick='showtt("+ data.item17[i].userid +")'>" + data.item17[i].username + "</span>"
-                         
+                    
     
     userinfo2 += "</div>";
                          

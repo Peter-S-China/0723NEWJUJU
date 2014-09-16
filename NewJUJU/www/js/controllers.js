@@ -140,6 +140,23 @@ var g_baseurl='http://203.100.80.135:8080';
 
 //-----------------------------
 
+function sloganCtrl($scope,$location,$rootScope,$timeout){
+    $scope.value = 0;
+    function countdown() {
+        $scope.value++;
+        console.log("计时器" + $scope.value);
+        $scope.timeout = $timeout(countdown, 2000);
+        if($scope.value > 2){
+            $location.path("/login");
+            $timeout.cancel($scope.timeout);
+        }
+        
+    
+    }
+    countdown();
+    
+}
+
 function LoginCtrl($scope,$location,$rootScope) {
     
     
@@ -468,6 +485,8 @@ function GetUserListCtrl($scope, $rootScope) {
     
     
     console.log("------getuserlist------homenum"+ g_homenum);
+    
+    $scope.homenum = g_homenum;
     
     $rootScope.items = null;
    // load in data from hacker news unless we already have
@@ -1143,8 +1162,8 @@ function ingGameListCtrl($scope,$rootScope,$location){
             jx.load(getinggurl,function(data){
                     console.log(JSON.stringify(data));
                     $rootScope.items = data.item15;
-                   
-                    $scope.message = "马上加入";
+                    
+                    
                     $scope.$apply();
                     },'json');
             
@@ -1348,7 +1367,10 @@ function nophonestep2Ctrl($scope,$timeout,$rootScope,$location){
 //游戏发起者开始游戏第一步骤等待其他加入者准备开始
 function nophonestep1Ctrl($scope,$timeout,$rootScope,$location){
     
-    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ localStorage.g_userid);
+    
+    
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
     var starturl= g_baseurl +'/JujuDemo/servlet/Getnophoneflag?gamehomenum='+localStorage.g_gamenum +'&nophoneflag=1';

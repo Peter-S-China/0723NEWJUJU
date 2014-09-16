@@ -1,9 +1,5 @@
-
-
-
-<div class="onlineuserlistbg">
-    
-    <div  ng-controller="HomeCtrl">
+<div class="onlineuserlistbg" >
+    <div ng-controller="HomeCtrl">
         <div class="onlineuserlist-icon-left-button" >
             <a  ng-click="slidePage('/step3')">&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
@@ -14,13 +10,15 @@
         </div>
     </div>
     
-  
 <div ng-controller="GetUserListCtrl">
-    <ul class="new-topcoat-list" style="margin-top:20px;">
-        <li class="new-topcoat-list__item" ng-repeat="item in items" ng-click="loadItem(item)">
+    
+    <div><br>房间号:{{homenum}}</div>
+    <ul class="new-topcoat-list" style="margin-top:10px;">
+        <li class="new-topcoat-list__item" ng-repeat="item in items">
             {{item.username}}
         </li>
     </ul>
 </div>
+
 
 </div>

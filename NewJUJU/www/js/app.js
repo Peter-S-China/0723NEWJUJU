@@ -16,8 +16,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
 $routeProvider.when('/homeview', {templateUrl: 'partials/homeView.html', controller: 'HomeCtrl'});
              
         //$routeProvider.when('/', {templateUrl: 'partials/homeView.html', controller: 'HomeCtrl'});
-        
-$routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'HomeCtrl'});
+$routeProvider.when('/', {templateUrl: 'partials/slogan.html', controller: 'HomeCtrl'});
+$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'HomeCtrl'});
 $routeProvider.when('/step1', {templateUrl: 'partials/step1.html'});
 $routeProvider.when('/newroom', {templateUrl: 'partials/newroom.html', controller: 'HomeCtrl'});
 $routeProvider.when('/joinroom', {templateUrl: 'partials/joinroom.html', controller: 'HomeCtrl'});
