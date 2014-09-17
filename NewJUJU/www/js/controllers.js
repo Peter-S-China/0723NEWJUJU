@@ -510,69 +510,6 @@ function GetUserListCtrl($scope, $rootScope) {
     };
 }
 
-function NavtoGameCtrl($scope,$rootScope,$location) {
-   
-    console.log('---游戏大厅---');
-    
-    $scope.gotonophone = function(){
-        
-        g_gamename="nophone";
-        
-        $location.path("/inggameview");
-   
-    }
-    
-    $scope.gotojgch = function(){
-        
-        g_gamename="jgch";
-        
-        $location.path("/inggameview");
-        
-    }
-    
-    $scope.gotodice = function(){
-        
-        g_gamename="dice";
-        
-        $location.path("/inggameview");
-        
-    }
-    
-    $scope.gotowhoiswo = function(){
-    
-      g_gamename = "whoiswo";
-        
-     $location.path("/inggameview");
-   
-    }
-    $scope.gotomora = function(){
-        
-        g_gamename = "mora";
-        
-        $location.path("/inggameview");
-        
-    }
-    
-    $scope.gotokill = function(){
-        
-        g_gamename = "kill";
-        
-        $location.path("/inggameview");
-        
-    }
-    
-    $scope.gotozf = function(){
-        
-        g_gamename = "know";
-        
-        $location.path("/inggameview");
-        
-    }
-
-
-    
-}
-
 
 function GetTeamList1Ctrl($scope, $rootScope,$location) {
     
@@ -1054,8 +991,7 @@ function createNewGameCtrl($scope,$rootScope,$location){
 
     
         $rootScope.items = null;
-        // load in data from hacker news unless we already have
-        
+    
         if (!$rootScope.items) {
             
             jx.load(g_baseurl+'/JujuDemo/servlet/SendHomenum',function(data){
@@ -1153,9 +1089,6 @@ function ingGameListCtrl($scope,$rootScope,$location){
     var getinggurl= g_baseurl +'/JujuDemo/servlet/Gameinfolist?gamename='+ g_gamename +'&homenum=' + g_homenum;
         
         console.log("获取进行中的游戏列表"+ getinggurl);
-    
-    
-        
         $rootScope.items = null;
         if (!$rootScope.items) {
             
@@ -4716,4 +4649,109 @@ function knowjsetup1Ctrl($scope,$rootScope,$timeout,$location){
     console.log('>>>>>>获取当前游戏编号<<<<<<'+ localStorage.g_gamenum);
 
 }
+
+//---------------------------
+function NavtoingGame($scope,$rootScope,$timeout,$location){
+
+    localStorage.g_userid = g_userid;
+    
+    function countdown() {
+        console.log("用户编号" + localStorage.j_username);
+        console.log("房间编号"+ g_homenum);
+        console.log("游戏名" + g_gamename);
+        console.log("游戏编号"+ localStorage.g_gamenum);
+        
+        $scope.timeout = $timeout(countdown, 5000);
+    }
+    
+    countdown();
+}
+
+function NavtoGameCtrl($scope,$rootScope,$location) {
+    
+    console.log('---游戏大厅---');
+    
+    function GetGamehomenum(){
+        
+        $rootScope.items = null;
+        
+        if (!$rootScope.items) {
+            
+            jx.load(g_baseurl+'/JujuDemo/servlet/SendHomenum',function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item5;
+                    
+                    localStorage.g_gamenum = $rootScope.items.homenum;
+                    
+                    $scope.$apply();
+                    },'json');
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        
+    }
+    
+    $scope.gotonophone = function(){
+        
+        g_gamename="nophone";
+        console.log('游戏名称' + g_gamename);
+        GetGamehomenum();
+        
+        $location.path("/step3");
+        
+    }
+    
+    $scope.gotojgch = function(){
+        
+        g_gamename="jgch";
+        
+        $location.path("/inggameview");
+        
+    }
+    
+    $scope.gotodice = function(){
+        
+        g_gamename="dice";
+        
+        $location.path("/inggameview");
+        
+    }
+    
+    $scope.gotowhoiswo = function(){
+        
+        g_gamename = "whoiswo";
+        
+        $location.path("/inggameview");
+        
+    }
+    $scope.gotomora = function(){
+        
+        g_gamename = "mora";
+        
+        $location.path("/inggameview");
+        
+    }
+    
+    $scope.gotokill = function(){
+        
+        g_gamename = "kill";
+        
+        $location.path("/inggameview");
+        
+    }
+    
+    $scope.gotozf = function(){
+        
+        g_gamename = "know";
+        
+        $location.path("/inggameview");
+        
+    }
+    
+    
+    
+}
+
 

@@ -1625,11 +1625,11 @@ Navigation Bar
 
 }
 .inggamearea{
-
 background-image: url("../img/inggame2.png");
 width:320px;
 height:114px;
 display:block;
+
 }
 .onlineuserlistbg{
 
@@ -2632,5 +2632,14 @@ margin-top:80px;
 position: fixed;
 right:10px;
 top:80px;
+}
+
+.jujulogo{
+width:145px;
+height:214px;
+display:block;
+background-image:url("../img/juju(1).png");
+background-repeat: no-repeat;
+margin-left:86px;
 
 }
