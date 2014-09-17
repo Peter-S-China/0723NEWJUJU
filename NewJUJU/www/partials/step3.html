@@ -16,18 +16,31 @@
 <div style="height:90px;margin-top:2px;overflow:scroll;"  ng-click="loadItem(item)">
 
 <lable style="text-align:left;margin-left:22px;float:left;display:block;width:270px;padding:5px;" ng-repeat="item in items" ng-click="loadItem(item)">
- <b>{{item.username}}</b>{{item.message}}<br>
+ <b>{{message}}</b>{{item.message}}<br>
 </lable><br>
 
 </div>
 
 </div>
-<div class="inggamearea" ng-controller="NavtoingGame">
+
+<div ng-controller="NavtoGameCtrl">
     
+<div class="inggamearea" >
+  
+<div ng-repeat="item in items" ng-click="joinGame(item)">
+<span >
+    <img class=img2 src="{{gameiconsrc}}"/>
+</span>
+<span <span style="width:60px;display:block;margin-top:-10px;text-align:center;">
+{{item.username}}
+</span>
 
 </div>
 
-<div class="gameiconarea"  ng-controller="NavtoGameCtrl">
+
+</div>
+
+<div class="gameiconarea" >
     <div class="topcoat-button-cbs" ng-click="slidePage('/cbsview')">
     <span style="width:90px;display:block;margin-top:90px;">猜比赛</span></div>
     <div class="topcoat-button-dmx" ng-click="slidePage('/dmxview')">
@@ -50,5 +63,6 @@
     
 </div>
 
+</div>
 
 </div>

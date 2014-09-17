@@ -12,13 +12,15 @@ $(document).ready(function(){
                       
 function exit(){
                           var exiturl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
+                          
                           $.ajax({
                                  type: "GET",
                                  url: exiturl,
                                  dataType: "script"
                                  });
                                  
-                                history.go(-2);
+                                 
+                                history.go(-1);
 }
 
 </script>

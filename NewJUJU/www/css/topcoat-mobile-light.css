@@ -1615,20 +1615,33 @@ Navigation Bar
   margin: 0 auto;
   text-align: center;
 }
-.gameiconarea{
 
+.gameiconarea{
+ margin-top:-13px; 
  margin-left:20px;
  text-align: center;
  width:309px;
  height:290px;
  overflow: auto;
 
+
+
 }
 .inggamearea{
+
 background-image: url("../img/inggame2.png");
+background-repeat: no-repeat;
 width:320px;
-height:114px;
+height:110px;
 display:block;
+text-align:left;
+padding-top:20px;
+
+}
+
+.gameicon{
+
+
 
 }
 .onlineuserlistbg{

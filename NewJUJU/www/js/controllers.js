@@ -614,15 +614,18 @@ function LoginRoomCtrl($scope,$rootScope,$location){
 
 function AnonymousChatCtrl($scope, $rootScope,$location){
 
-    $scope.message ="匿名白板";
+    $scope.message ="";
     console.log("匿名白板房间号" + g_homenum);
     
     $rootScope.items=null;
     if (!$rootScope.items) {
         
+        $scope.message ="有人说:";
+        
         jx.load(g_baseurl+'/JujuDemo/servlet/SendMessage?homenum='+g_homenum,function(data){
                 console.log(JSON.stringify(data));
                 $rootScope.items = data.item8;
+                
                 $scope.$apply();
                 },'json');
         
@@ -4652,27 +4655,97 @@ function knowjsetup1Ctrl($scope,$rootScope,$timeout,$location){
 
 //---------------------------
 function NavtoingGame($scope,$rootScope,$timeout,$location){
-
-    localStorage.g_userid = g_userid;
+    
+    //document.write("daaasdfasdfas");
+    
+    console.log("游戏名" + g_gamename);
+    
+    g_gamename="";
+    localStorage.g_gamenum="";
+    
+    $scope.gameiconsrc = "./img/icons/nogame.png";
     
     function countdown() {
-        console.log("用户编号" + localStorage.j_username);
-        console.log("房间编号"+ g_homenum);
-        console.log("游戏名" + g_gamename);
-        console.log("游戏编号"+ localStorage.g_gamenum);
-        
-        $scope.timeout = $timeout(countdown, 5000);
-    }
+       
+        if(!g_gamename){
+            
+            console.log("用户编号" + localStorage.j_username);
+            console.log("房间编号"+ g_homenum);
+            console.log("游戏名" + g_gamename);
+            console.log("游戏编号"+ localStorage.g_gamenum);
+            $scope.timeout = $timeout(countdown, 1000);
+        }
     
-    countdown();
+    }
+
+   
+    
+    
 }
 
-function NavtoGameCtrl($scope,$rootScope,$location) {
+function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
     
     console.log('---游戏大厅---');
     
-    function GetGamehomenum(){
+    console.log("用户编号" + localStorage.j_username);
+    console.log("房间编号"+ g_homenum);
+    console.log("游戏名" + g_gamename);
+    console.log("游戏编号"+ localStorage.g_gamenum);
+    
+    $scope.gameiconsrc = "./img/icons/nogame.png";
+    
+    
+    
+    function countdown() {
+        $scope.inggamelist();
+        $scope.timeout = $timeout(countdown, 2000);
+    
+    }
+    
+    
+    
+    $scope.inggamelist= function(){
         
+        console.log(">>>>>>房间号" + g_homenum + ">>>>>>>游戏名称" + g_gamename);
+        
+        var getinggurl= g_baseurl +'/JujuDemo/servlet/Gameinfolist?gamename='+ g_gamename +'&homenum=' + g_homenum;
+        
+        console.log("获取进行中的游戏列表"+ getinggurl);
+        $rootScope.items = null;
+        if (!$rootScope.items) {
+            
+            jx.load(getinggurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.item15;
+                    
+                    if($rootScope.items[0].id == "没有进行中的游戏"){
+                    
+                     console.log("自动新建游戏" + g_gamename);
+                     autogamehomenum();
+                     $scope.autocreatnewgame();
+                    
+                    
+                    }else{
+                    
+                       
+                       $scope.message="";
+                       $location.path("/step3");
+                    
+                    
+                    }
+                    
+                      $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+    }
+    
+    function autogamehomenum(){
+    
         $rootScope.items = null;
         
         if (!$rootScope.items) {
@@ -4682,6 +4755,7 @@ function NavtoGameCtrl($scope,$rootScope,$location) {
                     $rootScope.items = data.item5;
                     
                     localStorage.g_gamenum = $rootScope.items.homenum;
+                    console.log("自动获取游戏编号" + localStorage.g_gamenum);
                     
                     $scope.$apply();
                     },'json');
@@ -4690,16 +4764,154 @@ function NavtoGameCtrl($scope,$rootScope,$location) {
         }
         
         
-        
+
+    
     }
+ 
+    $scope.autocreatnewgame = function(){
+    
+    
+        console.log("用户名" + localStorage.j_username);
+        console.log("房间编号"+ g_homenum);
+        console.log("游戏名" + g_gamename);
+        console.log("游戏编号"+ localStorage.g_gamenum);
+        
+        
+        var cngurl=g_baseurl+'/JujuDemo/servlet/GameUserinfo?id='+localStorage.j_username+'&gameuserid=1&gamehomenum='+localStorage.g_gamenum+'&gamename='+g_gamename+'&homenum='+g_homenum+'&isgameover=0';
+        
+        //console.log(cngurl);
+        $rootScope.itemscn = null;
+        if(!$rootScope.itemscn) {
+            jx.load(cngurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.itemscn = data.cerateresult;
+                    //console.log("------创建成功------"+ $rootScope.itemscn);
+                    //if($rootScope.itemscn=1){}
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/nophoneview");
+        
+        if(g_gamename == 'jgch'){
+            
+            $location.path("/jgchview");
+            
+        }else if(g_gamename == 'dice'){
+            
+            $location.path("/diceview");
+            
+        }else if(g_gamename == 'whoiswo'){
+            
+            $location.path("/whoiswo");
+            
+        }else if(g_gamename == 'mora'){
+            
+            $location.path("/moraview");
+            
+        }else if(g_gamename == 'kill'){
+            
+            $location.path("/killer");
+            
+        }else if(g_gamename == 'know'){
+            
+            $location.path("/know");
+        }
+        
+
+    
+    
+    }
+    
+    $scope.joinGame = function(item) {
+        
+        console.log("用户名" + localStorage.j_username);
+        console.log("游戏名"+ g_gamename);
+        console.log("游戏编号"+ item.tablenum);
+        
+        if(!item.tablenum){
+             
+            
+            
+        }else{
+            
+            localStorage.g_gamenum = item.tablenum;
+            var cngurl=g_baseurl+'/JujuDemo/servlet/GameUserinfo?id='+localStorage.j_username +'&gameuserid=0&gamehomenum='+ item.tablenum +'&gamename='+g_gamename+'&homenum='+g_homenum+'&isgameover=0';
+            
+            console.log(cngurl);
+            
+            $rootScope.itemscn = null;
+            if(!$rootScope.itemscn) {
+                
+                jx.load(cngurl,function(data){
+                        console.log(JSON.stringify(data));
+                        $rootScope.itemscn = data.cerateresult;
+                        
+                        console.log("------加入成功------"+ $rootScope.itemscn);
+                        
+                        
+                        
+                        if($rootScope.itemscn=1){
+                        
+                        if(g_gamename=='nophone'){
+                        
+                        $location.path("/nophoneview2");
+                        }
+                        
+                        if(g_gamename=='jgch'){
+                        
+                        $location.path("/jgchview2");
+                        }
+                        if(g_gamename=='dice'){
+                        
+                        $location.path("/diceviewwaiting");
+                        
+                        }
+                        if(g_gamename=='whoiswo'){
+                        
+                        $location.path("/whoiswowo");
+                        
+                        }
+                        if(g_gamename=='kill'){
+                        
+                        $location.path("/jkiller");
+                        
+                        }
+                        
+                        if(g_gamename=='mora'){
+                        
+                        $location.path("/moraview");
+                        
+                        }
+                        if(g_gamename=='know'){
+                        
+                        $location.path("/knowj");
+                        
+                        }
+                        
+                        
+                        
+                        }
+                        $scope.$apply();
+                        },'json');
+                
+            } else {
+                console.log('data already loaded');
+            }
+        }
+    }
+
     
     $scope.gotonophone = function(){
         
         g_gamename="nophone";
         console.log('游戏名称' + g_gamename);
-        GetGamehomenum();
+        $scope.gameiconsrc = "./img/icons/np.png";
         
-        $location.path("/step3");
+        $scope.inggamelist();
         
     }
     
