@@ -619,13 +619,9 @@ function AnonymousChatCtrl($scope, $rootScope,$location){
     
     $rootScope.items=null;
     if (!$rootScope.items) {
-        
-        $scope.message ="有人说:";
-        
         jx.load(g_baseurl+'/JujuDemo/servlet/SendMessage?homenum='+g_homenum,function(data){
                 console.log(JSON.stringify(data));
                 $rootScope.items = data.item8;
-                
                 $scope.$apply();
                 },'json');
         
@@ -636,9 +632,7 @@ function AnonymousChatCtrl($scope, $rootScope,$location){
     
     $scope.loadItem = function(item) {
         
-        console.log("will open AnonymousChat windows ");
         $location.path("/mainchat");
-        
         
     };
 }
@@ -647,15 +641,9 @@ function AnonymousChatCtrl($scope, $rootScope,$location){
 function SendAnonymousMessageCtrl($scope, $rootScope,$location){
     
      $scope.message ="局:"+ g_homenum;
-    //
     
     $scope.formData = {};
-    
-    
-    
     $scope.sendmessage=function(){
-        
-        
         if(!$scope.formData.s_message ){
         
         $scope.message ="匿名消息不能为空";
@@ -1636,7 +1624,30 @@ function nophonestep1GameCtrl2($scope,$timeout,$rootScope,$location){
     }
     
     $scope.waiting();
-  
+    
+    $scope.exitnophone = function() {
+        
+        $timeout.cancel($scope.timeout);
+        var exurl= g_baseurl +'/JujuDemo/servlet/Exitgamehome?id='+g_userid+'&gamehomenum='+ localStorage.g_gamenum;
+         $rootScope.items=null;
+        // load in data from hacker news unless we already have
+        if (!$rootScope.items) {
+            
+            jx.load(exurl,function(data){
+                    console.log(JSON.stringify(data));
+                    $rootScope.items = data.exitresult;
+                    
+                    $scope.$apply();
+                    },'json');
+            
+        } else {
+            console.log('data already loaded');
+        }
+        
+        
+        $location.path("/step3");
+    }
+
 
 }
 
@@ -4684,7 +4695,7 @@ function NavtoingGame($scope,$rootScope,$timeout,$location){
 }
 
 function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
-    
+    $rootScope.items = null;
     console.log('---游戏大厅---');
     
     console.log("用户编号" + localStorage.j_username);
@@ -4693,8 +4704,6 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
     console.log("游戏编号"+ localStorage.g_gamenum);
     
     $scope.gameiconsrc = "./img/icons/nogame.png";
-    
-    
     
     function countdown() {
         $scope.inggamelist();
@@ -4723,9 +4732,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
                      console.log("自动新建游戏" + g_gamename);
                      autogamehomenum();
                     
-                    
-                    
-                    }else{
+                     }else{
                     
                        
                        $scope.message="";
