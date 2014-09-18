@@ -140,14 +140,21 @@ var g_baseurl='http://203.100.80.135:8080';
 
 //-----------------------------
 
-function sloganCtrl($scope,$location,$rootScope,$timeout){
+function sloganCtrl($scope,$location,$rootScope,$timeout,navSvc){
     $scope.value = 0;
+    
+    
+    $scope.slidePage = function (path,type) {
+        navSvc.slidePage(path,type);
+    };
+
     function countdown() {
         $scope.value++;
         console.log("计时器" + $scope.value);
         $scope.timeout = $timeout(countdown, 2000);
         if($scope.value > 2){
-            $location.path("/login");
+            navSvc.slidePage('/login','modal');
+            //$location.path("/login");
             $timeout.cancel($scope.timeout);
         }
         
