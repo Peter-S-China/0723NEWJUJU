@@ -1,0 +1,119 @@
+<html>
+<body>
+<head></head>
+<script src="../jquery.js"></script>
+<script>
+
+$(document).ready(function(){
+                      
+                      
+             
+});
+                      
+function exit(){
+                          var exiturl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
+                          
+                          $.ajax({
+                                 type: "GET",
+                                 url: exiturl,
+                                 dataType: "script"
+                                 });
+                                 
+                                 
+                                history.go(-1);
+}
+
+</script>
+
+<style>
+
+body{
+            
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none; /*webkit浏览器*/
+            -ms-user-select: none; /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+            background-color:transparent;
+            text-shadow: 1px 1px  3px #000;
+}
+    
+
+
+.startbtn{
+background-image: url("./img/start.PNG");
+position:fixed;
+bottom:0px;
+left:120px;
+width:86px;
+height:48px;
+z-index:20;
+background-repeat:no-repeat;
+}
+
+.bottombg{
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    width:320px;
+    height:48px;
+    padding:10px;
+    background-image: url("./img/bottom.PNG");
+    z-index:10;
+}
+.userlist{
+width:318px;
+height:150px;
+position:fixed;
+left:0px;
+bottom:80px;
+text-shadow: 1px 1px  2px #000;
+font-size:14px;
+text-align:center;
+color:white;
+overflow:auto;
+
+}
+.monkey1{
+background-image: url("./img/00000.PNG");
+width:320px;
+height:153px;
+position:fixed;
+left:0px;
+bottom:240px;
+}
+.banana{
+
+background-image: url("./img/nophone1.png");
+width:185px;
+height:137px;
+position:fixed;
+left:60px;
+top:0px;
+}
+.exitnophone{
+
+background-image: url("./img/nophoneback.png");
+width:42px;
+height:26px;
+position:fixed;
+left:10px;
+top:10px;
+
+
+}
+</style>
+
+<div class=exitnophone onclick=exit()></div>
+
+
+<div class=banana></div>
+
+<div class=monkey1></div>
+
+
+<div class=userlist>参与游戏用户列表</div>
+
+
+</body>
+</html>

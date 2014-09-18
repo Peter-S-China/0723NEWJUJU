@@ -4722,7 +4722,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
                     
                      console.log("自动新建游戏" + g_gamename);
                      autogamehomenum();
-                     $scope.autocreatnewgame();
+                    
                     
                     
                     }else{
@@ -4745,6 +4745,8 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
     }
     
     function autogamehomenum(){
+        
+        localStorage.g_gamenum = null;
     
         $rootScope.items = null;
         
@@ -4755,7 +4757,10 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
                     $rootScope.items = data.item5;
                     
                     localStorage.g_gamenum = $rootScope.items.homenum;
+                    
                     console.log("自动获取游戏编号" + localStorage.g_gamenum);
+                    
+                    $scope.autocreatnewgame();
                     
                     $scope.$apply();
                     },'json');
