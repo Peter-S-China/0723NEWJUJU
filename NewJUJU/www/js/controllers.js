@@ -4976,7 +4976,10 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         g_gamename="jgch";
         
-        $location.path("/inggameview");
+        console.log('游戏名称' + g_gamename);
+        $scope.gameiconsrc = "./img/icons/jgch.png";
+        
+        $scope.inggamelist();
         
     }
     
@@ -4984,7 +4987,10 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         g_gamename="dice";
         
-        $location.path("/inggameview");
+        console.log('游戏名称' + g_gamename);
+        $scope.gameiconsrc = "./img/icons/dice.png";
+        
+        $scope.inggamelist();
         
     }
     
@@ -4992,14 +4998,20 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         g_gamename = "whoiswo";
         
-        $location.path("/inggameview");
+        console.log('游戏名称' + g_gamename);
+        $scope.gameiconsrc = "./img/icons/whoiswo.png";
+        
+        $scope.inggamelist();
         
     }
     $scope.gotomora = function(){
         
         g_gamename = "mora";
         
-        $location.path("/inggameview");
+        console.log('游戏名称' + g_gamename);
+        $scope.gameiconsrc = "./img/icons/mora.png";
+        
+        $scope.inggamelist();
         
     }
     
@@ -5007,7 +5019,10 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         g_gamename = "kill";
         
-        $location.path("/inggameview");
+        console.log('游戏名称' + g_gamename);
+        $scope.gameiconsrc = "./img/icons/kill.png";
+        
+        $scope.inggamelist();
         
     }
     
@@ -5015,7 +5030,10 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         g_gamename = "know";
         
-        $location.path("/inggameview");
+        console.log('游戏名称' + g_gamename);
+        $scope.gameiconsrc = "./img/icons/zf.png";
+        
+        $scope.inggamelist();
         
     }
     
