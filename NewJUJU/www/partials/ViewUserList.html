@@ -8,14 +8,13 @@
         </div>
     </div>
     
-<div ng-controller="GetUserListCtrl">
+<div  ng-controller="GetUserListCtrl">
     
     <div><br>房间号:{{homenum}}</div>
-    <ul class="new-topcoat-list" style="margin-top:10px;">
-        <li class="new-topcoat-list__item" ng-repeat="item in items">
-            {{item.username}}
-        </li>
-    </ul>
+    <div style="margin-top:10px;"   ng-repeat="item in items">
+        {{item.username}}
+    <div>
+
 </div>
 
 

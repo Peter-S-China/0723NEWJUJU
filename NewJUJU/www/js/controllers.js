@@ -622,8 +622,19 @@ function LoginRoomCtrl($scope,$rootScope,$location){
 function AnonymousChatCtrl($scope, $rootScope,$location){
 
     $scope.message ="";
-    console.log("匿名白板房间号" + g_homenum);
+    localStorage.g_homenum = g_homenum;
+    console.log("匿名白板房间号" + localStorage.g_homenum);
+    localStorage.tmpurl = g_baseurl+'/JujuDemo/servlet/SendMessage?homenum='+ localStorage.g_homenum;
+    console.log(localStorage.tmpurl);
     
+    
+    $scope.gotochat = function(){
+    
+        $location.path("/mainchat");
+    
+    }
+    
+    /*
     $rootScope.items=null;
     if (!$rootScope.items) {
         jx.load(g_baseurl+'/JujuDemo/servlet/SendMessage?homenum='+g_homenum,function(data){
@@ -642,6 +653,7 @@ function AnonymousChatCtrl($scope, $rootScope,$location){
         $location.path("/mainchat");
         
     };
+     */
 }
 
 
@@ -650,18 +662,21 @@ function SendAnonymousMessageCtrl($scope, $rootScope,$location){
      $scope.message ="局:"+ g_homenum;
     
     $scope.formData = {};
+    
     $scope.sendmessage=function(){
+        
         if(!$scope.formData.s_message ){
         
         $scope.message ="匿名消息不能为空";
         
-        }else if($scope.formData.s_message.length > 30){
+        }else if($scope.formData.s_message.length > 10){
         
              $scope.message ="能少打点字么";
         
         }else{
         
        var smmurl = g_baseurl+'/JujuDemo/servlet/GetMessage?homenum='+g_homenum+'&id='+g_userid+'&message='+$scope.formData.s_message+'&flag=0';
+            
         console.log("------sending----message-------" + smmurl);
         
         }
@@ -682,6 +697,29 @@ function SendAnonymousMessageCtrl($scope, $rootScope,$location){
      $location.path("/step3");
         
     }
+
+}
+
+function AnonymousChatCtrl2($scope, $rootScope){
+    
+    console.log(localStorage.tmpurl);
+    
+    $rootScope.items=null;
+    if (!$rootScope.items) {
+        jx.load(localStorage.tmpurl,function(data)
+            
+              {
+                console.log(JSON.stringify(data));
+                $rootScope.items = data.item8;
+                $scope.$apply();
+                },'json');
+        
+    } else {
+        console.log('data already loaded');
+    }
+    
+    
+
 
 }
 

@@ -12,26 +12,33 @@
     
 <div class="anonymousarea" ng-controller="AnonymousChatCtrl">
     
-<div style="height:98px;margin-top:5px;overflow:scroll;"  ng-click="loadItem(item)">
+<div style="width:320px; height:98px;margin-top:5px;overflow:hidden;"  ng-click="gotochat()">
 
-<lable style="text-align:left;margin-left:22px;float:left;display:block;width:270px;padding:5px;" ng-repeat="item in items" ng-click="loadItem(item)">
- {{item.message}}<br>
-</lable><br>
+
+
+<iframe ng-click="gotochat()"
+    allowtransparency="true"
+    style="background: transparent;border:0px;"
+    src="partials/chatcontent.html"
+   frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" height="80" width="200" ">
+</iframe>
+
+
 
 </div>
 </div>
 
 <div class="inggamearea" ng-controller="NavtoGameCtrl">
-<div ng-repeat="item in items" ng-click="joinGame(item)">
+<span ng-repeat="item in items" ng-click="joinGame(item)">
 <span >
     <img class=img2 src="{{gameiconsrc}}"/>
 </span>
-<span style="width:60px;display:block;margin-top:-10px;text-align:center;">
+<span style="width:60px;display:block;margin-top:-12px;text-align:center;font-size:12px;">
 {{item.username}}
 
 </span>
 
-</div>
+</span>
 
 
 <div class="gameiconarea" >
