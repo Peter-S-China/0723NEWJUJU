@@ -4750,12 +4750,13 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
     
     $scope.gameiconsrc = "./img/icons/nogame.png";
     
+    $scope.newgameicon = "./img/icons/nogame.png";
+    
     function countdown() {
         $scope.inggamelist();
         $scope.timeout = $timeout(countdown, 2000);
     
     }
-    
     
     
     $scope.inggamelist= function(){
@@ -4795,6 +4796,14 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         
     }
+    
+    $scope.autoNewgame = function(){
+        
+        autogamehomenum();
+    
+    
+    }
+
     
     function autogamehomenum(){
         
@@ -4967,6 +4976,8 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         g_gamename="nophone";
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/np.png";
+        
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         
         $scope.inggamelist();
         
