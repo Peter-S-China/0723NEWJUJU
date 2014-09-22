@@ -1379,7 +1379,9 @@ function nophonestep1Ctrl($scope,$timeout,$rootScope,$location){
 
 function nophoneGameCtrl($scope,$timeout,$rootScope,$location){
     
-    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ localStorage.g_userid );
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
     var exurl= g_baseurl +'/JujuDemo/servlet/Exitgamehome?id='+g_userid+'&gamehomenum='+ localStorage.g_gamenum;
