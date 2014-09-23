@@ -1,6 +1,5 @@
 <html>
-    <body>
-        <head></head>
+   
         <script src="../jquery.js"></script>
         <script>
             //localStorage.g_gamenum = '6730';
@@ -8,16 +7,9 @@
             
             var g_timer;
             $(document).ready(function(){
+                     
                               
-                              onlineuser();
-                              g_timer = setInterval(function(){
-                                                    $(".userinfo").hide();
-                                                    $(".userinfo").empty();
-                                                    onlineuser();
-                                                    $(".userinfo").show(1000);
-                                                    
-                                                    },3000);
-                              
+                              startnophone();
                               
                               });
                               
@@ -30,7 +22,7 @@
                                   htmlobj = $.ajax({url:exiturl,async:false});
                                   $("#myDiv").html(htmlobj.responseText);
                                   
-                                  history.go(-1);
+                                  history.go(-2);
                                   
                               }
         
@@ -68,14 +60,11 @@
             
             $(".monkey2").animate({left:'0px'});
             $(".monkey2").fadeIn(500);
-            $(".monkey2").animate({left:'10px',opacity:'0.4'},"slow");
-            $(".monkey2").animate({left:'0px',opacity:'0.8'},"slow");
-            $(".monkey2").animate({left:'-10px',opacity:'0.4'},"slow");
-            $(".monkey2").animate({left:'0px',opacity:'0.8'},"slow");
+            $(".monkey2").fadeOut(1000);
             
-            $(".monkey3").animate({left:'0px'},6000);
+            $(".monkey3").animate({left:'0px'});
             $(".monkey3").fadeIn(3000);
-
+            $(".monkey3").fadeOut(4000);
             
             
             
@@ -104,7 +93,7 @@
             $(".bottombg").hide();
             $(".userlist").show();
             $(".userlist").empty();
-            
+            $(".monkey1").fadeIn(1000);
             
             var stopurl= 'http://203.100.80.135:8080/JujuDemo/servlet/Getnophonecover?id='+localStorage.g_userid +'&gamehomenum='+localStorage.g_gamenum+'&nophonecover='+ h+":"+m+":"+s+":"+ss+"";
             
@@ -229,6 +218,7 @@
             overflow:auto;
             color:white;
             border:0px;
+            background-color:transparent;
         }
         .monkey1{
             background-image: url("./img/00000.PNG");
@@ -324,7 +314,8 @@
         
         
             </style>
-        
+        <body onclick=gameovernophone()>
+            <head></head>
         <div class=exitnophone onclick=exit()></div>
         
         

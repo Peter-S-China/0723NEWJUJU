@@ -5,12 +5,11 @@
 <script>
 localStorage.g_gamenum = '6730';
 localStorage.g_userid = '4106';
+
 var g_timer;
 $(document).ready(function(){
                       
-                  onlineuser();
-                  
-                  
+               onlineuser();
                g_timer = setInterval(function(){
                               $(".userinfo").hide();
                               $(".userinfo").empty();
@@ -23,9 +22,11 @@ $(document).ready(function(){
             });
             
 function exit(){
+    
    clearInterval(g_timer);
    var exiturl = "http://203.100.80.135:8080/JujuDemo/servlet/Exitgamehome?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
    
+   //alert(exiturl);
    htmlobj = $.ajax({url:exiturl,async:false});
    $("#myDiv").html(htmlobj.responseText);
 
@@ -60,18 +61,20 @@ function startnophone(){
     
 clearInterval(g_timer);
 $(".startbtn").hide();
-$(".userlist").hide();
+$(".userlist").empty();
 $(".gameoverbtn").show();
 
 $(".monkey1").fadeOut(1000);
 
 $(".monkey2").animate({left:'0px'});
 $(".monkey2").fadeIn(500);
-$(".monkey2").fadeOut(1000);
+$(".monkey2").animate({left:'10px',opacity:'0.4'},"slow");
+$(".monkey2").animate({left:'0px',opacity:'0.8'},"slow");
+$(".monkey2").animate({left:'-10px',opacity:'0.4'},"slow");
+$(".monkey2").animate({left:'0px',opacity:'0.8'},"slow");
 
-$(".monkey3").animate({left:'0px'});
+$(".monkey3").animate({left:'0px'},6000);
 $(".monkey3").fadeIn(3000);
-$(".monkey3").fadeOut(4000);
 
 
 
@@ -84,6 +87,10 @@ var starturl= 'http://203.100.80.135:8080/JujuDemo/servlet/Getnophoneflag?gameho
 htmlobj = $.ajax({url:starturl,async:false});
 $("#myDiv").html(htmlobj.responseText);
 
+var vtimer ="<input name='showtime' class=userlist id='showtime' type='text' value='0时0分0秒'>";
+
+$(".userlist").append(vtimer);
+startclock();
 
 }
 
@@ -97,12 +104,14 @@ $(".bottombg").hide();
 $(".userlist").show();
 $(".userlist").empty();
 
-var stopurl= 'http://203.100.80.135:8080/JujuDemo/servlet/Getnophonecover?id='+localStorage.g_userid +'&gamehomenum='+localStorage.g_gamenum+'&nophonecover='+ '20';
+
+var stopurl= 'http://203.100.80.135:8080/JujuDemo/servlet/Getnophonecover?id='+localStorage.g_userid +'&gamehomenum='+localStorage.g_gamenum+'&nophonecover='+ h+":"+m+":"+s+":"+ss+"";
 
 htmlobj = $.ajax({url:stopurl,async:false});
 $("#myDiv").html(htmlobj.responseText);
 
 userScore();
+stopclock();
 
 }
 
@@ -135,6 +144,20 @@ function userScore(){
 }
 
 
+var se,m=0,h=0,s=0,ss=1;
+function second(){
+    
+    if((ss%100)==0){s+=1;ss=1;}
+    if(s>0 && (s%60)==0){m+=1;s=0;}
+    if(m>0 && (m%60)==0){h+=1;m=0;}
+    t=h+"时"+m+"分"+s+"秒"+ss+"毫秒";
+    document.getElementById("showtime").value=t;
+    ss+=1;
+    
+}
+function startclock(){se=setInterval("second()",1);}
+function pauseclock(){clearInterval(se);}
+function stopclock(){clearInterval(se);ss=1;m=h=s=0;}
 
 </script>
 
@@ -203,7 +226,8 @@ font-size:14px;
 text-align:center;
 color:white;
 overflow:auto;
-
+color:white;
+border:0px;
 }
 .monkey1{
 background-image: url("./img/00000.PNG");

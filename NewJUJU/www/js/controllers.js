@@ -1268,13 +1268,14 @@ var npscorelisturl = g_baseurl +'/JujuDemo/servlet/Sendnophonecover?gamehomenum=
 //游戏发起者点开始游戏进入的第一个场景自动计时器启动
 function nophonestep2Ctrl($scope,$timeout,$rootScope,$location){
 
-    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ g_userid);
+    localStorage.g_userid = g_userid;
+    console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ localStorage.g_userid);
     console.log('>>>>>>获取用户游戏编号<<<<<<'+ localStorage.g_gamenum);
     
     var starturl= g_baseurl +'/JujuDemo/servlet/Getnophoneflag?gamehomenum='+localStorage.g_gamenum +'&nophoneflag=1';
     
-    $scope.message='用户游戏编号'+ localStorage.g_gamenum;
     console.log("--开始自动上传游戏开始数据-->>" + starturl);
+    
     $rootScope.items = null;
     // load in data from hacker news unless we already have
     
@@ -1288,8 +1289,9 @@ function nophonestep2Ctrl($scope,$timeout,$rootScope,$location){
     } else {
         console.log('data already loaded');
     }
-   console.log("--完成开始游戏第一步骤-->>" + starturl);
-   
+   console.log("------NOPHONE游戏开始后第一步骤------" + starturl);
+    
+/*
    $scope.value = 0;
    
     function countdown() {
@@ -1324,12 +1326,10 @@ function nophonestep2Ctrl($scope,$timeout,$rootScope,$location){
         
          $location.path("/nophone_is2");
         
-        
-        
-        
+ 
     }
     
-
+*/
 
 }
 
@@ -1337,6 +1337,7 @@ function nophonestep2Ctrl($scope,$timeout,$rootScope,$location){
 function nophonestep1Ctrl($scope,$timeout,$rootScope,$location){
     
     localStorage.g_userid = g_userid;
+    
     console.log('>>>>>>获取用户ID==g_userid<<<<<<'+ localStorage.g_userid);
     
     
