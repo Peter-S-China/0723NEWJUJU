@@ -349,13 +349,15 @@ function S1endknowcover(){
     var sknowcover = "http://203.100.80.135:8080/JujuDemo/servlet/Sendknowcover?gamehomenum="+ localStorage.g_gamenum + "&id="+ localStorage.g_userid;
     
     //alert(sknowcover);
-    var userinfo="<div id=scorelist>";
+    var userinfo="<div id=scorelist><span class=phbitems>名次</span><span class=phbitems>用户名</span><span class=phbitems>时间</span><span class=phbitems>得分</span>";
     $.getJSON(
               sknowcover,
               function(data) {
               $.each(data, function(i) {
                      
-                     userinfo += "<div class=phbitems>"+ " " +data[i].username + "总得分: "+ data[i].toaltcover +"耗用时间: "+ data[i].toalttime +"秒"+ " "+" </div>";
+                     userinfo += "<span class=phbitems>"+ i +</span>"+"<span class=phbitems>"+ " " +data[i].username + "</span><span class=phbitems> "+ data[i].toaltcover +" </span><span class=phbitems> "+ data[i].toalttime +"   "+" </span>";
+                     
+                     
                      
                      });
               userinfo += "</div>";
@@ -494,7 +496,14 @@ function S1endknowcover(){
     line-height: 20px;
     
 }
-
+#scorelist{
+    width:300px;
+    height:300px;
+    position:fixed;
+    left:10px;
+    top:150px;
+    
+}
 
 .questionopp{
     
@@ -541,6 +550,10 @@ function S1endknowcover(){
 .phbitems{
     color:white;
     font-size:14px;
+    width:75px;
+    float:left;
+    border-bottom:1px solid white;
+    text-align:center;
 }
 
     </style>

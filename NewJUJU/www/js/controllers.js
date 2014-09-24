@@ -4992,6 +4992,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/jgch.png";
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         
         $scope.inggamelist();
         
@@ -5003,7 +5004,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/dice.png";
-        
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         $scope.inggamelist();
         
     }
@@ -5014,7 +5015,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/whoiswo.png";
-        
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         $scope.inggamelist();
         
     }
@@ -5024,6 +5025,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/mora.png";
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         
         $scope.inggamelist();
         
@@ -5035,7 +5037,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/kill.png";
-        
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         $scope.inggamelist();
         
     }
@@ -5046,7 +5048,7 @@ function NavtoGameCtrl($scope,$rootScope,$location,$timeout) {
         
         console.log('游戏名称' + g_gamename);
         $scope.gameiconsrc = "./img/icons/zf.png";
-        
+        $scope.newgameicon = "./img/icons/NewGame.PNG";
         $scope.inggamelist();
         
     }
