@@ -3,8 +3,8 @@
 <head></head>
 <script src="../jquery.js"></script>
 <script>
-localStorage.g_gamenum = '6730';
-localStorage.g_userid = '4106';
+//localStorage.g_gamenum = '6730';
+//localStorage.g_userid = '4106';
 
 var g_timer;
 $(document).ready(function(){
@@ -30,7 +30,7 @@ function exit(){
    htmlobj = $.ajax({url:exiturl,async:false});
    $("#myDiv").html(htmlobj.responseText);
 
-        history.go(-1);
+   history.go(-1);
         
 }
 
@@ -87,7 +87,7 @@ var starturl= 'http://203.100.80.135:8080/JujuDemo/servlet/Getnophoneflag?gameho
 htmlobj = $.ajax({url:starturl,async:false});
 $("#myDiv").html(htmlobj.responseText);
 
-var vtimer ="<input name='showtime' class=userlist id='showtime' type='text' value='0时0分0秒'>";
+var vtimer ="<input name='showtime' class=showtime id='showtime' disabled='disabled' type='text' value='0时0分0秒'>";
 
 $(".userlist").append(vtimer);
 startclock();
@@ -228,6 +228,7 @@ color:white;
 overflow:auto;
 color:white;
 border:0px;
+
 }
 .monkey1{
 background-image: url("./img/00000.PNG");
@@ -317,10 +318,19 @@ height:26px;
 position:fixed;
 left:10px;
 top:10px;
+z-index:800;
 
 
 }
+.showtime{
 
+
+text-shadow: 1px 1px  2px #000;
+font-size:14px;
+text-align:center;
+border:0px;
+
+}
 
 </style>
 
