@@ -96,7 +96,7 @@ $.ajax({
        url: exiturl,
        dataType: "script"
        });
-       history.go(-2);
+       history.go(-1);
 }
 function Getguesscover(cover,num){
     var Getguessurl = "http://203.100.80.135:8080/JujuDemo/servlet/Getguesscover?gamehomenum="+localStorage.g_gamenum + "&userid="+ localStorage.g_userid +"&guesscover="+ cover+ "&teamflag="+ teamflag +"&getnum="+ num;
